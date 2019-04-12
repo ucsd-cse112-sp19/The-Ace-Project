@@ -1,1 +1,4 @@
 theme: jekyll-theme-slate
+title: Test Title
+github:
+  is_project_page: false
