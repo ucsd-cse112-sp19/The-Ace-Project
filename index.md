@@ -1,7 +1,25 @@
-## Team Ace
+## Meet the Team
 
-Sample Text
+### Lead
 
-### Team Members
+#### Aali Hakim
+#### Ajay Gopinath
 
-Sample member
+### QA
+
+#### Daniel Sonnier
+#### Hiroto Kakitani
+
+### DevOps
+
+#### Evan Laufer
+
+### Tools & Utility
+
+#### Yang Liu
+
+### Coding
+
+#### Frederico Vilela Curto
+#### Ashin George
+#### Julius Guzman
