@@ -1,25 +1,25 @@
-# Meet the Team
+## Meet the Team
 
-## Lead
+### Lead
 
-### Aali Hakim
-### Ajay Gopinath
+##### Aali Hakim
+##### Ajay Gopinath
 
-## QA
+### QA
 
-### Daniel Sonnier
-### Hiroto Kakitani
+##### Daniel Sonnier
+##### Hiroto Kakitani
 
-## DevOps
+### DevOps
 
-### Evan Laufer
+##### Evan Laufer
 
-## Tools & Utility
+### Tools & Utility
 
-### Yang Liu
+##### Yang Liu
 
-## Coding
+### Coding
 
-### Frederico Vilela Curto
-### Ashin George
-### Julius Guzman
+##### Frederico Vilela Curto
+##### Ashin George
+##### Julius Guzman
