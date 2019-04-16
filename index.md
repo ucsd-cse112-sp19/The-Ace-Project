@@ -1,7 +1,7 @@
 # Meet the Team
 
 ##### Aali Hakim
-![](images/aali.png)
+![Aali](images/aali.png)
 
 *Lead*  
 azhakim@ucsd.edu
