@@ -2,12 +2,16 @@
 
 ### Lead
 
+---
+
 ##### Aali Hakim
 azhakim@ucsd.edu
 ##### Ajay Gopinath
 agopinat@ucsd.edu
 
 ### QA
+
+---
 
 ##### Daniel Sonnier
 dsonnier@ucsd.edu
@@ -16,10 +20,14 @@ hkakitan@ucsd.edu
 
 ### DevOps
 
+---
+
 ##### Evan Laufer
 elaufer@ucsd.edu
 
 ### Tools & Utility
+
+---
 
 ##### Yang Liu
 yal318@ucsd.edu
@@ -27,6 +35,8 @@ yal318@ucsd.edu
 nsee@ucsd.edu
 
 ### Coding
+
+---
 
 ##### Frederico Vilela Curto
 frederico.vilelacurti@gmail.com
