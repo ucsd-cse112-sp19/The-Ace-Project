@@ -1,6 +1,8 @@
 # Meet the Team
 
 ##### Aali Hakim
+![](images/aali.png)
+
 *Lead*  
 azhakim@ucsd.edu
 
@@ -36,7 +38,7 @@ nsee@ucsd.edu
 *Coder*    
 frederico.vilelacurti@gmail.com
 
-##### Ryan Fan
+##### Zixiao Fan
 *Coder*  
 zif015@ucsd.edu
 
