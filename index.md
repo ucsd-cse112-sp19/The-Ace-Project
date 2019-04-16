@@ -3,32 +3,35 @@
 ### Lead
 
 ##### Aali Hakim
-Email: azhakim@ucsd.edu
+azhakim@ucsd.edu
 ##### Ajay Gopinath
-Email: agopinat@ucsd.edu
+agopinat@ucsd.edu
 
 ### QA
 
 ##### Daniel Sonnier
-Email: dsonnier@ucsd.edu
+dsonnier@ucsd.edu
 ##### Hiroto Kakitani
-Email: hkakitan@ucsd.edu
+hkakitan@ucsd.edu
 
 ### DevOps
 
 ##### Evan Laufer
-Email: elaufer@ucsd.edu
+elaufer@ucsd.edu
 
 ### Tools & Utility
 
 ##### Yang Liu
-Email: yal318@ucsd.edu
+yal318@ucsd.edu
+##### Nathanael See
+nsee@ucsd.edu
 
 ### Coding
 
 ##### Frederico Vilela Curto
-Email: frederico.vilelacurti@gmail.com
+frederico.vilelacurti@gmail.com
+##### Ryan Fan
 ##### Ashin George
-Email: asg043@ucsd.edu
+asg043@ucsd.edu
 ##### Julius Guzman
-Email: jag163@ucsd.edu
+jag163@ucsd.edu
