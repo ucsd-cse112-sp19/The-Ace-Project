@@ -1,47 +1,38 @@
-## Meet the Team
-
-### Lead
-
----
+# Meet the Team
 
 ##### Aali Hakim
+*Lead*
 azhakim@ucsd.edu
 ##### Ajay Gopinath
+*Co-Lead*
 agopinat@ucsd.edu
 
-### QA
-
----
-
 ##### Daniel Sonnier
+*QA*
 dsonnier@ucsd.edu
 ##### Hiroto Kakitani
+*QA*
 hkakitan@ucsd.edu
 
-### DevOps
-
----
-
 ##### Evan Laufer
+*DevOps*
 elaufer@ucsd.edu
 
-### Tools & Utility
-
----
-
 ##### Yang Liu
+*Tools & Utility*
 yal318@ucsd.edu
 ##### Nathanael See
+*Tools & Utility*
 nsee@ucsd.edu
 
-### Coding
-
----
-
 ##### Frederico Vilela Curto
+*Coder*
 frederico.vilelacurti@gmail.com
 ##### Ryan Fan
+*Coder*
 ##### Ashin George
+*Coder*
 asg043@ucsd.edu
 ##### Julius Guzman
+*Coder*
 jag163@ucsd.edu
