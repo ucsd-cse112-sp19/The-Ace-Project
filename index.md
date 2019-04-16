@@ -21,9 +21,13 @@ dsonnier@ucsd.edu
 hkakitan@ucsd.edu
 
 ##### Evan Laufer
+*DevOps*  
+elaufer@ucsd.edu
+
+##### Julius Guzman
 *DevOps*
 
-elaufer@ucsd.edu
+jag163@ucsd.edu
 
 ##### Yang Liu
 *Tools & Utility*
@@ -48,7 +52,3 @@ frederico.vilelacurti@gmail.com
 
 asg043@ucsd.edu
 
-##### Julius Guzman
-*Coder*
-
-jag163@ucsd.edu
