@@ -1,7 +1,12 @@
 {
     "scripts": {
-        "test": "echo \"Hello World\""
+        "test": "echo \"Hello World\"",
+        "lint": "eslint ."
     },
     "dependencies": {},
-    "devDependencies": {}
+    "devDependencies": {
+        "eslint": "^5.16.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-plugin-import": "^2.17.2"
+    }
 }
