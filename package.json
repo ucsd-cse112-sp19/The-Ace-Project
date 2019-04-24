@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "test": "echo \"Hello World\""
+    },
+    "dependencies": {},
+    "devDependencies": {}
+}
