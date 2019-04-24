@@ -1,12 +1,18 @@
 {
     "scripts": {
-        "test": "echo \"Hello World\"",
+        "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
         "lint": "eslint ."
     },
     "dependencies": {},
     "devDependencies": {
+        "chai": "^4.2.0",
         "eslint": "^5.16.0",
         "eslint-config-airbnb-base": "^13.1.0",
-        "eslint-plugin-import": "^2.17.2"
+        "eslint-plugin-import": "^2.17.2",
+        "karma": "^4.1.0",
+        "karma-chai": "^0.1.0",
+        "karma-chrome-launcher": "^2.2.0",
+        "karma-mocha": "^1.3.0",
+        "mocha": "^6.1.4"
     }
 }
