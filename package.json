@@ -8,6 +8,7 @@
         "chai": "^4.2.0",
         "eslint": "^5.16.0",
         "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-plugin-chai-expect": "^2.0.1",
         "eslint-plugin-import": "^2.17.2",
         "karma": "^4.1.0",
         "karma-chai": "^0.1.0",
