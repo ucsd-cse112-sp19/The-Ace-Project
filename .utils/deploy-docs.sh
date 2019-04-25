@@ -38,7 +38,7 @@ if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PUL
 
     echo "Pushing to gh-pages branch..."
     git add .
-    git commit -m "Lastest documentation. Successful build $TRAVIS_BUILD_NUMBER auto-pushed to gh-pages."
+    git commit -m "Latest documentation. Successful build $TRAVIS_BUILD_NUMBER auto-pushed to gh-pages."
     git push origin gh-pages > /dev/null
 else
     echo "Attempting to deploy somewhere other than master, aborting..."
