@@ -15,8 +15,8 @@ if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PUL
 
     echo "Moving generated docs..."
     cd webpage
-    git rm ./doc
-    cp -r $HOME/doc ./doc
+    git rm -r ./doc
+    cp -r ../doc ./doc
 
     echo "Pushing to gh-pages branch..."
     git add .
