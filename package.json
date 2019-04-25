@@ -1,7 +1,8 @@
 {
     "scripts": {
         "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "doc": "jsdoc -c ./jsdoc.conf.js ."
     },
     "dependencies": {},
     "devDependencies": {
@@ -10,6 +11,7 @@
         "eslint-config-airbnb-base": "^13.1.0",
         "eslint-plugin-chai-expect": "^2.0.1",
         "eslint-plugin-import": "^2.17.2",
+        "eslint-plugin-node": "^8.0.1",
         "husky": "^2.1.0",
         "jsdoc": "^3.5.5",
         "karma": "^4.1.0",

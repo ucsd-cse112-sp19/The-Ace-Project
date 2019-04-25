@@ -1,4 +1,4 @@
-let template = document.createElement("template");
+const template = document.createElement('template');
 template.innerHTML = `
     <div> Hello World <slot/></div>
     <style>
@@ -30,33 +30,33 @@ template.innerHTML = `
 `;
 
 const langMap = {
-  en: "Hello World",
-  pt: "Olá Mundo",
-  jp: "こんにちは世界"
+  en: 'Hello World',
+  pt: 'Olá Mundo',
+  jp: 'こんにちは世界',
 };
 
 class CoreHello extends HTMLElement {
   static get observedAttributes() {
-    return ["rainbow", "lang"];
+    return ['rainbow', 'lang'];
   }
 
   constructor() {
     super();
-    let shadowRoot = this.attachShadow({ mode: "open" });
+    const shadowRoot = this.attachShadow({ mode: 'open' });
     shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    if (this.hasAttribute("lang") && newVal in langMap) {
+    if (this.hasAttribute('lang') && newVal in langMap) {
       this.shadowRoot.children[0].innerHTML = `${langMap[newVal]} <slot/>`;
     }
 
-    if (this.hasAttribute("rainbow")) {
-      this.shadowRoot.children[0].classList.add("rainbow-text");
+    if (this.hasAttribute('rainbow')) {
+      this.shadowRoot.children[0].classList.add('rainbow-text');
     } else {
-      this.shadowRoot.children[0].classList.remove("rainbow-text");
+      this.shadowRoot.children[0].classList.remove('rainbow-text');
     }
   }
 }
 
-window.customElements.define("core-hello", CoreHello);
+window.customElements.define('core-hello', CoreHello);

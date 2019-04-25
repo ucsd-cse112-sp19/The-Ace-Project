@@ -7,7 +7,7 @@ module.exports = function (config) {
 
       /* load component files (we can use karma-browserify if
           we want to use node style 'require' statements instead) */
-      '*.js',
+      '!(jsdoc.conf).js',
     ],
     reporters: ['progress'],
     port: 9876,
