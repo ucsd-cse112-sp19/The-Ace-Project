@@ -7,6 +7,7 @@ if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PUL
     npm ci
     npm run doc
 
+    ls .
     ls doc 
 
     echo "Cloning gh-pages branch..."
@@ -17,6 +18,8 @@ if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PUL
 
     echo "Moving generated docs..."
     cd webpage
+    ls .
+    ls ..
     ls ../doc
     cat .gitignore
     cat ../.gitignore
