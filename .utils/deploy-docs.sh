@@ -7,8 +7,8 @@ if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PUL
     npm ci
     npm run doc
 
-    ls .
-    ls doc 
+    # save current directory so we docs path
+    CURRENT_DIR=$(pwd)
 
     echo "Cloning gh-pages branch..."
     cd $HOME
@@ -18,13 +18,8 @@ if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PUL
 
     echo "Moving generated docs..."
     cd webpage
-    ls .
-    ls ..
-    ls ../doc
-    cat .gitignore
-    cat ../.gitignore
     git rm -r ./doc
-    cp -r ../doc ./doc
+    cp -r $CURRENT_DIR/doc ./doc
 
     echo "Pushing to gh-pages branch..."
     git add .
