@@ -9,3 +9,5 @@ deploy:
   script: 
     - npm run doc
     - bash .utils/deploy-docs.sh
+  on:
+    branch: travis-ci
