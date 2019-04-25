@@ -1,13 +1,20 @@
 language: node_js
 node_js:
   - '8'
-script:
-  - npm run lint
-  - npm run test
-deploy:
-  provider: script
-  script: 
-    - npm run doc
-    - bash .utils/deploy-docs.sh
-  on:
-    branch: travis-ci
+jobs:
+  include:
+    - stage: Tests
+      name: "Unit Tests"
+      script:
+        - npm run lint
+        - npm run test
+    - stage: Deploy to Website
+      node_js: "8"
+      script:
+      deploy:
+        provider: script
+        script:
+          - npm run doc
+          - bash ./utils/deploy-docs.sh
+        on:
+          branch: travis-ci
