@@ -9,9 +9,8 @@ jobs:
         - npm run lint
         - npm run test
     - stage: Deploy to Website
-      node_js: "8"
-      script:
       deploy:
+        node_js: "8"
         provider: script
         script:
           - npm run doc
