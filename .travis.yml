@@ -12,9 +12,6 @@ jobs:
       script: skip
       deploy:
         provider: script
-        script:
-          - echo "Running deployment"
-          - npm run doc
-          - bash ./utils/deploy-docs.sh
+        script: bash utils/deploy-docs.sh
         on:
           branch: travis-ci

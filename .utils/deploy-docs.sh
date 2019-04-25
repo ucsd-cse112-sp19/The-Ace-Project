@@ -3,6 +3,9 @@
 # double check deploy only happens on correct branch
 echo "------ Deploying Docs ------"
 if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PULL_REQUESTS" == "false" ]]; then
+    echo "Generating docs..."
+    npm run docs
+
     echo "Cloning gh-pages branch..."
     cd $HOME
     git config --global user.email "travis@travis-ci.com"
