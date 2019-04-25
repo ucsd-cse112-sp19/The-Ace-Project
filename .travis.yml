@@ -11,7 +11,7 @@ jobs:
     - stage: Deploy to Website
       name: "Deploy Documentation"
       script: skip
-      if: branch = master
+      if: branch = master AND type != pull_request
       deploy:
         skip_cleanup: true
         provider: script
