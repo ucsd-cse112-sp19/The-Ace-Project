@@ -4,6 +4,7 @@
 echo "------ Deploying Docs ------"
 if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
     echo "Generating docs..."
+    npm ci
     npm run doc
 
     echo "Cloning gh-pages branch..."

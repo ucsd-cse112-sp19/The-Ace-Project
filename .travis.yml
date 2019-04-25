@@ -9,6 +9,7 @@ jobs:
         - npm run lint
         - npm run test
     - stage: Deploy to Website
+      name: "Deploy"
       script: skip
       deploy:
         provider: script
