@@ -12,7 +12,10 @@ jobs:
       name: "Deploy Documentation"
       script: skip
       deploy:
+        skip_cleanup: true
         provider: script
         script: bash .utils/deploy-docs.sh
         on:
-          branch: travis-ci
+          branch: master
+          repo: ucsd-cse112/The-Ace-Project
+          condition: $TRAVIS_PULL_REQUEST = false

@@ -1,2 +1,4 @@
 node_modules
 /doc
+.sass-cache
+_site
