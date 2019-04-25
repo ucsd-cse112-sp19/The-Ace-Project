@@ -2,6 +2,8 @@
 
 # double check deploy only happens on correct branch
 echo "------ Deploying Docs ------"
+echo $TRAVIS_PULL_REQUESTS
+echo $TRAVIS_REPO_SLUG
 if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PULL_REQUESTS" == "false" ]]; then
     echo "Generating docs..."
     npm run docs
@@ -21,4 +23,6 @@ if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PUL
     git add .
     git commit -m "Lastest javadoc on successful travis build $TRAVIS_BUILD_NUMBER auto-pushed to gh-pages"
     git push origin gh-pages > /dev/null
+else
+    echo "Attempting to deploy somewhere other than master, aborting..."
 fi
