@@ -9,10 +9,11 @@ jobs:
         - npm run lint
         - npm run test
     - stage: Deploy to Website
+      script: skip
       deploy:
-        node_js: "8"
         provider: script
         script:
+          - echo "Running deployment"
           - npm run doc
           - bash ./utils/deploy-docs.sh
         on:

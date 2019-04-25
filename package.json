@@ -3,7 +3,7 @@
         "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
         "lint": "eslint .",
         "lintfix": "eslint . --fix",
-        "doc": "jsdoc -c ./jsdoc.conf.js ."
+        "doc": "jsdoc -c jsdoc.conf.js ."
     },
     "dependencies": {},
     "devDependencies": {
