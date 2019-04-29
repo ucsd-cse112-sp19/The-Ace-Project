@@ -51,29 +51,31 @@ describe('core-hello', () => {
     });
   });
   describe('Language Attribute Tests', () => {
+    function testLang(lang, expected) {
+      component.setAttribute('lang', lang);
+      document.body.append(component);
+      helloDiv.innerHTML.should.equal(`${expected} <slot></slot>`);
+    }
+
     it('English Test', () => {
-      component.setAttribute('lang', 'en');
-      document.body.append(component);
-      helloDiv.innerHTML.should.equal('Hello World <slot></slot>');
+      testLang('en', 'Hello World');
     });
+
     it('Portugese Test', () => {
-      component.setAttribute('lang', 'pt');
-      document.body.append(component);
-      helloDiv.innerHTML.should.equal('Olá Mundo <slot></slot>');
+      testLang('pt', 'Olá Mundo');
     });
+
     it('Japanese Test', () => {
-      component.setAttribute('lang', 'jp');
-      document.body.append(component);
-      helloDiv.innerHTML.should.equal('こんにちは世界 <slot></slot>');
+      testLang('jp', 'こんにちは世界');
     });
+
     it('No Attribute Test', () => {
       document.body.append(component);
       helloDiv.innerHTML.should.equal(' Hello World <slot></slot>');
     });
+
     it('Non-supported Language Test', () => {
-      component.setAttribute('lang', 'fr');
-      document.body.append(component);
-      helloDiv.innerHTML.should.equal(' Hello World <slot></slot>');
+      testLang('fr', ' Hello World');
     });
   });
 });
