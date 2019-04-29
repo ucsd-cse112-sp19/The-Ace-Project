@@ -1,11 +1,14 @@
 describe('core-hello', () => {
   let component;
   let componentDOM;
+  let helloDiv;
   // create define and create core-hello to test before each test
   beforeEach((done) => {
     if (window.customElements.get('core-hello')) {
       component = document.createElement('core-hello');
       component.setAttribute('id', 'customElement');
+      helloDiv = component.shadowRoot.querySelector('div');
+
       done();
     } else {
       console.log('Core-hello not defined!');
@@ -14,6 +17,7 @@ describe('core-hello', () => {
 
   // delete component after each test
   afterEach(() => {
+    helloDiv = null;
     document.body.removeChild(component);
   });
 
@@ -44,6 +48,32 @@ describe('core-hello', () => {
         document.body.append(component);
         assert.isOk(component.shadowRoot.querySelector('div'));
       });
+    });
+  });
+  describe('Language Attribute Tests', () => {
+    it('English Test', () => {
+      component.setAttribute('lang', 'en');
+      document.body.append(component);
+      helloDiv.innerHTML.should.equal('Hello World <slot></slot>');
+    });
+    it('Portugese Test', () => {
+      component.setAttribute('lang', 'pt');
+      document.body.append(component);
+      helloDiv.innerHTML.should.equal('Olá Mundo <slot></slot>');
+    });
+    it('Japanese Test', () => {
+      component.setAttribute('lang', 'jp');
+      document.body.append(component);
+      helloDiv.innerHTML.should.equal('こんにちは世界 <slot></slot>');
+    });
+    it('No Attribute Test', () => {
+      document.body.append(component);
+      helloDiv.innerHTML.should.equal(' Hello World <slot></slot>');
+    });
+    it('Non-supported Language Test', () => {
+      component.setAttribute('lang', 'fr');
+      document.body.append(component);
+      helloDiv.innerHTML.should.equal(' Hello World <slot></slot>');
     });
   });
 });
