@@ -3,7 +3,7 @@ node_js:
   - '8'
 env:
   global:
-    - RELEASE_NAME=test
+    - RELEASE_NAME=ace-components
 jobs:
   include:
     - stage: Tests
@@ -25,6 +25,7 @@ jobs:
           condition: $TRAVIS_PULL_REQUEST = false
     - name: "Deploy to Github Release"
       script: skip
+      if: branch = master AND type != pull_request
       before_deploy:
         - npm run minify
         - bash ./.utils/deploy-github.sh
@@ -35,4 +36,5 @@ jobs:
         file: $RELEASE_NAME-$TRAVIS_TAG.tar.gz
         draft: true
         on:
-          branch: travis-ci
+          branch: master
+          tags: true
