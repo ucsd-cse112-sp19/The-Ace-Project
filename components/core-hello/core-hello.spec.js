@@ -46,4 +46,35 @@ describe('core-hello', () => {
       });
     });
   });
+  describe('Language Attribute Tests', () => {
+    it('English Test', () => {
+      const helloDiv = component.shadowRoot.querySelector('div');
+      component.setAttribute('lang', 'en');
+      document.body.append(component);
+      helloDiv.innerHTML.should.equal('Hello World <slot></slot>');
+    });
+    it('Portugese Test', () => {
+      const helloDiv = component.shadowRoot.querySelector('div');
+      component.setAttribute('lang', 'pt');
+      document.body.append(component);
+      helloDiv.innerHTML.should.equal('Olá Mundo <slot></slot>');
+    });
+    it('Japanese Test', () => {
+      const helloDiv = component.shadowRoot.querySelector('div');
+      component.setAttribute('lang', 'jp');
+      document.body.append(component);
+      helloDiv.innerHTML.should.equal('こんにちは世界 <slot></slot>');
+    });
+    it('No Attribute Test', () => {
+      const helloDiv = component.shadowRoot.querySelector('div');
+      document.body.append(component);
+      helloDiv.innerHTML.should.equal(' Hello World <slot></slot>');
+    });
+    it('Non-supported Language Test', () => {
+      const helloDiv = component.shadowRoot.querySelector('div');
+      component.setAttribute('lang', 'fr');
+      document.body.append(component);
+      helloDiv.innerHTML.should.equal(' Hello World <slot></slot>');
+    });
+  });
 });
