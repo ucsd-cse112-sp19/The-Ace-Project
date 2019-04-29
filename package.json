@@ -6,7 +6,9 @@
         "doc": "jsdoc -c jsdoc.conf.js .",
         "minify": "bash ./.utils/minify-js.sh components"
     },
-    "dependencies": {},
+    "dependencies": {
+        "chai-dom": "^1.8.1"
+    },
     "devDependencies": {
         "babel-minify": "^0.5.0",
         "chai": "^4.2.0",
