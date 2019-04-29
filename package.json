@@ -4,7 +4,7 @@
         "lint": "eslint .",
         "lintfix": "eslint . --fix",
         "doc": "jsdoc -c jsdoc.conf.js .",
-        "minify": "bash ./utils/minify-js.sh components"
+        "minify": "bash ./.utils/minify-js.sh components"
     },
     "dependencies": {},
     "devDependencies": {
