@@ -35,3 +35,5 @@ jobs:
         api_key: "$GITHUB_KEY"
         file: $RELEASE_NAME.tar.gz
         draft: true
+        on:
+          branch: travis-ci
