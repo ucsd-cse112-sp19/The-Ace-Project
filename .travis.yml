@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - '8'
+env:
+  global:
+    - RELEASE_NAME=test
 jobs:
   include:
     - stage: Tests
@@ -8,7 +11,8 @@ jobs:
       script:
         - npm run lint
         - npm run test
-    - stage: Deploy to Website
+        - npm run minify
+    - stage: Deploy
       name: "Deploy Documentation"
       script: skip
       if: branch = master AND type != pull_request
@@ -20,3 +24,14 @@ jobs:
           branch: master
           repo: ucsd-cse112/The-Ace-Project
           condition: $TRAVIS_PULL_REQUEST = false
+    - name: "Deploy to Github Release"
+      script: skip
+      deploy:
+        before_deploy:
+          - npm run minify
+          - bash ./.utils/deploy-github.sh
+        skip_cleanup: true
+        provider: releases
+        api_key: "$GITHUB_KEY"
+        file: $RELEASE_NAME.tar.gz
+        draft: true
