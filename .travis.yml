@@ -32,7 +32,7 @@ jobs:
         skip_cleanup: true
         provider: releases
         api_key: "$GITHUB_KEY"
-        file: $RELEASE_NAME.tar.gz
+        file: $RELEASE_NAME-$TRAVIS_TAG.tar.gz
         draft: true
         on:
           branch: travis-ci
