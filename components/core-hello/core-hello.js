@@ -36,7 +36,7 @@ const langMap = {
 };
 
 /**
- * This is a custom element that renders Hello World followed by whatever
+ * A custom element that renders Hello World followed by whatever
  * children it is given. </br>
  * It can also accept the attributes <code>lang</code> to change the
  * Hello World language and <code>rainbow</code> for extra swag
