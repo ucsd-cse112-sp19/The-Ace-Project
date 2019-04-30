@@ -1,2 +1,6 @@
 node_modules
-doc
+/doc
+.sass-cache
+_site
+*.min.js
+/coverage
