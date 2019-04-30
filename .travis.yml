@@ -43,7 +43,9 @@ jobs:
         skip_cleanup: true
         provider: releases
         api_key: "$GITHUB_KEY"
-        file: $RELEASE_NAME-$TRAVIS_TAG.tar.gz
+        file: 
+          - $RELEASE_NAME-$TRAVIS_TAG.tar.gz
+          - $RELEASE_NAME-$TRAVIS_TAG.zip
         draft: true
         on:
           branch: master
