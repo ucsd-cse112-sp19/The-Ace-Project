@@ -164,7 +164,6 @@ exports.defineTags = function(dictionary) {
     onTagged: function(doclet, tag) {
       let componentName = doclet.meta.filename.replace(/(.js)/g, "");
       let filePath = `../components/${componentName}/${doclet.meta.filename}`
-      console.log(filePath)
       doclet.authentication = tag.value;
       doclet.description = `
         <script src="${filePath}"></script>
