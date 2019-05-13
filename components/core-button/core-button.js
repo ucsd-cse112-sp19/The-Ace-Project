@@ -31,11 +31,15 @@ class CoreButton extends HTMLElement {
         font-family: var(--main-font-family);
         color: var(--main-color);
         cursor: pointer;
-        
       }
 
-      :host(:hover, :not([disabled])) {
-        filter: brightness(1.75);
+      :host(:hover) {
+        filter: brightness(1.5);
+      }
+
+      :host([disabled]) {
+        filter: brightness(2);
+        cursor: not-allowed;
       }
 
       a {
@@ -77,8 +81,6 @@ class CoreButton extends HTMLElement {
         this.style.borderRadius = this.hasAttribute('round') ? '20px' : '0px';
         break;
       case 'disabled':
-        this.style.opacity = this.hasAttribute('disabled') ? '0.5' : '1';
-        this.style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
         break;
       default:
         this.style.backgroundColor = 'black';
@@ -86,11 +88,6 @@ class CoreButton extends HTMLElement {
         this.style.paddingBottom = this.sizeMap.default;
         this.style.borderRadius = '0px';
     }
-    // if (this.hasAttribute('rainbow')) {
-    //   this.shadowRoot.children[0].classList.add('rainbow-text');
-    // } else {
-    //   this.shadowRoot.children[0].classList.remove('rainbow-text');
-    // }
   }
 }
 
