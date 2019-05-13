@@ -26,7 +26,7 @@ class CoreLink extends HTMLElement {
           font-size: var(--main-font-size);
           font-family: var(--main-font-family);
           cursor: pointer;
-          
+          text-decoration: underline;
         }
   
         :host(:hover, :not([disabled])) {
@@ -34,13 +34,15 @@ class CoreLink extends HTMLElement {
           color: #409eff;
         }
 
-        span {
+        :host([underline="false"]) {
           text-decoration: none;
+        }
+
+        span {
           color: #606266;
         }
 
-        span:hover{
-          text-decoration: underline;
+        span:hover {
           color: #409eff;
         }
 
@@ -104,10 +106,6 @@ class CoreLink extends HTMLElement {
           window.location.replace(newVal);
         }, true);
         break;
-      case 'underline':
-        // should be changing on hover underline
-        this.style.textDecoration = (this.hasAttribute('underline') && this.getAttribute('underline').toLowerCase() === 'false') ? 'none' : 'underline';
-        break;
       case 'disabled':
         this.style.opacity = this.hasAttribute('disabled') ? '0.5' : '1';
         this.style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
@@ -115,7 +113,6 @@ class CoreLink extends HTMLElement {
       case 'icon':
         break;
       default:
-        this.style.backgroundColor = 'black';
         this.style.borderRadius = '0px';
     }
   }
