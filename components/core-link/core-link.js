@@ -80,9 +80,12 @@ class CoreLink extends HTMLElement {
       case 'type':
         break;
       case 'href':
-        this.addEventListener('click', () => {
-          window.location.replace(newVal);
-        }, true);
+          this.addEventListener('click', () => {
+            if(this.hasAttribute('target') && this.getAttribute('target') == '_blank')
+              window.open(newVal);
+            else
+              window.location.assign(newVal);
+          }, true);
         break;
       case 'disabled':
         this.style.opacity = this.hasAttribute('disabled') ? '0.5' : '1';
