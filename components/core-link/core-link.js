@@ -72,46 +72,6 @@ class CoreLink extends HTMLElement {
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
     shadowRoot.appendChild(this.template.content.cloneNode(true));
-    this.button = shadowRoot.querySelector('a');
-    this.colMap = {
-      default: '#606266',
-      primary: '#409eff',
-      danger: '#f56c6c',
-      success: '#67c23a',
-      warning: '#e6a23c',
-      info: '#909399',
-    };
-    this.hovColMap = {
-      default: '#409eff',
-      primary: '#66b1ff',
-      danger: '#f78989',
-      success: '#85ce61',
-      warning: '#ebb563',
-      info: '#a6a9ad',
-    };
-    this.disColMap = {
-      default: '#c0c4cc',
-      primary: '#a0cfff',
-      danger: '#fab6b6',
-      success: '#b3e19d',
-      warning: '#f3d19e',
-      info: '#c8c9cc',
-    };
-    this.afterBorderMap = {
-      default: '#409eff',
-      primary: '#409eff',
-      danger: '#f56c6c',
-      success: '#67c23a',
-      warning: '#e6a23c',
-      info: '#909399',
-    };
-    this.underlineBorderMap = {
-      primary: '#409eff',
-      danger: '#f56c6c',
-      success: '#67c23a',
-      warning: '#e6a23c',
-      info: '#909399',
-    };
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
