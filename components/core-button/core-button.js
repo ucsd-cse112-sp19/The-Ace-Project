@@ -16,7 +16,7 @@
 
 class CoreButton extends HTMLElement {
   static get observedAttributes() {
-    return ['type', 'size', 'round', 'disabled'];
+    return ['type', 'size', 'round', 'disabled', 'plain'];
   }
 
   constructor() {
@@ -25,21 +25,69 @@ class CoreButton extends HTMLElement {
     this.template.innerHTML = `
     <style>
       :host(*) {
-        --main-font-size: 18px;
+        --main-font-size: 14px;
         --main-font-family: 'arial';
+        --main-padding: '12px 20px';
+        --main-bg: 'white';
         font-size: var(--main-font-size);
         font-family: var(--main-font-family);
         color: var(--main-color);
+        background: var(--main-bg);
         cursor: pointer;
+        transition: all 0.1s ease;
+        border-radius: 4px;
+        border: 1px solid #dcdfe6;
+        padding: var(--main-padding);
       }
 
-      :host(:hover) {
-        filter: brightness(1.5);
+      :host(:hover:not([type]):not([disabled])) {
+        color: #409eff;
+        border-color: #c6e2ff;
+        background-color: #ecf5ff;
       }
 
-      :host([disabled]) {
-        filter: brightness(2);
+      :host([type]) {
+        border: none;
+        color: white;
+      }
+
+      :host(:hover[type]:not([disabled]):not([plain])) {
+        border: none;
+        filter: brightness(1.2);
+      }
+
+      :host([plain]) {
+        border: 1px solid var(--main-bg);
+        color: var(--main-bg);
+      }
+
+      :host(:hover[plain]) {
+        background: var(--main-bg) !important;
+        color: white;
+      }
+
+      :host([disabled])  {
+        filter: brightness(1);
+        opacity: 0.4;
         cursor: not-allowed;
+      }
+
+      :host([round]) {
+        border-radius: 20px;
+      }
+
+      :host([type='text']) {
+        padding: 12px 0;
+        background: none;
+        color: #409eff;
+      }
+
+      :host(:hover[type='text']) {
+        color: #66b1ff;
+      }
+
+      :host([size='mini'],[size='small']) {
+        font-size: 12px;
       }
 
       a {
@@ -53,6 +101,7 @@ class CoreButton extends HTMLElement {
     shadowRoot.appendChild(this.template.content.cloneNode(true));
     this.button = shadowRoot.querySelector('a');
     this.bgMap = {
+      default: 'white',
       primary: '#409eff',
       success: '#67c23a',
       info: '#909399',
@@ -65,29 +114,29 @@ class CoreButton extends HTMLElement {
       small: '9px 15px',
       mini: '7px 15px',
     };
+
+    this.hex2rgba = (hex, alpha = 1) => {
+      const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
+      return `rgba(${r},${g},${b},${alpha})`;
+    };
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    console.log(attrName, 'changed from', oldVal, 'to', newVal);
+    const bg = this.style.getPropertyValue('--main-bg');
     switch (attrName) {
       case 'size':
-        this.style.padding = this.sizeMap[newVal];
+        this.style.setProperty('--main-padding', this.hasAttribute('size') ? this.sizeMap[newVal] : this.sizeMap.default);
         break;
       case 'type':
-        this.style.color = (newVal && 'white') || '#606266';
-        this.style.backgroundColor = this.bgMap[newVal] || 'white';
+        this.style.setProperty('--main-bg', this.bgMap[newVal]);
         break;
-      case 'round':
-        this.style.borderRadius = this.hasAttribute('round') ? '20px' : '0px';
-        break;
-      case 'disabled':
+      case 'plain':
+        this.style.backgroundColor = newVal !== null ? this.hex2rgba(bg, 0.1) : bg;
         break;
       default:
-        this.style.backgroundColor = 'black';
-        this.style.paddingTop = this.sizeMap.default;
-        this.style.paddingBottom = this.sizeMap.default;
-        this.style.borderRadius = '0px';
+        break;
     }
+    // console.log(attrName, 'changed from', oldVal, 'to', newVal);
   }
 }
 
