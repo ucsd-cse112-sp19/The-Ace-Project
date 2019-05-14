@@ -26,7 +26,7 @@ class CoreLink extends HTMLElement {
           font-size: var(--main-font-size);
           font-family: var(--main-font-family);
           cursor: pointer;
-          text-decoration: underline;
+          text-decoration: none;
         }
   
         :host(:hover, :not([disabled])) {
@@ -34,8 +34,8 @@ class CoreLink extends HTMLElement {
           color: #409eff;
         }
 
-        :host([underline="false"]) {
-          text-decoration: none;
+        :host(:hover:not([disabled]):not([underline="false"])) {
+          text-decoration: underline;
         }
 
         span {
