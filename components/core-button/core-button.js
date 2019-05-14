@@ -10,9 +10,9 @@
  * @property {boolean} [circle=false] - determine whether it's a circle button
  * @property {boolean} [loading=false] - determine whether it's loading
  * @property {boolean} [disabled=false] - disable the button
- * @playground <core-button> Hi </core-button>
+ * @playground
+ * <core-button size='mini' type='danger' round plain> Hello world </core-button>
  */
-
 
 class CoreButton extends HTMLElement {
   static get observedAttributes() {
@@ -131,7 +131,7 @@ class CoreButton extends HTMLElement {
         this.style.setProperty('--main-bg', this.bgMap[newVal]);
         break;
       case 'plain':
-        this.style.backgroundColor = newVal !== null ? this.hex2rgba(bg, 0.1) : bg;
+        this.style.backgroundColor = newVal !== null ? this.hex2rgba(bg || '#ffffff', 0.1) : bg;
         break;
       default:
         break;
