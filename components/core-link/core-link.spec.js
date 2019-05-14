@@ -38,6 +38,55 @@ describe('core-link', () => {
         componentDOM = document.getElementById('customLink');
         componentDOM.innerHTML.should.equal('This is a test link');
       });
+
+      it('Renders core-link span', () => {
+        document.body.append(component);
+        assert.isOk(component.shadowRoot.querySelector('span'));
+      });
     });
+
+    describe('Disabled attribute tests', () => {
+      function testDisabled(dis, type, expected) {
+        if (dis === 'true') {
+          component.setAttribute('disabled', dis);
+        }
+        document.body.append(component);
+        componentDOM = document.getElementById('customLink');
+        if (type === 'pointer') {
+          componentDOM.style.cursor.should.equal(expected);
+        } else if (type === 'opacity') {
+          component.style.opacity.should.be.equal(expected);
+        } else {
+          should.fail('invalid test type');
+        }
+      }
+      // TODO equal 1??
+      it('Default test opacity', () => {
+        testDisabled('false', 'opacity', '');
+      });
+      it('Disabled test opacity', () => {
+        testDisabled('true', 'opacity', '0.5');
+      });
+      // TODO equal pointer??
+      it('Default test cursor', () => {
+        testDisabled('false', 'pointer', '');
+      });
+      it('Disabled test cursor', () => {
+        testDisabled('true', 'pointer', 'not-allowed');
+      });
+    });
+    /*
+    describe('Underline attribute tests', () => {
+
+    }); */
+    // TODO type attribute tests
+    /*
+    describe('Type attribute tests', () => {
+      it('default type test', () => {
+        component.setAttribute('type','default');
+
+      });
+    });
+    */
   });
 });
