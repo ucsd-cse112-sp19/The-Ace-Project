@@ -32,6 +32,39 @@ class CoreLink extends HTMLElement {
         :host(:hover:not([disabled]):not([underline="false"])) {
           text-decoration: underline;
         }
+        
+        :host([type="primary"]){color:#409eff}
+        :host([type="danger"]){color:#f56c6c}        
+        :host([type="success"]){color:#67c23a}
+        :host([type="warning"]){color:#e6a23c}
+        :host([type="info"]){color:#909399}
+
+        :host(:hover){color:#606266;}
+        :host(:hover[type="primary"]){color:#66b1ff}
+        :host(:hover[type="danger"]){color:#f78989}
+        :host(:hover[type="success"]){color:#85ce61}
+        :host(:hover[type="warning"]){color:#ebb563}
+        :host(:hover[type="info"]){color:#a6a9ad}
+
+        :host(:after){border-color:#409eff;}
+        :host(:after[type="primary"]){border-color:#409eff}
+        :host(:after[type="danger"]){border-color:#f56c6c}
+        :host(:after[type="success"]){border-color:#67c23a}
+        :host(:after[type="warning"]){border-color:#e6a23c}
+        :host(:after[type="info"]){border-color:#909399}
+
+        :host([disabled]){border-color:#c0c4cc;}
+        :host([disabled][type="primary"]){border-color:#a0cfff}
+        :host([disabled][type="danger"]){border-color:#fab6b6}
+        :host([disabled][type="success"]){border-color:#b3e19d}
+        :host([disabled][type="warning"]){border-color:#f3d19e}
+        :host([disabled][type="info"]){border-color:#c8c9cc}
+
+        :host(:after:hover:not([underline="false"][type="primary"]){border-color:#409eff}
+        :host(:after:hover:not([underline="false"][type="danger"]){border-color:#f56c6c}
+        :host(:after:hover:not([underline="false"][type="success"]){border-color:#67c23a}
+        :host(:after:hover:not([underline="false"][type="warning"]){border-color:#e6a23c}
+        :host(:after:hover:not([underline="false"][type="info"]){border-color:#909399}
 
         </style>
         <span><slot/></span>        
