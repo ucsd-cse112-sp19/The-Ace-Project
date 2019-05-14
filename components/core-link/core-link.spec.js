@@ -55,7 +55,7 @@ describe('core-link', () => {
         if (type === 'pointer') {
           componentDOM.style.cursor.should.equal(expected);
         } else if (type === 'opacity') {
-          component.style.opacity.should.be.equal(expected);
+          componentDOM.style.opacity.should.be.equal(expected);
         } else {
           should.fail('invalid test type');
         }
@@ -75,17 +75,34 @@ describe('core-link', () => {
         testDisabled('true', 'pointer', 'not-allowed');
       });
     });
-    /*
-    describe('Underline attribute tests', () => {
 
-    }); */
+    describe('Underline attribute tests', () => {
+      function testUnderline(underline) {
+        if (underline === 'true' || underline === 'false') {
+          component.setAttribute('underline', underline);
+        }
+        document.body.append(component);
+        componentDOM = document.getElementById('customLink');
+        if (underline === 'default') {
+          should.not.exist(componentDOM.getAttribute('underline'));
+        } else {
+          componentDOM.getAttribute('underline').should.equal(underline);
+        }
+      }
+      it('Default underline', () => {
+        testUnderline('default');
+      });
+
+      it('No underline', () => {
+        testUnderline('false');
+      });
+      it('With underline', () => {
+        testUnderline('true');
+      });
+    });
     // TODO type attribute tests
     /*
     describe('Type attribute tests', () => {
-      it('default type test', () => {
-        component.setAttribute('type','default');
-
-      });
     });
     */
   });
