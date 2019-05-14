@@ -28,22 +28,9 @@ class CoreLink extends HTMLElement {
           cursor: pointer;
           text-decoration: none;
         }
-  
-        :host(:hover, :not([disabled])) {
-          filter: brightness(1.75);
-          color: #409eff;
-        }
 
         :host(:hover:not([disabled]):not([underline="false"])) {
           text-decoration: underline;
-        }
-
-        span {
-          color: #606266;
-        }
-
-        span:hover {
-          color: #409eff;
         }
 
         </style>
@@ -98,8 +85,6 @@ class CoreLink extends HTMLElement {
     console.log(attrName, 'changed from', oldVal, 'to', newVal);
     switch (attrName) {
       case 'type':
-        //   this.style.color = (newVal && 'white') || '#606266';
-        //   this.style.backgroundColor = this.colMap[newVal] || 'white';
         break;
       case 'href':
         this.addEventListener('click', () => {
