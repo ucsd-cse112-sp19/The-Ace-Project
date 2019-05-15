@@ -1,7 +1,7 @@
 describe('core-link', () => {
   let component;
   let componentDOM;
-  // create define and create core-link to test before each test
+  // Create define and create core-link to test before each test.
   beforeEach((done) => {
     if (window.customElements.get('core-link')) {
       component = document.createElement('core-link');
@@ -12,6 +12,8 @@ describe('core-link', () => {
       console.log('core-link not defined!');
     }
   });
+
+  // Removes core-link element from DOM tree after every test.
   afterEach(() => {
     document.body.removeChild(component);
   });
@@ -44,7 +46,6 @@ describe('core-link', () => {
         assert.isOk(component.shadowRoot.querySelector('span'));
       });
     });
-
     describe('Disabled attribute tests', () => {
       function testDisabled(isDisabled, expected) {
         if (isDisabled) {
@@ -69,8 +70,10 @@ describe('core-link', () => {
         }
         document.body.append(component);
         componentDOM = document.getElementById('customLink');
+        // Checks that the underline attribute does not exist.
         if (underline === 'default') {
           should.not.exist(componentDOM.getAttribute('underline'));
+        // Checks that the underline attribute is correct.
         } else {
           componentDOM.getAttribute('underline').should.equal(underline);
         }
@@ -94,8 +97,10 @@ describe('core-link', () => {
         }
         document.body.append(component);
         componentDOM = document.getElementById('customLink');
+        // Checks that the href attribute does not exist.
         if (isDefault) {
           should.not.exist(componentDOM.getAttribute('href'));
+        // Checks that the href attribute is correct.
         } else {
           componentDOM.getAttribute('href').should.equal(link);
         }
@@ -116,6 +121,7 @@ describe('core-link', () => {
         if (!isDefault) {
           component.setAttribute('type', typeVal);
         }
+        // Color is different when disabled, so need to check the disabled attribute too.
         if (isDisabled) {
           component.setAttribute('disabled', '');
         }
