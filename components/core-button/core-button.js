@@ -16,20 +16,26 @@
 
 class CoreButton extends HTMLElement {
   static get observedAttributes() {
-    return ['type', 'size', 'round', 'disabled', 'plain'];
+    return ['type', 'size', 'round', 'disabled', 'plain', 'icon', 'loading'];
   }
 
   constructor() {
     super();
     this.template = document.createElement('template');
     this.template.innerHTML = `
+    <link rel="stylesheet" href="element-icons.css" />
     <style>
-      :host(*) {
+      :host {
         --main-font-size: 14px;
-        --main-font-family: 'arial';
-        --main-padding: '12px 20px';
+        --main-font-family: 'Helvetica Neue';
+        --main-padding: 12px 20px;
         --main-bg: 'white';
+        display: inline-block;
+        text-align: center;
         font-size: var(--main-font-size);
+        font-weight: 500;
+        font-stretch: 100%;
+        -webkit-font-smoothing: antialiased;
         font-family: var(--main-font-family);
         color: var(--main-color);
         background: var(--main-bg);
@@ -38,6 +44,11 @@ class CoreButton extends HTMLElement {
         border-radius: 4px;
         border: 1px solid #dcdfe6;
         padding: var(--main-padding);
+        user-select: none;
+      }
+
+      :host([plain]:not([type])) {
+        border: 1px solid #dcdfe6;
       }
 
       :host(:hover:not([type]):not([disabled])) {
@@ -53,7 +64,7 @@ class CoreButton extends HTMLElement {
 
       :host(:hover[type]:not([disabled]):not([plain])) {
         border: none;
-        filter: brightness(1.2);
+        filter: brightness(1.1);
       }
 
       :host([plain]) {
@@ -76,13 +87,25 @@ class CoreButton extends HTMLElement {
         border-radius: 20px;
       }
 
+      :host([circle]) {
+        border-radius: 50%;
+        padding: 12px !important;
+        width: 14px;
+        height: 14px !important;
+      }
+
       :host([type='text']) {
         padding: 12px 0;
         background: none;
         color: #409eff;
       }
 
-      :host(:hover[type='text']) {
+      :host([type='text'][disabled]) {
+        color: #606266;
+      }
+
+
+      :host(:hover[type='text']:not([disabled])) {
         color: #66b1ff;
       }
 
@@ -90,16 +113,31 @@ class CoreButton extends HTMLElement {
         font-size: 12px;
       }
 
+      :host(:active[type]:not([disabled])) {
+        filter: brightness(0.9) !important;
+      }
+
+      :host(:active:not([type]):not([disabled])) {
+        border: 1px solid #3a8ee6 !important;
+      }
+
       a {
         background: var(--main-bg-color);
       }
-      
+
+      :host([circle]) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
       </style>
+      <span id='icon'></span>
       <a><slot/></a>
     `;
     const shadowRoot = this.attachShadow({ mode: 'open' });
     shadowRoot.appendChild(this.template.content.cloneNode(true));
-    this.button = shadowRoot.querySelector('a');
+    this.button = this.shadowRoot.querySelector('a');
     this.bgMap = {
       default: 'white',
       primary: '#409eff',
@@ -114,6 +152,7 @@ class CoreButton extends HTMLElement {
       small: '9px 15px',
       mini: '7px 15px',
     };
+    this.iconSlot = this.shadowRoot.querySelector('#icon');
 
     this.hex2rgba = (hex, alpha = 1) => {
       const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
@@ -124,6 +163,10 @@ class CoreButton extends HTMLElement {
   attributeChangedCallback(attrName, oldVal, newVal) {
     const bg = this.style.getPropertyValue('--main-bg');
     switch (attrName) {
+      case 'icon':
+        if (newVal) this.iconSlot.classList.add(newVal);
+        else this.iconSlot.classList.remove(oldVal);
+        break;
       case 'size':
         this.style.setProperty('--main-padding', this.hasAttribute('size') ? this.sizeMap[newVal] : this.sizeMap.default);
         break;
@@ -133,10 +176,16 @@ class CoreButton extends HTMLElement {
       case 'plain':
         this.style.backgroundColor = newVal !== null ? this.hex2rgba(bg || '#ffffff', 0.1) : bg;
         break;
+      case 'loading':
+        if (newVal) {
+          this.iconSlot.classList.add('el-icon-loading');
+        } else {
+          this.iconSlot.classList.remove('el-icon-loading');
+        }
+        break;
       default:
         break;
     }
-    // console.log(attrName, 'changed from', oldVal, 'to', newVal);
   }
 }
 
