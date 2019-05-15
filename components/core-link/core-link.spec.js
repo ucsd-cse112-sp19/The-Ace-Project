@@ -100,6 +100,30 @@ describe('core-link', () => {
         testUnderline('true');
       });
     });
+
+    describe('href attribute tests', () => {
+      function testHref(isDefault, link) {
+        if (!isDefault) {
+          component.setAttribute('href', link);
+        }
+        document.body.append(component);
+        componentDOM = document.getElementById('customLink');
+        if (isDefault) {
+          should.not.exist(componentDOM.getAttribute('href'));
+        } else {
+          componentDOM.getAttribute('href').should.equal(link);
+        }
+      }
+      it('default value', () => {
+        testHref(true, '');
+      });
+      it('valid href value', () => {
+        testHref(false, 'www.google.com');
+      });
+      it('blank href value', () => {
+        testHref(false, '');
+      });
+    });
     // TODO type attribute tests
     /*
     describe('Type attribute tests', () => {
