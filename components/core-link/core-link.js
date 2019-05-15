@@ -39,7 +39,7 @@ class CoreLink extends HTMLElement {
         :host([type="warning"]){color:#e6a23c}
         :host([type="info"]){color:#909399}
 
-        :host(:hover){color:#606266;}
+        :host(:hover){color:#409eff;}
         :host(:hover[type="primary"]){color:#66b1ff}
         :host(:hover[type="danger"]){color:#f78989}
         :host(:hover[type="success"]){color:#85ce61}
@@ -53,12 +53,12 @@ class CoreLink extends HTMLElement {
         :host(:after[type="warning"]){border-color:#e6a23c}
         :host(:after[type="info"]){border-color:#909399}
 
-        :host([disabled]){border-color:#c0c4cc;}
-        :host([disabled][type="primary"]){border-color:#a0cfff}
-        :host([disabled][type="danger"]){border-color:#fab6b6}
-        :host([disabled][type="success"]){border-color:#b3e19d}
-        :host([disabled][type="warning"]){border-color:#f3d19e}
-        :host([disabled][type="info"]){border-color:#c8c9cc}
+        :host([disabled]){color:#c0c4cc;}
+        :host([disabled][type="primary"]){color:#a0cfff}
+        :host([disabled][type="danger"]){color:#fab6b6}
+        :host([disabled][type="success"]){color:#b3e19d}
+        :host([disabled][type="warning"]){color:#f3d19e}
+        :host([disabled][type="info"]){color:#c8c9cc}
 
         :host(:after:hover:not([underline="false"][type="primary"]){border-color:#409eff}
         :host(:after:hover:not([underline="false"][type="danger"]){border-color:#f56c6c}
@@ -81,16 +81,14 @@ class CoreLink extends HTMLElement {
         break;
       case 'href':
         this.addEventListener('click', () => {
-          if(this.hasAttribute('target') && this.getAttribute('target') == '_blank')
-            window.open(newVal);
-          else
-            window.location.assign(newVal);
+          if (this.hasAttribute('target') && this.getAttribute('target') === '_blank') window.open(newVal);
+          else window.location.assign(newVal);
         }, true);
         break;
       case 'underline':
-        break;        
+        break;
       case 'disabled':
-        this.style.opacity = this.hasAttribute('disabled') ? '0.5' : '1';
+        // this.style.opacity = this.hasAttribute('disabled') ? '0.5' : '1';
         this.style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
         break;
       case 'icon':
