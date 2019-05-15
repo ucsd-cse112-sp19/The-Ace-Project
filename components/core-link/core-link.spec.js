@@ -46,33 +46,19 @@ describe('core-link', () => {
     });
 
     describe('Disabled attribute tests', () => {
-      function testDisabled(dis, type, expected) {
-        if (dis === 'true') {
-          component.setAttribute('disabled', dis);
+      function testDisabled(isDisabled, expected) {
+        if (isDisabled) {
+          component.setAttribute('disabled', '');
         }
         document.body.append(component);
         componentDOM = document.getElementById('customLink');
-        if (type === 'pointer') {
-          componentDOM.style.cursor.should.equal(expected);
-        } else if (type === 'opacity') {
-          componentDOM.style.opacity.should.be.equal(expected);
-        } else {
-          should.fail('invalid test type');
-        }
+        componentDOM.style.cursor.should.equal(expected);
       }
-      // TODO equal 1??
-      it('Default test opacity', () => {
-        testDisabled('false', 'opacity', '');
-      });
-      it('Disabled test opacity', () => {
-        testDisabled('true', 'opacity', '0.5');
-      });
-      // TODO equal pointer??
       it('Default test cursor', () => {
-        testDisabled('false', 'pointer', '');
+        testDisabled(false, '');
       });
       it('Disabled test cursor', () => {
-        testDisabled('true', 'pointer', 'not-allowed');
+        testDisabled(true, 'not-allowed');
       });
     });
 
@@ -124,10 +110,55 @@ describe('core-link', () => {
         testHref(false, '');
       });
     });
-    // TODO type attribute tests
-    /*
+
     describe('Type attribute tests', () => {
+      function testType(isDefault, isDisabled, typeVal, expected) {
+        if (!isDefault) {
+          component.setAttribute('type', typeVal);
+        }
+        if (isDisabled) {
+          component.setAttribute('disabled', '');
+        }
+        document.body.append(component);
+        componentDOM = document.getElementById('customLink');
+        window.getComputedStyle(componentDOM).color.should.equal(expected);
+      }
+      it('Default Enabled test', () => {
+        testType(true, false, '', 'rgb(0, 0, 0)');
+      });
+      it('Default Disabled type test', () => {
+        testType(true, true, '', 'rgb(192, 196, 204)');
+      });
+      it('Primary Enabled test', () => {
+        testType(false, false, 'primary', 'rgb(64, 158, 255)');
+      });
+      it('Primary Disabled test', () => {
+        testType(false, true, 'primary', 'rgb(160, 207, 255)');
+      });
+      it('Success Enabled test', () => {
+        testType(false, false, 'success', 'rgb(103, 194, 58)');
+      });
+      it('Success Disabled test', () => {
+        testType(false, true, 'success', 'rgb(179, 225, 157)');
+      });
+      it('Warning Enabled test', () => {
+        testType(false, false, 'warning', 'rgb(230, 162, 60)');
+      });
+      it('Warning Disabled test', () => {
+        testType(false, true, 'warning', 'rgb(243, 209, 158)');
+      });
+      it('Danger Enabled test', () => {
+        testType(false, false, 'danger', 'rgb(245, 108, 108)');
+      });
+      it('Danger Disabled test', () => {
+        testType(false, true, 'danger', 'rgb(250, 182, 182)');
+      });
+      it('Info Enabled test', () => {
+        testType(false, false, 'info', 'rgb(144, 147, 153)');
+      });
+      it('Info Disabled test', () => {
+        testType(false, true, 'info', 'rgb(200, 201, 204)');
+      });
     });
-    */
   });
 });
