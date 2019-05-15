@@ -1,6 +1,7 @@
 {
     "scripts": {
         "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
+        "integration": "testcafe \"chrome:headless,firefox:headless\" tests",
         "lint": "eslint . && stylelint --aei ./**/*.css && htmlhint --config .htmlhintrc .",
         "lintfix": "eslint --fix . && stylelint --fix --aei ./**/*.css && htmlhint --config .htmlhintrc .",
         "doc": "jsdoc -c jsdoc.conf.js .",
@@ -19,7 +20,7 @@
         "eslint-plugin-node": "^8.0.1",
         "htmlhint": "^0.11.0",
         "husky": "^2.1.0",
-        "jsdoc": "^3.5.5",
+        "jsdoc": "^3.6.2",
         "karma": "^4.1.0",
         "karma-chai": "^0.1.0",
         "karma-chrome-launcher": "^2.2.0",
@@ -29,7 +30,8 @@
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",
         "stylelint": "^10.0.1",
-        "stylelint-config-recommended": "^2.2.0"
+        "stylelint-config-recommended": "^2.2.0",
+        "testcafe": "^1.1.4"
     },
     "husky": {
         "hooks": {
