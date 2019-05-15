@@ -1,20 +1,29 @@
+const webpackConfig = require("./webpack.test")
+
 module.exports = function (config) {
   config.set({
     frameworks: ['mocha', 'chai'],
+    reporters: ['progress', 'coverage-istanbul'],
     files: [
       /* load component files (we can use karma-browserify if
           we want to use node style 'require' statements instead) */
-      'components/**/!(*.min).js',
+      'components/**/index-test.spec.js',
     ],
-    reporters: ['progress', 'coverage'],
     preprocessors: {
-      'components/**/!(*.spec|*.min).js': ['coverage'],
+      'components/**/index-test.spec.js': ['webpack', 'sourcemap'],
     },
-    coverageReporter: {
-      type: 'lcovonly',
-      dir: 'coverage/',
+    webpack: webpackConfig,
+    webpackMiddleware: {
+      noInfo: true
+    },
+    coverageIstanbulReporter: {
+      reports: [ 'html', 'text-summary', 'lcovonly' ],
+      dir: './coverage',
       subdir: '.',
-      file: 'lcov.info',
+      fixWebpackSourcePaths: true,
+      'report-config': {
+        html: { outdir: 'html' }
+      }
     },
     port: 9876,
     colors: true,

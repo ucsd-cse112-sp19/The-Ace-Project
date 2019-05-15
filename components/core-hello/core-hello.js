@@ -44,7 +44,7 @@ const langMap = {
  * @property {string} [lang="en"] - Language of Hello World - Accepts "en" | "jp" | "pt"
  * @property {boolean} [rainbow=false] - If present, animates the text with a rainbow effect
  */
-class CoreHello extends HTMLElement {
+export default class CoreHello extends HTMLElement {
   static get observedAttributes() {
     return ['rainbow', 'lang'];
   }

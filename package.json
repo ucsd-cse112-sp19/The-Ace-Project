@@ -1,5 +1,7 @@
 {
     "scripts": {
+        "build": "webpack --config webpack.prod.js",
+        "dev-build": "webpack --config webpack.dev.js",
         "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
         "lint": "eslint . && stylelint --aei ./**/*.css && htmlhint --config .htmlhintrc .",
         "lintfix": "eslint --fix . && stylelint --fix --aei ./**/*.css && htmlhint --config .htmlhintrc .",
@@ -7,9 +9,14 @@
         "minify": "bash ./.utils/minify-js.sh components"
     },
     "dependencies": {
-        "chai-dom": "^1.8.1"
+        "chai-dom": "^1.8.1",
+        "@webcomponents/webcomponentsjs": "^2.2.10"
     },
     "devDependencies": {
+        "@babel/cli": "^7.4.4",
+        "@babel/core": "^7.4.4",
+        "@babel/preset-env": "^7.4.4",
+        "babel-loader": "^8.0.6",
         "babel-minify": "^0.5.0",
         "chai": "^4.2.0",
         "eslint": "^5.16.0",
@@ -19,17 +26,26 @@
         "eslint-plugin-node": "^8.0.1",
         "htmlhint": "^0.11.0",
         "husky": "^2.1.0",
+        "istanbul-instrumenter-loader": "^3.0.1",
         "jsdoc": "^3.5.5",
         "karma": "^4.1.0",
+        "karma-babel-preprocessor": "^8.0.0",
         "karma-chai": "^0.1.0",
         "karma-chrome-launcher": "^2.2.0",
         "karma-coverage": "^1.1.2",
+        "karma-coverage-istanbul-reporter": "^2.0.5",
         "karma-mocha": "^1.3.0",
+        "karma-source-map-support": "^1.4.0",
+        "karma-sourcemap-loader": "^0.3.7",
+        "karma-webpack": "^3.0.5",
         "lint-staged": "^8.1.5",
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",
         "stylelint": "^10.0.1",
-        "stylelint-config-recommended": "^2.2.0"
+        "stylelint-config-recommended": "^2.2.0",
+        "webpack": "^4.31.0",
+        "webpack-cli": "^3.3.2",
+        "webpack-merge": "^4.2.1"
     },
     "husky": {
         "hooks": {
@@ -41,5 +57,9 @@
             "npm run lintfix",
             "git add"
         ]
-    }
+    },
+    "browserslist": [
+        "> 0.25%",
+        "not dead"
+    ]
 }

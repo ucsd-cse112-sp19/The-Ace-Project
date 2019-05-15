@@ -2,3 +2,8 @@ node_modules
 doc
 *.min.js
 coverage
+lib
+dist
+*.config.js
+*.conf.js
+webpack.*
