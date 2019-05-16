@@ -29,6 +29,7 @@ jobs:
     script:
       - xvfb-run npm run integration
   - name: "Cross-Browser Tests"
+    if: branch = dev AND type != pull_request # Only run on master when not a pull request
     script:
       - npm run integration-sauce
     on: # Only run cross-browser tests on dev branch
