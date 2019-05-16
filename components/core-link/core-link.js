@@ -7,7 +7,7 @@
  * @property {string} [icon=""] - class name of icon
  * @property {boolean} [underline=true] - determine whether the component has underline
  * @property {boolean} [disabled=false] - determine whether the component is disabled
- * @playground <core-link> link </core-button>
+ * @playground <core-link> link </core-link>
  */
 
 class CoreLink extends HTMLElement {
