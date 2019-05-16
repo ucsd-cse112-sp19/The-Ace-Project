@@ -63,8 +63,36 @@ describe('core-button', () => {
         testDisabled(true, 'not-allowed');
       });
     });
+    */
 
-*/
+
+    describe('Round attribute tests', () => {
+      function testRound(expected) {
+        component.setAttribute('Round', '');
+        document.body.append(component);
+        componentDOM = document.getElementById('customButton');
+        window.getComputedStyle(componentDOM).getPropertyValue('border-radius').should.equal(expected);
+      }
+      it('Test round', () => {
+        testRound('20px');
+      });
+    });
+
+
+    describe('Circle attribute tests', () => {
+      function testCircle(expected1, expected2, expected3) {
+        component.setAttribute('Circle', '');
+        document.body.append(component);
+        componentDOM = document.getElementById('customButton');
+        window.getComputedStyle(componentDOM).getPropertyValue('padding').should.equal(expected1);
+        window.getComputedStyle(componentDOM).getPropertyValue('width').should.equal(expected2);
+        window.getComputedStyle(componentDOM).getPropertyValue('height').should.equal(expected3);
+      }
+      it('Test circle', () => {
+        testCircle('12px', '14px', '14px');
+      });
+    });
+
 
     describe('Plain attribute tests', () => {
       function testPlain(typeVal, expected) {
