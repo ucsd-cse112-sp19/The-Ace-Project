@@ -43,6 +43,7 @@ const langMap = {
  * @example <core-hello rainbow lang="pt"> Joseph </core-hello>
  * @property {string} [lang="en"] - Language of Hello World - Accepts "en" | "jp" | "pt"
  * @property {boolean} [rainbow=false] - If present, animates the text with a rainbow effect
+ * @playground <core-hello lang='jp' rainbow> Peter </core-hello>
  */
 class CoreHello extends HTMLElement {
   static get observedAttributes() {
