@@ -1,6 +1,6 @@
 {
     "name": "ace-webcomponents",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "scripts": {
         "build": "webpack --config webpack.prod.js",
         "dev-build": "webpack --config webpack.dev.js",
