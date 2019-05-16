@@ -18,6 +18,12 @@ jobs:
     - npm run test
     after_script:
     - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -t lcov"
+  - name: "Integration/UI Tests"
+    addons:
+      firefox: latest
+      chrome: stable
+    script:
+      - xvfb-run npm run integration
   - stage: Deploy
     name: Deploy Documentation
     script: skip
