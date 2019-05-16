@@ -6,3 +6,5 @@ _site
 /coverage
 /lib
 /dist
+/npm_release
+*.tar.gz

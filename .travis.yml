@@ -1,51 +1,60 @@
 language: node_js
 node_js:
-  - '8'
+- '8'
 env:
   global:
-    - RELEASE_NAME=ace-components
+  - RELEASE_NAME=ace-components
 jobs:
   include:
-    - stage: Tests
-      name: "Unit Tests"
-      before_script:
-        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-        - chmod +x ./cc-test-reporter
-        - ./cc-test-reporter before-build
-      script:
-        - npm run lint
-        - npm run test
-      after_script:
-        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -t lcov
-    - stage: Deploy
-      name: "Deploy Documentation"
-      script: skip
-      if: branch = master AND type != pull_request
-      deploy:
-        skip_cleanup: true
-        provider: script
-        script: bash .utils/deploy-docs.sh
-        on:
-          branch: master
-          repo: ucsd-cse112/The-Ace-Project
-          condition: $TRAVIS_PULL_REQUEST = false
-    - name: "Deploy to Github Release"
-      script: skip
-      if: branch = master AND type != pull_request
-      before_deploy:
-        - git config --local user.email "travis@travis-ci.com"
-        - git config --local user.name "travis-ci"
-        - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-        - git tag $TRAVIS_TAG
-        - npm run build
-        - bash ./.utils/deploy-github.sh
-      deploy:
-        skip_cleanup: true
-        provider: releases
-        api_key: "$GITHUB_KEY"
-        file: 
-          - $RELEASE_NAME-$TRAVIS_TAG.tar.gz
-          - $RELEASE_NAME-$TRAVIS_TAG.zip
-        draft: true
-        on:
-          branch: master
+  - stage: Tests
+    name: Unit Tests
+    before_script:
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+      > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - "./cc-test-reporter before-build"
+    script:
+    - npm run lint
+    - npm run test
+    after_script:
+    - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -t lcov"
+  - stage: Deploy
+    name: Deploy Documentation
+    script: skip
+    if: branch = master AND type != pull_request
+    deploy:
+      skip_cleanup: true
+      provider: script
+      script: bash .utils/deploy-docs.sh
+      on:
+        branch: master
+        repo: ucsd-cse112/The-Ace-Project
+        condition: "$TRAVIS_PULL_REQUEST = false"
+  - name: Deploy to NPM and Github Releases
+    script: skip
+    if: branch = master AND type != pull_request
+    before_deploy:
+    - git config --local user.email "travis@travis-ci.com"
+    - git config --local user.name "travis-ci"
+    - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h
+      -1)}
+    - npm version minor
+    - export NPM_VERSION=$(node -e "console.log(require('./package.json').version);")
+    - git tag $NPM_VERSION
+    - npm run build
+    - bash ./.utils/create-release-zip.sh
+    deploy:
+    - provider: releases
+      skip_cleanup: true
+      api_key: "$GITHUB_KEY"
+      file:
+      - "$RELEASE_NAME-$NPM_VERSION.tar.gz"
+      - "$RELEASE_NAME-$NPM_VERSION.zip"
+      draft: true
+      on:
+        branch: master
+    - provider: script
+      skip_cleanup: true
+      script: bash .utils/npm-deploy.sh
+      on:
+        branch: master
