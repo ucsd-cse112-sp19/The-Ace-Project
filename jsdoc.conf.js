@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: [],
+  plugins: ['.utils/playground.js'],
   recurseDepth: 10,
   opts: {
     recurse: true,
