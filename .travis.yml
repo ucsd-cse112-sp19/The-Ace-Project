@@ -4,19 +4,23 @@ node_js:
 env:
   global:
   - RELEASE_NAME=ace-components
+
+# specify our jobs
 jobs:
   include:
+  # Testing stage - should include all tests
   - stage: Tests
     name: Unit Tests
     before_script:
-    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
-    - ./cc-test-reporter
+    # Get code climate test coverage reporter, and run before-build step
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
     - chmod +x ./cc-test-reporter
     - ./cc-test-reporter before-build
     script:
     - npm run lint
     - npm run test
     after_script:
+    # push coverage results to CodeClimate
     - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -t lcov
   - name: "Integration/UI Tests"
     addons:
@@ -24,15 +28,22 @@ jobs:
       chrome: stable
     script:
       - xvfb-run npm run integration
-  - stage: Deploy
+  - name: "Cross-Browser Tests"
+    script:
+      - npm run integration-sauce
+    on: # Only run cross-browser tests on dev branch
+      branch: dev
+      condition: "$TRAVIS_PULL_REQUEST = false"
+  # Deployment stage - all deployment should go here
+  - stage: Deploy # documentation deployment - push JSDoc to gh-pages site
     name: Deploy Documentation
     script: skip
-    if: branch = master AND type != pull_request
+    if: branch = master AND type != pull_request # Only run on master when not a pull request
     deploy:
       skip_cleanup: true
       provider: script
       script: bash .utils/deploy-docs.sh
-      on:
+      on: # sanity checking for our deploy conditions
         branch: master
         repo: ucsd-cse112/The-Ace-Project
         condition: "$TRAVIS_PULL_REQUEST = false"
@@ -59,8 +70,12 @@ jobs:
       draft: true
       on:
         branch: master
+        repo: ucsd-cse112/The-Ace-Project
+        condition: "$TRAVIS_PULL_REQUEST = false"
     - provider: script
       skip_cleanup: true
       script: bash .utils/npm-deploy.sh
       on:
         branch: master
+        repo: ucsd-cse112/The-Ace-Project
+        condition: "$TRAVIS_PULL_REQUEST = false"
