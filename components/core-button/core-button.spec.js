@@ -46,29 +46,9 @@ describe('core-button', () => {
     });
 
 
-    /*
-    describe('Disabled attribute tests', () => {
-      function testDisabled(isDisabled, expected) {
-        if (isDisabled) {
-          component.setAttribute('disabled', isDisabled);
-        }
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        componentDOM.style.cursor.should.equal(expected);
-      }
-      it('Default test cursor', () => {
-        testDisabled(false, '');
-      });
-      it('Disabled test cursor', () => {
-        testDisabled(true, 'not-allowed');
-      });
-    });
-    */
-
-
     describe('Round attribute tests', () => {
       function testRound(expected) {
-        component.setAttribute('Round', '');
+        component.setAttribute('round', '');
         document.body.append(component);
         componentDOM = document.getElementById('customButton');
         window.getComputedStyle(componentDOM).getPropertyValue('border-radius').should.equal(expected);
@@ -78,10 +58,41 @@ describe('core-button', () => {
       });
     });
 
+    describe('Disabled attribute tests', () => {
+      function testDisabled(isDisabled, expected) {
+        if (isDisabled) {
+          component.setAttribute('disabled', isDisabled);
+        }
+        document.body.append(component);
+        componentDOM = document.getElementById('customButton');
+        window.getComputedStyle(componentDOM).getPropertyValue('cursor').should.equal(expected);
+      }
+      it('Default test cursor', () => {
+        testDisabled(false, 'pointer');
+      });
+      it('Disabled test cursor', () => {
+        testDisabled(true, 'not-allowed');
+      });
+    });
+
+    /* TODO LOADING TEST FAILS
+    describe('Loading attribute tests', () => {
+      function testLoading() {
+        component.setAttribute('loading', '');
+        document.body.append(component);
+        componentDOM = document.getElementById('customButton');
+        componentDOM.iconSlot.classList.contains('el-icon-loading').should.equal(true);
+      }
+      it('Test loading', () => {
+        testLoading();
+      });
+    });
+    */
+
 
     describe('Circle attribute tests', () => {
       function testCircle(expected1, expected2, expected3) {
-        component.setAttribute('Circle', '');
+        component.setAttribute('circle', '');
         document.body.append(component);
         componentDOM = document.getElementById('customButton');
         window.getComputedStyle(componentDOM).getPropertyValue('padding').should.equal(expected1);
