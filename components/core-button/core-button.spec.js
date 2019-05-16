@@ -95,5 +95,30 @@ describe('core-button', () => {
         testType(false, 'info', 'rgb(144, 147, 153)');
       });
     });
+
+
+    describe('Size attribute tests', () => {
+      function testSize(isDefault, sizeVal, expected) {
+        if (!isDefault) {
+          component.setAttribute('size', sizeVal);
+        }
+        document.body.append(component);
+        componentDOM = document.getElementById('customButton');
+        window.getComputedStyle(componentDOM).padding.should.equal(expected);
+      }
+
+      it('Default test', () => {
+        testSize(true, '', '12px 20px');
+      });
+      it('Medium test', () => {
+        testSize(false, 'medium', '10px 20px');
+      });
+      it('Small test', () => {
+        testSize(false, 'small', '9px 15px');
+      });
+      it('Mini test', () => {
+        testSize(false, 'mini', '7px 15px');
+      });
+    });
   });
 });
