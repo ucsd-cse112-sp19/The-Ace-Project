@@ -63,7 +63,33 @@ describe('core-button', () => {
         testDisabled(true, 'not-allowed');
       });
     });
-    */
+
+*/
+
+    describe('Plain attribute tests', () => {
+      function testPlain(typeVal, expected) {
+        component.setAttribute('type', typeVal);
+        component.setAttribute('plain', '');
+        document.body.append(component);
+        componentDOM = document.getElementById('customButton');
+        window.getComputedStyle(componentDOM).border.should.equal(expected);
+      }
+      it('primay plain', () => {
+        testPlain('primary', '1px solid rgb(64, 158, 255)');
+      });
+      it('success plain', () => {
+        testPlain('success', '1px solid rgb(103, 194, 58)');
+      });
+      it('warning plain', () => {
+        testPlain('warning', '1px solid rgb(230, 162, 60)');
+      });
+      it('danger plain', () => {
+        testPlain('danger', '1px solid rgb(245, 108, 108)');
+      });
+      it('info plain', () => {
+        testPlain('info', '1px solid rgb(144, 147, 153)');
+      });
+    });
 
 
     describe('Type attribute tests', () => {
