@@ -1,3 +1,5 @@
+import './core-hello';
+
 describe('core-hello', () => {
   let component;
   let componentDOM;
