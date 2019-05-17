@@ -8,7 +8,7 @@
  * @property {boolean} [rainbow=false] - If present, animates the text with a rainbow effect
  * @playground <core-hello lang='jp' rainbow> Peter </core-hello>
  */
-class CoreHello extends HTMLElement {
+export default class CoreHello extends HTMLElement {
   static get observedAttributes() {
     return ['rainbow', 'lang'];
   }
