@@ -2,7 +2,7 @@
 
 /**
  * A simple button
- * @example <core-hello rainbow lang="pt"> Joseph </core-hello>
+ * @example <core-button type="success"> Joseph </core-button>
  * @property {string} [size="default"] - Button size
  * @property {string} [type="default"] - Button type
  * @property {boolean} [plain=false] - determine whether it's a plain button
@@ -154,7 +154,6 @@ class CoreButton extends HTMLElement {
       
           / Corrects inability to style clickable input types in iOS */
           -webkit-appearance: none;
-      
       }
 
       </style>
