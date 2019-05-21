@@ -161,30 +161,53 @@ class CoreButton extends HTMLElement {
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    const bg = this.style.getPropertyValue('--main-bg');
     switch (attrName) {
       case 'icon':
-        if (newVal) this.iconSlot.classList.add(newVal);
-        else this.iconSlot.classList.remove(oldVal);
+        this.handleIconChanged(oldVal, newVal);
         break;
       case 'size':
-        this.style.setProperty('--main-padding', this.hasAttribute('size') ? this.sizeMap[newVal] : this.sizeMap.default);
+        this.handleSizeChanged(newVal);
         break;
       case 'type':
-        this.style.setProperty('--main-bg', this.bgMap[newVal]);
+        this.handleTypeChanged(newVal);
         break;
       case 'plain':
-        this.style.backgroundColor = newVal !== null ? this.hex2rgba(bg || '#ffffff', 0.1) : bg;
+        this.handlePlainChanged(newVal);
         break;
       case 'loading':
-        if (newVal) {
-          this.iconSlot.classList.add('el-icon-loading');
-        } else {
-          this.iconSlot.classList.remove('el-icon-loading');
-        }
+        this.handleLoadingChanged(newVal);
         break;
       default:
         break;
+    }
+  }
+
+  handleIconChanged(oldIcon, newIcon) {
+    if (newIcon) {
+      this.iconSlot.classList.add(newIcon);
+    } else {
+      this.iconSlot.classList.remove(oldIcon);
+    }
+  }
+
+  handleSizeChanged(newSize) {
+    this.style.setProperty('--main-padding', this.hasAttribute('size') ? this.sizeMap[newSize] : this.sizeMap.default);
+  }
+
+  handleTypeChanged(newType) {
+    this.style.setProperty('--main-bg', this.bgMap[newType]);
+  }
+
+  handlePlainChanged(newVal) {
+    const bg = this.style.getPropertyValue('--main-bg');
+    this.style.backgroundColor = newVal !== null ? this.hex2rgba(bg || '#ffffff', 0.1) : bg;
+  }
+
+  handleLoadingChanged(newVal) {
+    if (newVal) {
+      this.iconSlot.classList.add('el-icon-loading');
+    } else {
+      this.iconSlot.classList.remove('el-icon-loading');
     }
   }
 }
