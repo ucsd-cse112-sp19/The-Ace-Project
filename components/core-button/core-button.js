@@ -3,8 +3,8 @@
 /**
  * A simple button
  * @example <core-hello rainbow lang="pt"> Joseph </core-hello>
- * @property {string} [size="default"] - Button size
- * @property {string} [type="default"] - Button type
+ * @property {string} [size="default"] - Button size. Accepts default | small | medium | mini
+ * @property {string} [type="default"] - Button type Accepts default | primary | success | info | warning | danger
  * @property {boolean} [plain=false] - determine whether it's a plain button
  * @property {boolean} [round=false] - determine whether it's a round button
  * @property {boolean} [circle=false] - determine whether it's a circle button
