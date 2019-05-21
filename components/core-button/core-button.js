@@ -16,7 +16,7 @@
 
 class CoreButton extends HTMLElement {
   static get observedAttributes() {
-    return ['type', 'size', 'round', 'disabled', 'plain', 'icon', 'loading'];
+    return ['type', 'size', 'round', 'disabled', 'plain', 'icon', 'loading', 'class'];
   }
 
   constructor() {
@@ -24,10 +24,11 @@ class CoreButton extends HTMLElement {
     this.template = document.createElement('template');
     this.template.innerHTML = `
     <link rel="stylesheet" href="element-icons.css" />
+    <link rel="stylesheet" href="bootstrap.css" />
     <style>
       :host {
         --main-font-size: 14px;
-        --main-font-family: 'Helvetica Neue';
+        --main-font-family: var(--font-family-sans-serif, 'Helvetica Neue');
         --main-padding: 12px 20px;
         --main-bg: 'white';
         display: inline-block;
@@ -131,6 +132,31 @@ class CoreButton extends HTMLElement {
         align-items: center;
       }
 
+      button {
+          border: none;
+          margin: 0;
+          padding: 0;
+          width: auto;
+          overflow: visible;
+      
+          background: transparent;
+      
+          /* inherit font & color from ancestor /
+          color: inherit;
+          font: inherit;
+      
+          / Normalize line-height. Cannot be changed from normal in Firefox 4+. /
+          line-height: normal;
+      
+          / Corrects font smoothing for webkit /
+          -webkit-font-smoothing: inherit;
+          -moz-osx-font-smoothing: inherit;
+      
+          / Corrects inability to style clickable input types in iOS */
+          -webkit-appearance: none;
+      
+      }
+
       </style>
       <span id='icon'></span>
       <a><slot/></a>
@@ -158,6 +184,20 @@ class CoreButton extends HTMLElement {
       const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
       return `rgba(${r},${g},${b},${alpha})`;
     };
+  }
+
+  connectedCallback() {
+    if (this.hasAttribute('bootstrap-class')) {
+      const bsClasses = this.getAttribute('bootstrap-class').split(' ');
+      this.shadowRoot.removeChild(this.shadowRoot.querySelector('style'));
+      const slottedItem = this.shadowRoot.querySelector('slot');
+      this.shadowRoot.removeChild(this.shadowRoot.querySelector('a'));
+      this.shadowRoot.appendChild(document.createElement('button'));
+      this.shadowRoot.querySelector('button').appendChild(slottedItem);
+      bsClasses.forEach((bsClass) => {
+        this.shadowRoot.querySelector('button').classList.add(bsClass);
+      });
+    }
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
