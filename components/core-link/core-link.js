@@ -1,6 +1,7 @@
 // @ts-check
 /**
  * Text hyperlink
+ * @external
  * @example <core-link> Text </core-link>
  * @property {string} [href=""] - href
  * @property {string} [type="default"] - Button type

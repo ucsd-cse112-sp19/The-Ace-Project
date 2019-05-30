@@ -6,6 +6,7 @@ import cssTemplate from './core-hello.css';
  * children it is given. </br>
  * It can also accept the attributes <code>lang</code> to change the
  * Hello World language and <code>rainbow</code> for extra swag
+ * @external
  * @example <core-hello rainbow lang="pt"> Joseph </core-hello>
  * @property {string} [lang="en"] - Language of Hello World - Accepts "en" | "jp" | "pt"
  * @property {boolean} [rainbow=false] - If present, animates the text with a rainbow effect

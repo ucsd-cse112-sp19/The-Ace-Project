@@ -7,6 +7,7 @@ import cssTemplate from './core-button.css';
 
 /**
  * A simple button
+ * @external
  * @example <core-hello rainbow lang="pt"> Joseph </core-hello>
  * @property {string} [size="default"] - Button size
  * @property {string} [type="default"] - Button type
