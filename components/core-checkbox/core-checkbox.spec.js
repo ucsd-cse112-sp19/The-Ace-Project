@@ -66,5 +66,90 @@ describe('core-button', () => {
         testDisabled(true, 'not-allowed');
       });
     });
+
+
+    describe('Name Attribute', () => {
+      it('Name not set', () => {
+        componentDOM = addToDom(component);
+        // assert.fail(); // TODO placeholder for now
+        should.not.exist(componentDOM.getAttribute('name'));
+      });
+
+      it('Name set', () => {
+        component.setAttribute('name', 'testName');
+        componentDOM = addToDom(component);
+        // assert.fail(); // TODO placeholder for now
+        componentDOM.getAttribute('name').should.equal('testName');
+      });
+    });
+
+    // TODO FIX THIS
+    describe('Border Attribute', () => {
+      function testBorder(borderOn, expected) {
+        if (borderOn) {
+          component.setAttribute('border', 'true');
+          componentDOM = addToDom(component);
+          // assert.fail(); // TODO placeholder for now
+          componentDOM.style.borderRadius.should.not.equal('0px');
+        } else {
+          componentDOM = addToDom(component);
+          componentDOM.style.borderRadius.should.equal(expected);
+          // componentDOM.style.borderRadius.should.equal('0px');
+        }
+      }
+      it('Default behavior', () => {
+        testBorder(false, '');
+      });
+
+      it('Border set', () => {
+        testBorder(true, '1px');
+      });
+    });
+
+
+    describe('Size Attribute', () => {
+      function testSize(size) {
+        component.setAttribute('border', 'true');
+        component.setAttribute('size', size);
+        componentDOM = addToDom(component);
+
+        // size requires border attribute to be present.
+        if (!componentDOM.getAttribute('border')) {
+          should.fail();
+        }
+        // should.fail(); // TODO placeholder for now
+        componentDOM.getAttribute('size').should.equal(size);
+      }
+      it('Default behavior', () => {
+        componentDOM = addToDom(component);
+        should.not.exist(componentDOM.getAttribute('size'));
+      });
+
+      it('Size medium', () => {
+        testSize('medium');
+      });
+
+      it('Size small', () => {
+        testSize('small');
+      });
+      it('Size mini', () => {
+        testSize('mini');
+      });
+    });
+
+    describe('Checked Attribute', () => {
+      function testChecked(checkedVal) {
+        component.setAttribute('checked', checkedVal);
+        componentDOM = addToDom(component);
+        componentDOM.getAttribute('checked').should.equal(checkedVal);
+      }
+      it('Unchecked', () => {
+        testChecked('false');
+      });
+
+      it('Checked', () => {
+        testChecked('true');
+      });
+    });
   });
 });
