@@ -29,7 +29,10 @@ class CoreCheckbox extends HTMLElement {
             text-decoration: none;
           }
   
-          :host([disabled]){color:#c0c4cc;}
+          :host([disabled]){
+            color:#c0c4cc;
+            cursor:not-allowed;
+          }
   
           </style>
           <span><input type="checkbox"><slot/></span>        
@@ -43,7 +46,9 @@ class CoreCheckbox extends HTMLElement {
     console.log(attrName, 'changed from', oldVal, 'to', newVal);
     switch (attrName) {
       case 'disabled':
-        this.style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
+        // this.style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
+        this.shadowRoot.querySelector('input').style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
+        this.shadowRoot.querySelector('input').disabled = true;
         break;
       default:
         this.style.borderRadius = '0px';
