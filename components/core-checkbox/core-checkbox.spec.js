@@ -71,30 +71,25 @@ describe('core-button', () => {
     describe('Name Attribute', () => {
       it('Name not set', () => {
         componentDOM = addToDom(component);
-        // assert.fail(); // TODO placeholder for now
         should.not.exist(componentDOM.getAttribute('name'));
       });
 
       it('Name set', () => {
         component.setAttribute('name', 'testName');
         componentDOM = addToDom(component);
-        // assert.fail(); // TODO placeholder for now
         componentDOM.getAttribute('name').should.equal('testName');
       });
     });
 
-    // TODO FIX THIS
     describe('Border Attribute', () => {
       function testBorder(borderOn, expected) {
         if (borderOn) {
           component.setAttribute('border', 'true');
           componentDOM = addToDom(component);
-          // assert.fail(); // TODO placeholder for now
           componentDOM.style.borderRadius.should.not.equal('0px');
         } else {
           componentDOM = addToDom(component);
           componentDOM.style.borderRadius.should.equal(expected);
-          // componentDOM.style.borderRadius.should.equal('0px');
         }
       }
       it('Default behavior', () => {
@@ -117,7 +112,6 @@ describe('core-button', () => {
         if (!componentDOM.getAttribute('border')) {
           should.fail();
         }
-        // should.fail(); // TODO placeholder for now
         componentDOM.getAttribute('size').should.equal(size);
       }
       it('Default behavior', () => {
