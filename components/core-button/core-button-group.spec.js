@@ -1,22 +1,22 @@
+import './core-button-group';
+
 describe('core-button-group', () => {
-  /*
   let component;
   let componentDOM;
-  // create define and create core-button to test before each test
+  // create define and create core-button-group to test before each test
   beforeEach((done) => {
-    if (window.customElements.get('core-button')) {
-      component = document.createElement('core-button');
+    if (window.customElements.get('core-button-group')) {
+      component = document.createElement('core-button-group');
       component.setAttribute('id', 'customButton');
 
       done();
     } else {
-      console.log('core-button not defined!');
+      console.log('core-button-group not defined!');
     }
   });
   afterEach(() => {
     document.body.removeChild(component);
   });
-
   describe('DOM Tree Tests', () => {
     describe('Exists in DOM', () => {
       it('Element should at least exist', () => {
@@ -39,25 +39,6 @@ describe('core-button-group', () => {
         componentDOM = document.getElementById('customButton');
         componentDOM.innerHTML.should.equal('This is a test button');
       });
-
-      it('Renders core-button a', () => {
-        document.body.append(component);
-        assert.isOk(component.shadowRoot.querySelector('a'));
-      });
-    });
-
-
-    describe('Round attribute tests', () => {
-      function testRound(expected) {
-        component.setAttribute('round', '');
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        window.getComputedStyle(componentDOM).getPropertyValue('border-radius').should.equal(expected);
-      }
-      it('Test round', () => {
-        testRound('20px');
-      });
     });
   });
-  */
 });
