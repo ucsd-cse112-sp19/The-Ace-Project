@@ -27,8 +27,12 @@ class CoreCheckbox extends HTMLElement {
             font-family: var(--main-font-family);
             cursor: pointer;
             text-decoration: none;
+            color:#606266;
           }
   
+          :host(:hover){
+            color:#409eff;
+          }
           :host([disabled]){
             color:#c0c4cc;
             cursor:not-allowed;
