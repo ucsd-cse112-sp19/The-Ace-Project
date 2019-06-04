@@ -81,13 +81,13 @@ class CoreCheckbox extends HTMLElement {
       case 'disabled':
         // this.style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
         this.shadowRoot.querySelector('input').style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
-        this.shadowRoot.querySelector('input').disabled = true;
+        this.shadowRoot.querySelector('input').disabled = this.hasAttribute('disabled');
         break;
       case 'name':
         this.shadowRoot.querySelector('input').name = newVal;
         break;
       case 'checked':
-        this.shadowRoot.querySelector('input').checked = true;
+        this.shadowRoot.querySelector('input').checked = this.hasAttribute('checked');
         break;
       case 'border':
         break;
