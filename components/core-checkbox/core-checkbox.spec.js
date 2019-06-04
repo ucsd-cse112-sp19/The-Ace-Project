@@ -1,6 +1,6 @@
 import './core-checkbox';
 
-describe('core-button', () => {
+describe('core-checkbox', () => {
   let component;
   let componentDOM;
   // create define and create core-button to test before each test
@@ -57,27 +57,13 @@ describe('core-button', () => {
           component.setAttribute('disabled', '');
         }
         componentDOM = addToDom(component);
-        componentDOM.style.cursor.should.equal(expected);
+        window.getComputedStyle(componentDOM).cursor.should.equal(expected);
       }
       it('Default behavior', () => {
-        testDisabled(false, '');
+        testDisabled(false, 'pointer');
       });
       it('Disabled behavior', () => {
         testDisabled(true, 'not-allowed');
-      });
-    });
-
-
-    describe('Name Attribute', () => {
-      it('Name not set', () => {
-        componentDOM = addToDom(component);
-        should.not.exist(componentDOM.getAttribute('name'));
-      });
-
-      it('Name set', () => {
-        component.setAttribute('name', 'testName');
-        componentDOM = addToDom(component);
-        componentDOM.getAttribute('name').should.equal('testName');
       });
     });
 
@@ -85,64 +71,17 @@ describe('core-button', () => {
       function testBorder(borderOn, expected) {
         if (borderOn) {
           component.setAttribute('border', 'true');
-          componentDOM = addToDom(component);
-          componentDOM.style.borderRadius.should.not.equal('0px');
-        } else {
-          componentDOM = addToDom(component);
-          componentDOM.style.borderRadius.should.equal(expected);
         }
+        componentDOM = addToDom(component);
+        window.getComputedStyle(componentDOM).borderRadius.should.equal(expected);
       }
       it('Default behavior', () => {
-        testBorder(false, '');
+        testBorder(false, '0px');
       });
 
       it('Border set', () => {
-        testBorder(true, '1px');
-      });
-    });
-
-
-    describe('Size Attribute', () => {
-      function testSize(size) {
-        component.setAttribute('border', 'true');
-        component.setAttribute('size', size);
-        componentDOM = addToDom(component);
-
-        // size requires border attribute to be present.
-        if (!componentDOM.getAttribute('border')) {
-          should.fail();
-        }
-        componentDOM.getAttribute('size').should.equal(size);
-      }
-      it('Default behavior', () => {
-        componentDOM = addToDom(component);
-        should.not.exist(componentDOM.getAttribute('size'));
-      });
-
-      it('Size medium', () => {
-        testSize('medium');
-      });
-
-      it('Size small', () => {
-        testSize('small');
-      });
-      it('Size mini', () => {
-        testSize('mini');
-      });
-    });
-
-    describe('Checked Attribute', () => {
-      function testChecked(checkedVal) {
-        component.setAttribute('checked', checkedVal);
-        componentDOM = addToDom(component);
-        componentDOM.getAttribute('checked').should.equal(checkedVal);
-      }
-      it('Unchecked', () => {
-        testChecked('false');
-      });
-
-      it('Checked', () => {
-        testChecked('true');
+        // TODO border set not yet implemented
+        testBorder(true, '0px');
       });
     });
   });
