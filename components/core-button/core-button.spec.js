@@ -1,3 +1,5 @@
+import './core-button';
+
 describe('core-button', () => {
   let component;
   let componentDOM;
