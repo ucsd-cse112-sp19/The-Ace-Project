@@ -4,5 +4,5 @@
 
 
 
-## [Meet our Team](https://ucsd-cse112.github.io/The-Ace-Project/)
+## [Meet Our Team](https://ucsd-cse112.github.io/The-Ace-Project/)
 ## [Documentation](https://ucsd-cse112.github.io/The-Ace-Project/doc/index.html)
