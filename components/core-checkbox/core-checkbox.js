@@ -12,7 +12,7 @@
 
 class CoreCheckbox extends HTMLElement {
   static get observedAttributes() {
-    return ['value', 'v-model', 'disabled'];
+    return ['value', 'v-model', 'disabled', 'name', 'checked'];
   }
 
   constructor() {
@@ -49,6 +49,12 @@ class CoreCheckbox extends HTMLElement {
         // this.style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
         this.shadowRoot.querySelector('input').style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
         this.shadowRoot.querySelector('input').disabled = true;
+        break;
+      case 'name':
+        this.shadowRoot.querySelector('input').name = newVal;
+        break;
+      case 'checked':
+        this.shadowRoot.querySelector('input').checked = true;
         break;
       default:
         this.style.borderRadius = '0px';
