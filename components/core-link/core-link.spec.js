@@ -20,26 +20,28 @@ describe('core-link', () => {
     document.body.removeChild(component);
   });
 
+  function appendToDom(appendId, appendComp) {
+    document.body.append(appendComp);
+    return document.getElementById(appendId);
+  }
+
   describe('DOM Tree Tests', () => {
     describe('Exists in DOM', () => {
       it('Element should at least exist', () => {
-        document.body.append(component);
-        componentDOM = document.getElementById('customLink');
+        componentDOM = appendToDom('customLink', component);
         should.exist(componentDOM);
       });
     });
 
     describe('Correct component exists in DOM', () => {
       it('Check DOM tree for correct element ', () => {
-        document.body.append(component);
-        componentDOM = document.getElementById('customLink');
+        componentDOM = appendToDom('customLink', component);
         component.should.equal(componentDOM);
       });
 
       it('InnerHTML', () => {
         component.innerHTML = 'This is a test link';
-        document.body.append(component);
-        componentDOM = document.getElementById('customLink');
+        componentDOM = appendToDom('customLink', component);
         componentDOM.innerHTML.should.equal('This is a test link');
       });
 
@@ -53,8 +55,7 @@ describe('core-link', () => {
         if (isDisabled) {
           component.setAttribute('disabled', '');
         }
-        document.body.append(component);
-        componentDOM = document.getElementById('customLink');
+        componentDOM = appendToDom('customLink', component);
         componentDOM.style.cursor.should.equal(expected);
       }
       it('Default test cursor', () => {
@@ -70,8 +71,7 @@ describe('core-link', () => {
         if (underline === 'true' || underline === 'false') {
           component.setAttribute('underline', underline);
         }
-        document.body.append(component);
-        componentDOM = document.getElementById('customLink');
+        componentDOM = appendToDom('customLink', component);
         // Checks that the underline attribute does not exist.
         if (underline === 'default') {
           should.not.exist(componentDOM.getAttribute('underline'));
@@ -97,8 +97,7 @@ describe('core-link', () => {
         if (!isDefault) {
           component.setAttribute('href', link);
         }
-        document.body.append(component);
-        componentDOM = document.getElementById('customLink');
+        componentDOM = appendToDom('customLink', component);
         // Checks that the href attribute does not exist.
         if (isDefault) {
           should.not.exist(componentDOM.getAttribute('href'));
@@ -127,8 +126,7 @@ describe('core-link', () => {
         if (isDisabled) {
           component.setAttribute('disabled', '');
         }
-        document.body.append(component);
-        componentDOM = document.getElementById('customLink');
+        componentDOM = appendToDom('customLink', component);
         window.getComputedStyle(componentDOM).color.should.equal(expected);
       }
       it('Default Enabled test', () => {
