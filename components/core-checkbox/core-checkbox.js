@@ -12,7 +12,7 @@
 
 class CoreCheckbox extends HTMLElement {
   static get observedAttributes() {
-    return ['value', 'v-model', 'disabled', 'name', 'checked'];
+    return ['value', 'v-model', 'disabled', 'name', 'checked', 'border'];
   }
 
   constructor() {
@@ -28,20 +28,49 @@ class CoreCheckbox extends HTMLElement {
             cursor: pointer;
             text-decoration: none;
             color:#606266;
+            padding-left: 10px;
           }
   
           :host(:hover){
+            color:#409eff;
+          }
+          :host([checked]){
             color:#409eff;
           }
           :host([disabled]){
             color:#c0c4cc;
             cursor:not-allowed;
           }
+
+          :host([border][checked]){
+            border-color:#409eff;
+          }
+
+          :host([border][checked][disabled]){
+            border-color:rgb(220, 223, 230);
+          }
+
+          :host([border]){
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(220, 223, 230);
+            display: inline-block; 
+            padding-left: 10px;
+            padding-right: 20px;
+            padding-top: 9px;
+            padding-bottom: 9px;
+            position: relative;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;       
+          }
   
           </style>
-          <span><input type="checkbox"><slot/></span>        
+          <div class="element">
+          <span><input type="checkbox">&nbsp;<slot/></span> 
+          </div>       
         `;
-
     const shadowRoot = this.attachShadow({ mode: 'open' });
     shadowRoot.appendChild(this.template.content.cloneNode(true));
   }
@@ -59,6 +88,8 @@ class CoreCheckbox extends HTMLElement {
         break;
       case 'checked':
         this.shadowRoot.querySelector('input').checked = true;
+        break;
+      case 'border':
         break;
       default:
         this.style.borderRadius = '0px';

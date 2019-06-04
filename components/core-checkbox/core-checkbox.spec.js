@@ -81,7 +81,7 @@ describe('core-checkbox', () => {
 
       it('Border set', () => {
         // TODO border set not yet implemented
-        testBorder(true, '0px');
+        testBorder(true, '4px');
       });
     });
   });
