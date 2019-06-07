@@ -23,6 +23,12 @@ describe('core-button', () => {
     }
   }
 
+  function applyAttributeForStyle(isDefault, attributeName, value) {
+    setAttribute(isDefault, attributeName, value);
+    componentDOM = appendToDom('customButton', component);
+    return window.getComputedStyle(componentDOM);
+  }
+
   // Test Suite
   it('Shared Tests', () => {
     basicElementTests(component, 'customButton');
@@ -120,9 +126,7 @@ describe('core-button', () => {
 
     describe('Type attribute tests', () => {
       function testType(isDefault, typeVal, expected) {
-        setAttribute(isDefault, 'type', typeVal);
-        componentDOM = appendToDom('customButton', component);
-        window.getComputedStyle(componentDOM).backgroundColor.should.equal(expected);
+        applyAttributeForStyle(isDefault, 'type', typeVal).backgroundColor.should.equal(expected);
       }
 
       it('Default test', () => {
@@ -148,9 +152,7 @@ describe('core-button', () => {
 
     describe('Size attribute tests', () => {
       function testSize(isDefault, sizeVal, expected) {
-        setAttribute(isDefault, 'size', sizeVal);
-        componentDOM = appendToDom('customButton', component);
-        window.getComputedStyle(componentDOM).padding.should.equal(expected);
+        applyAttributeForStyle(isDefault, 'size', sizeVal).padding.should.equal(expected);
       }
 
       it('Default test', () => {
