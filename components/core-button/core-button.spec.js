@@ -1,12 +1,12 @@
 import './core-button';
 import {
-  basicElementTests, containsTag, setup, teardown,
+  basicElementTests, containsTag, setup, teardown, appendToDom,
 } from '../common.spec';
-
 
 describe('core-button', () => {
   let component;
   let componentDOM;
+
   // create define and create core-button to test before each test
   beforeEach((done) => {
     component = setup('core-button', 'customButton');
@@ -16,6 +16,14 @@ describe('core-button', () => {
     teardown('core-button');
   });
 
+  // Helper functions
+  function setAttribute(isDefault, attributeName, value) {
+    if (!isDefault) {
+      component.setAttribute(attributeName, value);
+    }
+  }
+
+  // Test Suite
   it('Shared Tests', () => {
     basicElementTests(component, 'customButton');
   });
@@ -112,11 +120,8 @@ describe('core-button', () => {
 
     describe('Type attribute tests', () => {
       function testType(isDefault, typeVal, expected) {
-        if (!isDefault) {
-          component.setAttribute('type', typeVal);
-        }
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
+        setAttribute(isDefault, 'type', typeVal);
+        componentDOM = appendToDom('customButton', component);
         window.getComputedStyle(componentDOM).backgroundColor.should.equal(expected);
       }
 
@@ -143,11 +148,8 @@ describe('core-button', () => {
 
     describe('Size attribute tests', () => {
       function testSize(isDefault, sizeVal, expected) {
-        if (!isDefault) {
-          component.setAttribute('size', sizeVal);
-        }
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
+        setAttribute(isDefault, 'size', sizeVal);
+        componentDOM = appendToDom('customButton', component);
         window.getComputedStyle(componentDOM).padding.should.equal(expected);
       }
 
