@@ -49,3 +49,8 @@ export function basicElementTests(component, componentId) {
     });
   });
 }
+
+export function containsTag(component, internalElementTag) {
+  document.body.append(component);
+  assert.isOk(component.shadowRoot.querySelector(internalElementTag));
+}

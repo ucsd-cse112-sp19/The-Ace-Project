@@ -1,6 +1,6 @@
 import './core-hello';
 import {
-  basicElementTests, setup, teardown,
+  basicElementTests, containsTag, setup, teardown,
 } from '../common.spec';
 
 describe('core-hello', () => {
@@ -22,8 +22,7 @@ describe('core-hello', () => {
 
   describe('Basic core-hello tests', () => {
     it('Renders Hello World div', () => {
-      document.body.append(component);
-      assert.isOk(component.shadowRoot.querySelector('div'));
+      containsTag(component, 'div');
     });
     describe('Language Attribute Tests', () => {
       function testLang(lang, expected) {

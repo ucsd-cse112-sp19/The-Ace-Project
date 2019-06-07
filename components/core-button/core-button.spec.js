@@ -1,5 +1,7 @@
 import './core-button';
-import { basicElementTests, setup, teardown } from '../common.spec';
+import {
+  basicElementTests, containsTag, setup, teardown,
+} from '../common.spec';
 
 
 describe('core-button', () => {
@@ -20,8 +22,7 @@ describe('core-button', () => {
 
   describe('Basic Button Tests', () => {
     it('Renders core-button a', () => {
-      document.body.append(component);
-      assert.isOk(component.shadowRoot.querySelector('a'));
+      containsTag(component, 'a');
     });
 
     describe('Round attribute tests', () => {

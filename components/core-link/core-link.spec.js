@@ -1,6 +1,6 @@
 import './core-link';
 import {
-  basicElementTests, appendToDom, setup, teardown,
+  basicElementTests, containsTag, appendToDom, setup, teardown,
 } from '../common.spec';
 
 describe('core-link', () => {
@@ -21,8 +21,7 @@ describe('core-link', () => {
 
   describe('Basic core-link tests', () => {
     it('Renders core-link span', () => {
-      document.body.append(component);
-      assert.isOk(component.shadowRoot.querySelector('span'));
+      containsTag(component, 'span');
     });
   });
   describe('Disabled attribute tests', () => {
