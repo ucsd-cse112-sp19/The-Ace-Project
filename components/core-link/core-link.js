@@ -16,7 +16,7 @@ import cssTemplate from './core-link.css';
  * @playground <core-link> link </core-link>
  */
 
-class CoreLink extends HTMLElement {
+export default class CoreLink extends HTMLElement {
   static get observedAttributes() {
     return ['type', 'href', 'underline', 'disabled', 'icon'];
   }
