@@ -8,3 +8,4 @@ _site
 /dist
 /npm_release
 *.tar.gz
+.vscode
