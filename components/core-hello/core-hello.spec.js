@@ -73,11 +73,11 @@ describe('core-hello', () => {
 
     it('No Attribute Test', () => {
       document.body.append(component);
-      helloDiv.innerHTML.should.equal(' Hello World <slot></slot>');
+      helloDiv.innerHTML.should.equal('Hello World <slot></slot>');
     });
 
     it('Non-supported Language Test', () => {
-      testLang('fr', ' Hello World');
+      testLang('fr', 'Hello World');
     });
   });
 });

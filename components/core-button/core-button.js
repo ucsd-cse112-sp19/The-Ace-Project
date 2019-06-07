@@ -1,5 +1,10 @@
 // @ts-check
 
+// @ts-ignore
+import htmlTemplate from './core-button.html';
+// @ts-ignore
+import cssTemplate from './core-button.css';
+
 /**
  * A simple button
  * @example <core-hello rainbow lang="pt"> Joseph </core-hello>
@@ -22,121 +27,14 @@ class CoreButton extends HTMLElement {
   constructor() {
     super();
     this.template = document.createElement('template');
-    this.template.innerHTML = `
-    <link rel="stylesheet" href="element-icons.css" />
-    <style>
-      :host {
-        --main-font-size: 14px;
-        --main-font-family: 'Helvetica Neue';
-        --main-padding: 12px 20px;
-        --main-bg: 'white';
-        display: inline-block;
-        text-align: center;
-        font-size: var(--main-font-size);
-        font-weight: 500;
-        font-stretch: 100%;
-        -webkit-font-smoothing: antialiased;
-        font-family: var(--main-font-family);
-        color: var(--main-color);
-        background: var(--main-bg);
-        cursor: pointer;
-        transition: all 0.1s ease;
-        border-radius: 4px;
-        border: 1px solid #dcdfe6;
-        padding: var(--main-padding);
-        user-select: none;
-      }
+    this.template.innerHTML = htmlTemplate;
+    this.styleNode = document.createElement('style');
+    this.styleNode.innerHTML = cssTemplate;
 
-      :host([plain]:not([type])) {
-        border: 1px solid #dcdfe6;
-      }
-
-      :host(:hover:not([type]):not([disabled])) {
-        color: #409eff;
-        border-color: #c6e2ff;
-        background-color: #ecf5ff;
-      }
-
-      :host([type]) {
-        border: none;
-        color: white;
-      }
-
-      :host(:hover[type]:not([disabled]):not([plain])) {
-        border: none;
-        filter: brightness(1.1);
-      }
-
-      :host([plain]) {
-        border: 1px solid var(--main-bg);
-        color: var(--main-bg);
-      }
-
-      :host(:hover[plain]) {
-        background: var(--main-bg) !important;
-        color: white;
-      }
-
-      :host([disabled])  {
-        filter: brightness(1);
-        opacity: 0.4;
-        cursor: not-allowed;
-      }
-
-      :host([round]) {
-        border-radius: 20px;
-      }
-
-      :host([circle]) {
-        border-radius: 50%;
-        padding: 12px !important;
-        width: 14px;
-        height: 14px !important;
-      }
-
-      :host([type='text']) {
-        padding: 12px 0;
-        background: none;
-        color: #409eff;
-      }
-
-      :host([type='text'][disabled]) {
-        color: #606266;
-      }
-
-
-      :host(:hover[type='text']:not([disabled])) {
-        color: #66b1ff;
-      }
-
-      :host([size='mini'],[size='small']) {
-        font-size: 12px;
-      }
-
-      :host(:active[type]:not([disabled])) {
-        filter: brightness(0.9) !important;
-      }
-
-      :host(:active:not([type]):not([disabled])) {
-        border: 1px solid #3a8ee6 !important;
-      }
-
-      a {
-        background: var(--main-bg-color);
-      }
-
-      :host([circle]) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      </style>
-      <span id='icon'></span>
-      <a><slot/></a>
-    `;
     const shadowRoot = this.attachShadow({ mode: 'open' });
     shadowRoot.appendChild(this.template.content.cloneNode(true));
+    shadowRoot.appendChild(this.styleNode);
+
     this.button = this.shadowRoot.querySelector('a');
     this.bgMap = {
       default: 'white',
