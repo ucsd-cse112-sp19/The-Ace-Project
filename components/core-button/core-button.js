@@ -37,7 +37,7 @@ class CoreButton extends HTMLElement {
 
     this.button = this.shadowRoot.querySelector('a');
     this.bgMap = {
-      default: 'white',
+      default: 'green' /** was white */,
       primary: '#409eff',
       success: '#67c23a',
       info: '#909399',
