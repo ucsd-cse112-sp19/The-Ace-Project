@@ -24,6 +24,7 @@
         "@babel/preset-env": "^7.4.4",
         "@commitlint/cli": "^7.6.1",
         "@commitlint/config-angular": "^7.6.0",
+        "@commitlint/config-conventional": "^8.0.0",
         "babel-loader": "^8.0.6",
         "babel-minify": "^0.5.0",
         "chai": "^4.2.0",
@@ -81,12 +82,19 @@
     ],
     "config": {
         "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
+            "path": "./node_modules/cz-conventional-changelog",
+            "maxHeaderWidth": 72,
+            "maxLineWidth": 72,
+            "defaultType": "",
+            "defaultScope": "",        
+            "defaultSubject": "",
+            "defaultBody": "",
+            "defaultIssues": ""
         }
     },
     "commitlint": {
         "extends": [
-            "@commitlint/config-angular"
+            "@commitlint/config-conventional"
         ]
     }
 }
