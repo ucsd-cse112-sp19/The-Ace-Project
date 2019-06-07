@@ -80,8 +80,31 @@ describe('core-checkbox', () => {
       });
 
       it('Border set', () => {
-        // TODO border set not yet implemented
         testBorder(true, '4px');
+      });
+    });
+
+    describe('Name Attribute', () => {
+      it('Name Set', () => {
+        component.setAttribute('name', 'testName');
+        componentDOM = addToDom(component);
+        componentDOM.shadowRoot.querySelector('input').name = 'testName';
+      });
+    });
+
+    describe('Checked Attribute', () => {
+      function testChecked(checked) {
+        if (checked) {
+          component.setAttribute('checked', '');
+        }
+        componentDOM = addToDom(component);
+        componentDOM.shadowRoot.querySelector('input').checked.should.equal(checked);
+      }
+      it('Unchecked', () => {
+        testChecked(false);
+      });
+      it('Checked', () => {
+        testChecked(true);
       });
     });
   });
