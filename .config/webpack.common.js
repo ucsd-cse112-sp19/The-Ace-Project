@@ -29,7 +29,7 @@ module.exports = {
     ],
   },
   output: {
-    path: `${__dirname}/dist`,
+    path: `${__dirname}/../dist`,
     filename: '[name]-bundle.js',
   },
 };

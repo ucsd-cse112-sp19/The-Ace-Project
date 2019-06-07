@@ -3,15 +3,15 @@
     "version": "1.1.0",
     "main": "dist/index.js",
     "scripts": {
-        "build": "webpack --config webpack.prod.js",
-        "dev-build": "webpack --config webpack.dev.js",
-        "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
+        "build": "webpack --config .config/webpack.prod.js",
+        "build-dev": "webpack --config .config/webpack.dev.js",
+        "test": "karma start --single-run --browsers ChromeHeadless .config/karma.conf.js",
         "integration": "testcafe \"chrome:headless,firefox:headless\" tests",
         "integration-sauce": "testcafe \"saucelabs:Chrome@beta:Windows 10\" tests/index-test.js tests",
         "integration-dev": "testcafe \"firefox\" tests",
-        "lint": "eslint . && stylelint --aei ./**/*.css && htmlhint --config .htmlhintrc .",
-        "lintfix": "eslint --fix . && stylelint --fix --aei ./**/*.css && htmlhint --config .htmlhintrc .",
-        "doc": "jsdoc -c jsdoc.conf.js .",
+        "lint": "eslint . -c .config/.eslintrc.js --ignore-path .config/.eslintignore && stylelint --aei ./**/*.css --config .config/.stylelintrc -i .config/.eslintignore && htmlhint --config .config/.htmlhintrc .",
+        "lintfix": "eslint --fix . -c .config/.eslintrc.js --ignore-path .config/.eslintignore && stylelint --fix --aei ./**/*.css --config .config/.stylelintrc -i .config/.eslintignore && htmlhint --config .config/.htmlhintrc .",
+        "doc": "jsdoc -c .config/jsdoc.conf.js .",
         "minify": "bash ./.utils/minify-js.sh components"
     },
     "dependencies": {
