@@ -1,52 +1,27 @@
 import './core-checkbox';
+import {
+  basicElementTests, containsTag, appendToDom, setup, teardown,
+} from '../common.spec';
 
 describe('core-checkbox', () => {
   let component;
   let componentDOM;
   // create define and create core-button to test before each test
   beforeEach((done) => {
-    if (window.customElements.get('core-checkbox')) {
-      component = document.createElement('core-checkbox');
-      component.setAttribute('id', 'customCheckbox');
-
-      done();
-    } else {
-      console.log('core-checkbox not defined!');
-    }
+    component = setup('core-checkbox', 'customCheckbox');
+    done();
   });
   afterEach(() => {
-    document.body.removeChild(component);
+    teardown('core-checkbox');
   });
 
-  function addToDom(addedComponent) {
-    document.body.append(addedComponent);
-    return document.getElementById('customCheckbox');
-  }
+  it('Shared Tests', () => {
+    basicElementTests(component, 'customCheckbox');
+  });
 
-  describe('DOM Tree Tests', () => {
-    describe('Exists in DOM', () => {
-      it('Element should at least exist', () => {
-        componentDOM = addToDom(component);
-        should.exist(componentDOM);
-      });
-    });
-
-    describe('Correct component exists in DOM', () => {
-      it('Check DOM tree for correct element ', () => {
-        componentDOM = addToDom(component);
-        component.should.equal(componentDOM);
-      });
-
-      it('InnerHTML', () => {
-        component.innerHTML = 'This is a test checkbox';
-        componentDOM = addToDom(component);
-        componentDOM.innerHTML.should.equal('This is a test checkbox');
-      });
-
-      it('Renders core-checkbox span', () => {
-        componentDOM = addToDom(component);
-        assert.isOk(component.shadowRoot.querySelector('span'));
-      });
+  describe('Basic core-link tests', () => {
+    it('Renders core-link span', () => {
+      containsTag(component, 'span');
     });
   });
 
@@ -55,8 +30,9 @@ describe('core-checkbox', () => {
       function testDisabled(isDisabled, expected) {
         if (isDisabled) {
           component.setAttribute('disabled', '');
+          console.log(component.style.cursor);
         }
-        componentDOM = addToDom(component);
+        componentDOM = appendToDom('customCheckbox', component);
         window.getComputedStyle(componentDOM).cursor.should.equal(expected);
       }
       it('Default behavior', () => {
@@ -72,22 +48,22 @@ describe('core-checkbox', () => {
         if (borderOn) {
           component.setAttribute('border', 'true');
         }
-        componentDOM = addToDom(component);
-        window.getComputedStyle(componentDOM).borderRadius.should.equal(expected);
+        componentDOM = appendToDom('customCheckbox', component);
+        window.getComputedStyle(componentDOM).getPropertyValue('border-style').should.equal(expected);
       }
       it('Default behavior', () => {
-        testBorder(false, '0px');
+        testBorder(false, 'none');
       });
 
       it('Border set', () => {
-        testBorder(true, '4px');
+        testBorder(true, 'solid');
       });
     });
 
     describe('Name Attribute', () => {
       it('Name Set', () => {
         component.setAttribute('name', 'testName');
-        componentDOM = addToDom(component);
+        componentDOM = appendToDom('customCheckbox', component);
         componentDOM.shadowRoot.querySelector('input').name = 'testName';
       });
     });
@@ -97,7 +73,7 @@ describe('core-checkbox', () => {
         if (checked) {
           component.setAttribute('checked', '');
         }
-        componentDOM = addToDom(component);
+        componentDOM = appendToDom('customCheckbox', component);
         componentDOM.shadowRoot.querySelector('input').checked.should.equal(checked);
       }
       it('Unchecked', () => {

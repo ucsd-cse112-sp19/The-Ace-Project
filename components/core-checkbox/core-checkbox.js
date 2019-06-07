@@ -1,13 +1,18 @@
 // @ts-check
+
+// @ts-ignore
+import htmlTemplate from './core-checkbox.html';
+// @ts-ignore
+import cssTemplate from './core-checkbox.css';
+
 /**
- * Text hyperlink
+ * A checkbox that can be clicked on.
  * @example <core-checkbox> Text </core-checkbox>
- * @property {string} [href=""] - href
- * @property {string} [type="default"] - Button type
- * @property {string} [icon=""] - class name of icon
- * @property {boolean} [underline=true] - determine whether the component has underline
- * @property {boolean} [disabled=false] - determine whether the component is disabled
- * @playground <core-checkbox> link </core-checkbox>
+ * @property {string} [name="default"] - The name of the button
+ * @property {boolean} [border=false] - Determines if border will be rendered.
+ * @property {boolean} [checked=false] - If present, the checkbox will be checked.
+ * @property {boolean} [disabled=false] - Determines if the checkbox is disabled.
+ * @playground <core-checkbox> Checkbox </core-checkbox>
  */
 
 class CoreCheckbox extends HTMLElement {
@@ -18,68 +23,17 @@ class CoreCheckbox extends HTMLElement {
   constructor() {
     super();
     this.template = document.createElement('template');
-    this.template.innerHTML = `
-        <style>
-          :host(*) {
-            --main-font-size: 14px;
-            --main-font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
-            font-size: var(--main-font-size);
-            font-family: var(--main-font-family);
-            cursor: pointer;
-            text-decoration: none;
-            color:#606266;
-            padding-left: 10px;
-          }
-  
-          :host(:hover){
-            color:#409eff;
-          }
-          :host([checked]){
-            color:#409eff;
-          }
-          :host([disabled]){
-            color:#c0c4cc;
-            cursor:not-allowed;
-          }
-
-          :host([border][checked]){
-            border-color:#409eff;
-          }
-
-          :host([border][checked][disabled]){
-            border-color:rgb(220, 223, 230);
-          }
-
-          :host([border]){
-            border-width: 1px;
-            border-style: solid;
-            border-color: rgb(220, 223, 230);
-            display: inline-block; 
-            padding-left: 10px;
-            padding-right: 20px;
-            padding-top: 9px;
-            padding-bottom: 9px;
-            position: relative;
-            border-bottom-left-radius: 4px;
-            border-bottom-right-radius: 4px;
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;       
-          }
-  
-          </style>
-          <div class="element">
-          <span><input type="checkbox">&nbsp;<slot/></span> 
-          </div>       
-        `;
+    this.template.innerHTML = htmlTemplate;
+    this.styleNode = document.createElement('style');
+    this.styleNode.innerHTML = cssTemplate;
     const shadowRoot = this.attachShadow({ mode: 'open' });
     shadowRoot.appendChild(this.template.content.cloneNode(true));
+    shadowRoot.appendChild(this.styleNode);
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    console.log(attrName, 'changed from', oldVal, 'to', newVal);
     switch (attrName) {
       case 'disabled':
-        // this.style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
         this.shadowRoot.querySelector('input').style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
         this.shadowRoot.querySelector('input').disabled = this.hasAttribute('disabled');
         break;
