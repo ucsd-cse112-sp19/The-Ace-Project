@@ -1,3 +1,6 @@
+
+import './core-link';
+
 describe('core-link', () => {
   let component;
   let componentDOM;
