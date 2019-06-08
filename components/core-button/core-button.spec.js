@@ -42,8 +42,7 @@ describe('core-button', () => {
     describe('Round attribute tests', () => {
       function testRound(expected) {
         component.setAttribute('round', '');
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
+        componentDOM = appendToDom('customButton', component);
         window.getComputedStyle(componentDOM).getPropertyValue('border-radius').should.equal(expected);
       }
       it('Test round', () => {
@@ -56,8 +55,7 @@ describe('core-button', () => {
         if (isDisabled) {
           component.setAttribute('disabled', isDisabled);
         }
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
+        componentDOM = appendToDom('customButton', component);
         window.getComputedStyle(componentDOM).getPropertyValue('cursor').should.equal(expected);
       }
       it('Default test cursor', () => {
@@ -86,8 +84,7 @@ describe('core-button', () => {
     describe('Circle attribute tests', () => {
       function testCircle(expected1, expected2, expected3) {
         component.setAttribute('circle', '');
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
+        componentDOM = appendToDom('customButton', component);
         window.getComputedStyle(componentDOM).getPropertyValue('padding').should.equal(expected1);
         window.getComputedStyle(componentDOM).getPropertyValue('width').should.equal(expected2);
         window.getComputedStyle(componentDOM).getPropertyValue('height').should.equal(expected3);
@@ -97,29 +94,31 @@ describe('core-button', () => {
       });
     });
 
+    describe('Icon attribute tests', () => {
+
+    });
 
     describe('Plain attribute tests', () => {
       function testPlain(typeVal, expected) {
         component.setAttribute('type', typeVal);
         component.setAttribute('plain', '');
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        window.getComputedStyle(componentDOM).border.should.equal(expected);
+        componentDOM = appendToDom('customButton', component);
+        window.getComputedStyle(componentDOM).backgroundColor.should.equal(expected);
       }
-      it('primay plain', () => {
-        testPlain('primary', '1px solid rgb(64, 158, 255)');
+      it('primary plain', () => {
+        testPlain('primary', 'rgba(64, 158, 255, 0.1)');
       });
       it('success plain', () => {
-        testPlain('success', '1px solid rgb(103, 194, 58)');
+        testPlain('success', 'rgba(103, 194, 58, 0.1)');
       });
       it('warning plain', () => {
-        testPlain('warning', '1px solid rgb(230, 162, 60)');
+        testPlain('warning', 'rgba(230, 162, 60, 0.1)');
       });
       it('danger plain', () => {
-        testPlain('danger', '1px solid rgb(245, 108, 108)');
+        testPlain('danger', 'rgba(245, 108, 108, 0.1)');
       });
       it('info plain', () => {
-        testPlain('info', '1px solid rgb(144, 147, 153)');
+        testPlain('info', 'rgba(144, 147, 153, 0.1)');
       });
     });
 
