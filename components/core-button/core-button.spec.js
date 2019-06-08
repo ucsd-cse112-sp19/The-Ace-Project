@@ -65,21 +65,21 @@ describe('core-button', () => {
         testDisabled(true, 'not-allowed');
       });
     });
-
-    /* TODO LOADING TEST FAILS
     describe('Loading attribute tests', () => {
-      function testLoading() {
-        component.setAttribute('loading', '');
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        componentDOM.iconSlot.classList.contains('el-icon-loading').should.equal(true);
+      function testLoading(isLoading) {
+        if (isLoading) {
+          component.setAttribute('loading', '');
+        }
+        componentDOM = appendToDom('customButton', component);
+        componentDOM.iconSlot.classList.contains('el-icon-loading').should.equal(isLoading);
       }
+      it('Default behavior', () => {
+        testLoading(false);
+      });
       it('Test loading', () => {
-        testLoading();
+        testLoading(true);
       });
     });
-    */
-
 
     describe('Circle attribute tests', () => {
       function testCircle(expected1, expected2, expected3) {
@@ -100,7 +100,7 @@ describe('core-button', () => {
           component.setAttribute('icon', 'el-icon-search');
         }
         componentDOM = appendToDom('customButton', component);
-        componentDOM.shadowRoot.querySelector('#icon').classList.length.should.equal(expected);
+        componentDOM.iconSlot.classList.length.should.equal(expected);
       }
 
       it('No icon test', () => {
