@@ -1,12 +1,12 @@
 import './core-button';
 import {
-  basicElementTests, containsTag, setup, teardown,
+  basicElementTests, containsTag, setup, teardown, appendToDom,
 } from '../common.spec';
-
 
 describe('core-button', () => {
   let component;
   let componentDOM;
+
   // create define and create core-button to test before each test
   beforeEach((done) => {
     component = setup('core-button', 'customButton');
@@ -16,6 +16,20 @@ describe('core-button', () => {
     teardown('core-button');
   });
 
+  // Helper functions
+  function setAttribute(isDefault, attributeName, value) {
+    if (!isDefault) {
+      component.setAttribute(attributeName, value);
+    }
+  }
+
+  function applyAttributeForStyle(isDefault, attributeName, value) {
+    setAttribute(isDefault, attributeName, value);
+    componentDOM = appendToDom('customButton', component);
+    return window.getComputedStyle(componentDOM);
+  }
+
+  // Test Suite
   it('Shared Tests', () => {
     basicElementTests(component, 'customButton');
   });
@@ -112,12 +126,7 @@ describe('core-button', () => {
 
     describe('Type attribute tests', () => {
       function testType(isDefault, typeVal, expected) {
-        if (!isDefault) {
-          component.setAttribute('type', typeVal);
-        }
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        window.getComputedStyle(componentDOM).backgroundColor.should.equal(expected);
+        applyAttributeForStyle(isDefault, 'type', typeVal).backgroundColor.should.equal(expected);
       }
 
       it('Default test', () => {
@@ -143,12 +152,7 @@ describe('core-button', () => {
 
     describe('Size attribute tests', () => {
       function testSize(isDefault, sizeVal, expected) {
-        if (!isDefault) {
-          component.setAttribute('size', sizeVal);
-        }
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        window.getComputedStyle(componentDOM).padding.should.equal(expected);
+        applyAttributeForStyle(isDefault, 'size', sizeVal).padding.should.equal(expected);
       }
 
       it('Default test', () => {
