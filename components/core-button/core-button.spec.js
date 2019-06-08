@@ -95,7 +95,21 @@ describe('core-button', () => {
     });
 
     describe('Icon attribute tests', () => {
+      function testIcon(withIcon, expected) {
+        if (withIcon) {
+          component.setAttribute('icon', 'el-icon-search');
+        }
+        componentDOM = appendToDom('customButton', component);
+        componentDOM.shadowRoot.querySelector('#icon').classList.length.should.equal(expected);
+      }
 
+      it('No icon test', () => {
+        testIcon(false, 0);
+      });
+
+      it('With icon Test', () => {
+        testIcon(true, 1);
+      });
     });
 
     describe('Plain attribute tests', () => {
