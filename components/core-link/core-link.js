@@ -1,5 +1,7 @@
 // @ts-check
 
+import CoreBase from '../core-base';
+
 // @ts-ignore
 import htmlTemplate from './core-link.html';
 // @ts-ignore
@@ -16,21 +18,13 @@ import cssTemplate from './core-link.css';
  * @playground <core-link> link </core-link>
  */
 
-export default class CoreLink extends HTMLElement {
+export default class CoreLink extends CoreBase {
   static get observedAttributes() {
     return ['type', 'href', 'underline', 'disabled', 'icon'];
   }
 
   constructor() {
-    super();
-    this.template = document.createElement('template');
-    this.template.innerHTML = htmlTemplate;
-    this.styleNode = document.createElement('style');
-    this.styleNode.innerHTML = cssTemplate;
-
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(this.template.content.cloneNode(true));
-    shadowRoot.appendChild(this.styleNode);
+    super(htmlTemplate, cssTemplate);
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
