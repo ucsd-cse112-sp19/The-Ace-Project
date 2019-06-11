@@ -1,5 +1,7 @@
 // @ts-check
 
+import CoreBase from '../core-base';
+
 // @ts-ignore
 import htmlTemplate from './core-checkbox.html';
 // @ts-ignore
@@ -15,20 +17,13 @@ import cssTemplate from './core-checkbox.css';
  * @playground <core-checkbox> Checkbox </core-checkbox>
  */
 
-class CoreCheckbox extends HTMLElement {
+class CoreCheckbox extends CoreBase {
   static get observedAttributes() {
     return ['value', 'v-model', 'disabled', 'name', 'checked', 'border'];
   }
 
   constructor() {
-    super();
-    this.template = document.createElement('template');
-    this.template.innerHTML = htmlTemplate;
-    this.styleNode = document.createElement('style');
-    this.styleNode.innerHTML = cssTemplate;
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(this.template.content.cloneNode(true));
-    shadowRoot.appendChild(this.styleNode);
+    super(htmlTemplate, cssTemplate);
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
