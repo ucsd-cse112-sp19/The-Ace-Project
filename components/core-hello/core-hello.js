@@ -1,3 +1,6 @@
+
+import CoreBase from '../core-base';
+
 import htmlTemplate from './core-hello.html';
 import cssTemplate from './core-hello.css';
 
@@ -11,27 +14,19 @@ import cssTemplate from './core-hello.css';
  * @property {boolean} [rainbow=false] - If present, animates the text with a rainbow effect
  * @playground <core-hello lang='jp' rainbow> Peter </core-hello>
  */
-export default class CoreHello extends HTMLElement {
+export default class CoreHello extends CoreBase {
   static get observedAttributes() {
     return ['rainbow', 'lang'];
   }
 
   constructor() {
-    super();
-    this.template = document.createElement('template');
-    this.template.innerHTML = htmlTemplate;
-    this.styleNode = document.createElement('style');
-    this.styleNode.innerHTML = cssTemplate;
+    super(htmlTemplate, cssTemplate);
 
     this.langMap = {
       en: 'Hello World',
       pt: 'Olá Mundo',
       jp: 'こんにちは世界',
     };
-
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(this.template.content.cloneNode(true));
-    shadowRoot.appendChild(this.styleNode);
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {

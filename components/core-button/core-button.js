@@ -1,5 +1,7 @@
 // @ts-check
 
+import CoreBase from '../core-base';
+
 // @ts-ignore
 import htmlTemplate from './core-button.html';
 // @ts-ignore
@@ -19,21 +21,13 @@ import cssTemplate from './core-button.css';
  * <core-button size='mini' type='danger' round plain> Hello world </core-button>
  */
 
-export default class CoreButton extends HTMLElement {
+export default class CoreButton extends CoreBase {
   static get observedAttributes() {
     return ['type', 'size', 'round', 'disabled', 'plain', 'icon', 'loading'];
   }
 
   constructor() {
-    super();
-    this.template = document.createElement('template');
-    this.template.innerHTML = htmlTemplate;
-    this.styleNode = document.createElement('style');
-    this.styleNode.innerHTML = cssTemplate;
-
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(this.template.content.cloneNode(true));
-    shadowRoot.appendChild(this.styleNode);
+    super(htmlTemplate, cssTemplate);
 
     this.button = this.shadowRoot.querySelector('a');
     this.bgMap = {
