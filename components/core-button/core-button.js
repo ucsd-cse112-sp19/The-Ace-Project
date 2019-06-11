@@ -19,7 +19,7 @@ import cssTemplate from './core-button.css';
  * <core-button size='mini' type='danger' round plain> Hello world </core-button>
  */
 
-class CoreButton extends HTMLElement {
+export default class CoreButton extends HTMLElement {
   static get observedAttributes() {
     return ['type', 'size', 'round', 'disabled', 'plain', 'icon', 'loading'];
   }

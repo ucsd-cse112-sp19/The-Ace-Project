@@ -1,3 +1,9 @@
+
+/** @function safe_tags
+* @param {string} str
+* This is a helper function replaces unsafe tag characters from the @playground content
+* string so it won't mess with the html rendering of the page itself.
+*/
 function safe_tags(str) {
   return str
     .replace(/&/g, "&amp;")
@@ -6,6 +12,12 @@ function safe_tags(str) {
     .replace(/\n/g, "\\n");
 }
 
+
+/** @function renderPlayground
+* @param {string} content
+* Returns the entire HTML needed for the playground component, while replacing
+* the template literal variable content to display the appropriate content
+*/
 const renderPlayground = content => `
 <style type="text/css" media="screen">
     #parent {
@@ -155,12 +167,22 @@ const renderPlayground = content => `
   </div>
 `;
 
+
+/**
+* This is the syntax for adding plugins to jsDoc
+* @see {@link https://jsdoc.app/about-plugins.html}
+*/
 exports.defineTags = function(dictionary) {
   dictionary.defineTag("playground", {
     mustHaveValue: true,
     mustNotHaveDescription: true,
     canHaveType: false,
     canHaveName: false,
+    /** @function onTagged
+    * This function runs everytime the new tag is detected by the jsdoc parser.
+    * It receives the doclet object, which is what will be transformed into the output,
+    * and the tag object, containing it's properties and the parsed content.
+    */
     onTagged: function(doclet, tag) {
       let componentName = doclet.meta.filename.replace(/(.js)/g, "");
       let filePath = `../components/${componentName}/${doclet.meta.filename}`
@@ -174,6 +196,10 @@ exports.defineTags = function(dictionary) {
   });
 };
 
+/**
+* This is the syntax for adding plugins to jsDoc
+* @see {@link https://jsdoc.app/about-plugins.html}
+*/
 exports.handlers = {
   newDoclet: function(e) {}
 };
