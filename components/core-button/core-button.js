@@ -73,7 +73,7 @@ class CoreButton extends HTMLElement {
         this.handlePlainChanged(newVal);
         break;
       case 'loading':
-        this.handleLoadingChanged(newVal);
+        this.handleLoadingChanged();
         break;
       default:
         break;
@@ -101,8 +101,8 @@ class CoreButton extends HTMLElement {
     this.style.backgroundColor = newVal !== null ? this.hex2rgba(bg || '#ffffff', 0.1) : bg;
   }
 
-  handleLoadingChanged(newVal) {
-    if (newVal) {
+  handleLoadingChanged() {
+    if (this.hasAttribute('loading')) {
       this.iconSlot.classList.add('el-icon-loading');
     } else {
       this.iconSlot.classList.remove('el-icon-loading');
