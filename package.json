@@ -12,8 +12,7 @@
         "lint": "eslint . -c .config/.eslintrc.js --ignore-path .config/.eslintignore && stylelint --aei ./**/*.css --config .config/.stylelintrc -i .config/.eslintignore && htmlhint --config .config/.htmlhintrc .",
         "lintfix": "eslint --fix . -c .config/.eslintrc.js --ignore-path .config/.eslintignore && stylelint --fix --aei ./**/*.css --config .config/.stylelintrc -i .config/.eslintignore && htmlhint --config .config/.htmlhintrc .",
         "doc": "jsdoc -c .config/jsdoc.conf.js .",
-        "semantic-release": "semantic-release",
-        "minify": "bash ./.utils/minify-js.sh components"
+        "semantic-release": "semantic-release"
     },
     "dependencies": {
         "chai-dom": "^1.8.1",
@@ -85,8 +84,8 @@
         ]
     },
     "browserslist": [
-        "> 0.25%",
-        "not dead"
+        "> 1%",
+        "last 2 versions"
     ],
     "config": {
         "commitizen": {
