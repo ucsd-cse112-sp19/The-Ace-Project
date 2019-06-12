@@ -1,39 +1,8 @@
-const template = document.createElement('template');
-template.innerHTML = `
-    <div> Hello World <slot/></div>
-    <style>
-    :host {
-      --main-font-size: 18px;
-      --main-font-family: 'arial'; 
-    }
 
-    .rainbow-text {
-      background-image: repeating-linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
-      color: transparent;
-      animation: hue 8s ease infinite;
-    }
+import CoreBase from '../core-base';
 
-    div {
-      font-size: var(--main-font-size);
-      font-family: var(--main-font-family);
-    }
-
-    @keyframes hue {
-      from {
-        filter: hue-rotate(0deg);
-      }
-      to {
-        filter: hue-rotate(-360deg);
-      }
-    }
-  </style>
-`;
-
-const langMap = {
-  en: 'Hello World',
-  pt: 'Olá Mundo',
-  jp: 'こんにちは世界',
-};
+import htmlTemplate from './core-hello.html';
+import cssTemplate from './core-hello.css';
 
 /**
  * A custom element that renders Hello World followed by whatever
@@ -45,20 +14,24 @@ const langMap = {
  * @property {boolean} [rainbow=false] - If present, animates the text with a rainbow effect
  * @playground <core-hello lang='jp' rainbow> Peter </core-hello>
  */
-class CoreHello extends HTMLElement {
+export default class CoreHello extends CoreBase {
   static get observedAttributes() {
     return ['rainbow', 'lang'];
   }
 
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(template.content.cloneNode(true));
+    super(htmlTemplate, cssTemplate);
+
+    this.langMap = {
+      en: 'Hello World',
+      pt: 'Olá Mundo',
+      jp: 'こんにちは世界',
+    };
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    if (this.hasAttribute('lang') && newVal in langMap) {
-      this.shadowRoot.children[0].innerHTML = `${langMap[newVal]} <slot/>`;
+    if (this.hasAttribute('lang') && newVal in this.langMap) {
+      this.shadowRoot.children[0].innerHTML = `${this.langMap[newVal]} <slot/>`;
     }
 
     if (this.hasAttribute('rainbow')) {

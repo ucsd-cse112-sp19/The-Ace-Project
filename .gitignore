@@ -4,3 +4,8 @@ node_modules
 _site
 *.min.js
 /coverage
+/lib
+/dist
+/npm_release
+*.tar.gz
+.vscode

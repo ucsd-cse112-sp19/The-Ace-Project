@@ -1,81 +1,56 @@
+import './core-hello';
+import {
+  basicElementTests, containsTag, setup, teardown,
+} from '../common.spec';
+
 describe('core-hello', () => {
   let component;
-  let componentDOM;
   let helloDiv;
-  // create define and create core-hello to test before each test
+
   beforeEach((done) => {
-    if (window.customElements.get('core-hello')) {
-      component = document.createElement('core-hello');
-      component.setAttribute('id', 'customElement');
-      helloDiv = component.shadowRoot.querySelector('div');
-
-      done();
-    } else {
-      console.log('Core-hello not defined!');
-    }
+    component = setup('core-hello', 'customHello');
+    helloDiv = component.shadowRoot.querySelector('div');
+    done();
   });
-
-  // delete component after each test
   afterEach(() => {
-    helloDiv = null;
-    document.body.removeChild(component);
+    teardown('core-hello');
   });
 
-  describe('DOM Tree Tests', () => {
-    describe('Exists in DOM', () => {
-      it('Element should at least exist', () => {
-        document.body.append(component);
-        componentDOM = document.getElementById('customElement');
-        should.exist(componentDOM);
-      });
-    });
-
-    describe('Correct component exists in DOM', () => {
-      it('Check DOM tree for correct element ', () => {
-        document.body.append(component);
-        componentDOM = document.getElementById('customElement');
-        component.should.equal(componentDOM);
-      });
-
-      it('InnerHTML', () => {
-        component.innerHTML = 'Test text';
-        document.body.append(component);
-        componentDOM = document.getElementById('customElement');
-        componentDOM.innerHTML.should.equal('Test text');
-      });
-
-      it('Renders Hello World div', () => {
-        document.body.append(component);
-        assert.isOk(component.shadowRoot.querySelector('div'));
-      });
-    });
+  it('Shared Tests', () => {
+    basicElementTests(component, 'customHello');
   });
-  describe('Language Attribute Tests', () => {
-    function testLang(lang, expected) {
-      component.setAttribute('lang', lang);
-      document.body.append(component);
-      helloDiv.innerHTML.should.equal(`${expected} <slot></slot>`);
-    }
 
-    it('English Test', () => {
-      testLang('en', 'Hello World');
+  describe('Basic core-hello tests', () => {
+    it('Renders Hello World div', () => {
+      containsTag(component, 'div');
     });
+    describe('Language Attribute Tests', () => {
+      function testLang(lang, expected) {
+        component.setAttribute('lang', lang);
+        document.body.append(component);
+        helloDiv.innerHTML.should.equal(`${expected} <slot></slot>`);
+      }
 
-    it('Portugese Test', () => {
-      testLang('pt', 'Olá Mundo');
-    });
+      it('English Test', () => {
+        testLang('en', 'Hello World');
+      });
 
-    it('Japanese Test', () => {
-      testLang('jp', 'こんにちは世界');
-    });
+      it('Portugese Test', () => {
+        testLang('pt', 'Olá Mundo');
+      });
 
-    it('No Attribute Test', () => {
-      document.body.append(component);
-      helloDiv.innerHTML.should.equal(' Hello World <slot></slot>');
-    });
+      it('Japanese Test', () => {
+        testLang('jp', 'こんにちは世界');
+      });
 
-    it('Non-supported Language Test', () => {
-      testLang('fr', ' Hello World');
+      it('No Attribute Test', () => {
+        document.body.append(component);
+        helloDiv.innerHTML.should.equal('Hello World <slot></slot>');
+      });
+
+      it('Non-supported Language Test', () => {
+        testLang('fr', 'Hello World');
+      });
     });
   });
 });
