@@ -9,6 +9,7 @@ import cssTemplate from './core-link.css';
 
 /**
  * Text hyperlink
+ * @module CoreLink
  * @example <core-link> Text </core-link>
  * @property {string} [href=""] - href
  * @property {string} [type="default"] - Button type

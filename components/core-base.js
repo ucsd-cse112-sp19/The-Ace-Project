@@ -1,6 +1,3 @@
-/**
- * TODO
- */
 export default class CoreBase extends HTMLElement {
   constructor(htmlTemplate, cssTemplate) {
     super();
