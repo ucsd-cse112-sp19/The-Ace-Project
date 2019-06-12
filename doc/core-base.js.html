@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: core-base.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,34 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: core-base.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * TODO
+ */
+export default class CoreBase extends HTMLElement {
+  constructor(htmlTemplate, cssTemplate) {
+    super();
+    this.template = document.createElement('template');
+    this.template.innerHTML = htmlTemplate;
+    this.styleNode = document.createElement('style');
+    this.styleNode.innerHTML = cssTemplate;
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    const shadowRoot = this.attachShadow({ mode: 'open' });
+    shadowRoot.appendChild(this.template.content.cloneNode(true));
+    shadowRoot.appendChild(this.styleNode);
+  }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
