@@ -18,7 +18,7 @@ describe('core-link', () => {
   function createMockWindow(assignCallback, openCallback) {
     // define a mock location class
     class MockLocation {
-      static assign(location) {
+      assign(location) {
         assignCallback(location);
       }
     }
@@ -29,7 +29,7 @@ describe('core-link', () => {
         this.location = new MockLocation();
       }
 
-      static open(hrefLoc) {
+      open(hrefLoc) {
         openCallback(hrefLoc);
       }
     }
