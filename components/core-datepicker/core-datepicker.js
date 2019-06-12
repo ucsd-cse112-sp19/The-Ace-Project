@@ -143,6 +143,10 @@ class CoreDatepicker extends HTMLElement {
 
     this.clearBtn.addEventListener('click', () => {
       this.input.value = '';
+      this.date = moment();
+      if (this.selectedDayElement) {
+        this.selectedDayElement.firstElementChild.classList.remove('selected');
+      }
     });
 
     window.addEventListener('click', (ev) => {
