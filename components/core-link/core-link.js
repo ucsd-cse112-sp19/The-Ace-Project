@@ -28,12 +28,11 @@ export default class CoreLink extends CoreBase {
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    console.log(attrName, 'changed from', oldVal, 'to', newVal);
     switch (attrName) {
       case 'type':
         break;
       case 'href':
-        this.addEventListener('click', this.createOnClickListener(newVal), true);
+        this.addEventListener('click', this.createOnClickListener(window, newVal), true);
         break;
       case 'underline':
         break;
@@ -47,7 +46,7 @@ export default class CoreLink extends CoreBase {
     }
   }
 
-  createOnClickListener(newLocation) {
+  createOnClickListener(window, newLocation) {
     return () => {
       if (this.hasAttribute('target') && this.getAttribute('target') === '_blank') {
         window.open(newLocation);
