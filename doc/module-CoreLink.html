@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: CoreCheckbox</title>
+    <title>JSDoc: Module: CoreLink</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: CoreCheckbox</h1>
+    <h1 class="page-title">Module: CoreLink</h1>
 
     
 
@@ -28,9 +28,8 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>CoreCheckbox<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">A checkbox that can be clicked on.</div>
+            
         
     
 </header>
@@ -39,22 +38,8 @@
     <div class="container-overview">
     
         
-
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="CoreCheckbox"><span class="type-signature"></span>new CoreCheckbox<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    
-        <script src="../components/core-checkbox/core-checkbox.js"></script>
+            <div class="description">
+        <script src="../components/core-link/core-link.js"></script>
         <h2> Playground </h2>
         
 <style type="text/css" media="screen">
@@ -155,7 +140,7 @@
           editor.session.setMode("ace/mode/html");
           editor.setAutoScrollEditorIntoView(true);
           editor.session.setUseSoftTabs(true);
-          editor.session.insert(editor.getCursorPosition(),"&lt;core-checkbox&gt; Checkbox &lt;/core-checkbox&gt;");
+          editor.session.insert(editor.getCursorPosition(),"&lt;core-link&gt; link &lt;/core-link&gt;");
 
           editor.session.setValue(unsafe_tags(editor.session.getValue()))
 
@@ -176,7 +161,7 @@
             
             var observer = new MutationObserver(debounce(callback, 2000));
             observer.observe(output, config);
-            output.innerHTML = "&lt;core-checkbox&gt; Checkbox &lt;/core-checkbox&gt;";
+            output.innerHTML = "&lt;core-link&gt; link &lt;/core-link&gt;";
             output.innerHTML = unsafe_tags(output.innerHTML)
             editor.session.on("change", function(delta) {
               output.innerHTML = editor.getValue();
@@ -202,8 +187,13 @@
     </div>
   </div>
 
-      
-</div>
+      </div>
+        
+
+        
+            
+
+
 
 
 
@@ -247,7 +237,44 @@
 
         <tr>
             
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>href</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    ""
+                
+                </td>
+            
+
+            <td class="description last">href</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
             
 
             <td class="type">
@@ -277,14 +304,51 @@
                 </td>
             
 
-            <td class="description last">The name of the button</td>
+            <td class="description last">Button type</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>border</code></td>
+                <td class="name"><code>icon</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    ""
+                
+                </td>
+            
+
+            <td class="description last">class name of icon</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>underline</code></td>
             
 
             <td class="type">
@@ -309,49 +373,12 @@
             
                 <td class="default">
                 
-                    false
+                    true
                 
                 </td>
             
 
-            <td class="description last">Determines if border will be rendered.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>checked</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    false
-                
-                </td>
-            
-
-            <td class="description last">If present, the checkbox will be checked.</td>
+            <td class="description last">determine whether the component has underline</td>
         </tr>
 
     
@@ -388,7 +415,7 @@
                 </td>
             
 
-            <td class="description last">Determines if the checkbox is disabled.</td>
+            <td class="description last">determine whether the component is disabled</td>
         </tr>
 
     
@@ -427,7 +454,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-checkbox_core-checkbox.js.html">core-checkbox/core-checkbox.js</a>, <a href="core-checkbox_core-checkbox.js.html#line25">line 25</a>
+        <a href="core-link_core-link.js.html">core-link/core-link.js</a>, <a href="core-link_core-link.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -458,10 +485,11 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>&lt;core-checkbox> Text &lt;/core-checkbox></code></pre>
+    <pre class="prettyprint"><code>&lt;core-link> Text &lt;/core-link></code></pre>
 
 
 
+        
     
     </div>
 
@@ -494,13 +522,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CoreCheckbox.html">CoreCheckbox</a></li><li><a href="module.exports.html">exports</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CoreButton.html">CoreButton</a></li><li><a href="module-CoreCheckbox.html">CoreCheckbox</a></li><li><a href="module-CoreHello.html">CoreHello</a></li><li><a href="module-CoreLink.html">CoreLink</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Wed Jun 12 2019 01:49:58 GMT+0000 (UTC)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Wed Jun 12 2019 03:36:19 GMT+0000 (UTC)
 </footer>
 
 <script> prettyPrint(); </script>

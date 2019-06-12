@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: CoreCheckbox</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: CoreCheckbox</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">
+        <script src="../components/core-checkbox/core-checkbox.js"></script>
+        <h2> Playground </h2>
+        
+<style type="text/css" media="screen">
+    #parent {
+      width: 50%;
+      height: 250px;
+      display: inline-flex;
+      position: relative;
+    }
+
+    #editor {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    #output {
+      display: block;
+      width: 50%;
+      height: 250px;
+      border-left: 0.5px solid lightgray;
+      padding: 10px;
+      overflow: scroll;
+    }
+
+    #container {
+      width: 100%;
+      display: flex;
+      height: 250px;
+      overflow: hidden;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1),
+        0 6px 6px rgba(0, 0, 0, 0.15);
+    }
+    
+    #zoom-btn {
+        width: 80px;
+    }
+
+    .pressed {
+        background-color: grey;
+        color: white;
+    }
+
+    .btn:focus {
+    outline: 0;
+}
+
+  </style>
+  </head>
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/ace.js"
+  type="text/javascript"
+  charset="utf-8"
+  ></script>
+  <div>
+    <div id="container">
+        <div id="parent">
+          <div id="editor"></div>
+        </div>
+        <script>
+          function unsafe_tags(str) {
+            return str
+              .replace(/(&amp;)/g, "&")
+              .replace(/(&lt;)/g, "<")
+              .replace(/(&gt;)/g, ">")
+              .replace(/(\n)/g, "\n");
+          }
+
+          function debounce(func, wait, immediate) {
+            var timeout;
+
+            return function executedFunction() {
+              var context = this;
+              var args = arguments;
+                
+              var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+              };
+
+              var callNow = immediate && !timeout;
+              clearTimeout(timeout);
+              timeout = setTimeout(later, wait);
+              if (callNow) func.apply(context, args);
+            }
+          }
+
+          var editor = ace.edit("editor");
+          editor.setTheme("ace/theme/chrome");
+          editor.setOptions({
+            showPrintMargin: false,
+            fontSize: 16
+          });
+          editor.session.setMode("ace/mode/html");
+          editor.setAutoScrollEditorIntoView(true);
+          editor.session.setUseSoftTabs(true);
+          editor.session.insert(editor.getCursorPosition(),"&lt;core-checkbox&gt; Checkbox &lt;/core-checkbox&gt;");
+
+          editor.session.setValue(unsafe_tags(editor.session.getValue()))
+
+          document.addEventListener("DOMContentLoaded", function(event) {
+            let output = document.querySelector("#output");
+            
+            var config = { attributes: true, childList: true, subtree: true };
+
+            var callback = function(mutationsList, observer) {
+              let n = Array.from(mutationsList[0].addedNodes)
+              n = n.filter(s => s instanceof HTMLScriptElement)
+              n.forEach(s => eval(s.innerText))
+            }
+
+            setTimeout(() => {
+              Array.from(output.children).forEach(s => s instanceof HTMLScriptElement ? eval(s.innerText) : void(0))
+            }, 1000)
+            
+            var observer = new MutationObserver(debounce(callback, 2000));
+            observer.observe(output, config);
+            output.innerHTML = "&lt;core-checkbox&gt; Checkbox &lt;/core-checkbox&gt;";
+            output.innerHTML = unsafe_tags(output.innerHTML)
+            editor.session.on("change", function(delta) {
+              output.innerHTML = editor.getValue();
+            })
+          })
+
+          function reScale(sf, index) {
+            document.getElementById('output').style.transform = "scale(" + sf + ")"
+            btns = document.getElementById('zoomBtns').children
+            for (i = 0; i < btns.length; i++) {
+                btns.item(i).classList.remove('pressed');
+            }
+            btns.item(index).classList.add('pressed');
+          }
+
+        </script>
+        <div id="output" style="transform: scale(2); transform-origin: 0% 0% 0px;"></div>
+    </div>
+    <div id='zoomBtns' style="display: flex; justify-content: flex-end;">
+      <button id='zoom-btn' onclick="reScale(1, 0)">1x</button>
+      <button id='zoom-btn' onclick="reScale(1.5, 1)">1.5x</button>
+      <button id='zoom-btn' onclick="reScale(2, 2)" class='pressed'>2x</button>
+    </div>
+  </div>
+
+      </div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "default"
+                
+                </td>
+            
+
+            <td class="description last">The name of the button</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>border</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last">Determines if border will be rendered.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>checked</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last">If present, the checkbox will be checked.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>disabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last">Determines if the checkbox is disabled.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="core-checkbox_core-checkbox.js.html">core-checkbox/core-checkbox.js</a>, <a href="core-checkbox_core-checkbox.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>&lt;core-checkbox> Text &lt;/core-checkbox></code></pre>
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CoreButton.html">CoreButton</a></li><li><a href="module-CoreCheckbox.html">CoreCheckbox</a></li><li><a href="module-CoreHello.html">CoreHello</a></li><li><a href="module-CoreLink.html">CoreLink</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Wed Jun 12 2019 03:36:19 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
