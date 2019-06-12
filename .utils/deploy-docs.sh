@@ -36,6 +36,14 @@ if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PUL
         exit 1;
     fi
 
+    git rm -r ./components
+    cp -r $CURRENT_DIR/components ./components
+
+    if [[ $? -ne 0 ]]; then
+        echo "Error copying components, aborting..."
+        exit 1;
+    fi
+
     echo "Pushing to gh-pages branch..."
     git add .
     git commit -m "Latest documentation. Successful build $TRAVIS_BUILD_NUMBER auto-pushed to gh-pages."
