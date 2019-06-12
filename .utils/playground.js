@@ -112,7 +112,7 @@ const renderPlayground = content => `
           editor.setTheme("ace/theme/chrome");
           editor.setOptions({
             showPrintMargin: false,
-            fontSize: 18
+            fontSize: 16
           });
           editor.session.setMode("ace/mode/html");
           editor.setAutoScrollEditorIntoView(true);

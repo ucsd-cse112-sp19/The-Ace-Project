@@ -1,0 +1,24 @@
+:host {
+  --main-font-size: 18px;
+  --main-font-family: 'arial'; 
+}
+
+.rainbow-text {
+  background-image: repeating-linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
+  color: transparent;
+  animation: hue 8s ease infinite;
+}
+
+div {
+  font-size: var(--main-font-size);
+  font-family: var(--main-font-family);
+}
+
+@keyframes hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(-360deg);
+  }
+}
