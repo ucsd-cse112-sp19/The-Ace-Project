@@ -15,5 +15,6 @@ module.exports = {
   },
   rules: {
     "no-undef": "warn",
+    "class-methods-use-this": "off",
   },
 };
