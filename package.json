@@ -15,8 +15,11 @@
         "minify": "bash ./.utils/minify-js.sh components"
     },
     "dependencies": {
+        "@webcomponents/webcomponentsjs": "^2.2.10",
         "chai-dom": "^1.8.1",
-        "@webcomponents/webcomponentsjs": "^2.2.10"
+        "lodash": "^4.17.11",
+        "moment": "^2.24.0",
+        "moment-range": "^4.0.2"
     },
     "devDependencies": {
         "@babel/cli": "^7.4.4",
@@ -86,7 +89,7 @@
             "maxHeaderWidth": 72,
             "maxLineWidth": 72,
             "defaultType": "",
-            "defaultScope": "",        
+            "defaultScope": "",
             "defaultSubject": "",
             "defaultBody": "",
             "defaultIssues": ""
