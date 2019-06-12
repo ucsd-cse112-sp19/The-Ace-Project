@@ -9,6 +9,7 @@ import cssTemplate from './core-checkbox.css';
 
 /**
  * A checkbox that can be clicked on.
+ * @module CoreCheckbox
  * @example <core-checkbox> Text </core-checkbox>
  * @property {string} [name="default"] - The name of the button
  * @property {boolean} [border=false] - Determines if border will be rendered.
