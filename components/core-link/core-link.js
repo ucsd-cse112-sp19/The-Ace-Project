@@ -9,6 +9,7 @@ import cssTemplate from './core-link.css';
 
 /**
  * Text hyperlink
+ * @external
  * @module CoreLink
  * @example <core-link> Text </core-link>
  * @property {string} [href=""] - href
