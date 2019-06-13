@@ -5,6 +5,7 @@ echo "------ Deploying Docs ------"
 if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]] && [[ "$TRAVIS_BRANCH" == "master" ]]; then
     echo "Generating docs..."
     npm ci
+    npm run build
     npm run doc
     
     if [[ $? -ne 0 ]]; then
@@ -36,11 +37,11 @@ if [[ "$TRAVIS_REPO_SLUG" == "ucsd-cse112/The-Ace-Project" ]] && [[ "$TRAVIS_PUL
         exit 1;
     fi
 
-    git rm -r ./components
-    cp -r $CURRENT_DIR/components ./components
+    git rm -r ./dist
+    cp -r $CURRENT_DIR/dist ./dist
 
     if [[ $? -ne 0 ]]; then
-        echo "Error copying components, aborting..."
+        echo "Error copying distribution bundle, aborting..."
         exit 1;
     fi
 
