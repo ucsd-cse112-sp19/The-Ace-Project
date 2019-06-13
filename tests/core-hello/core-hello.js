@@ -1,7 +1,6 @@
 import { Selector } from 'testcafe';
 
 fixture('core-hello Integration')
-  .skip
   .page('./core-hello.html');
 
 test('Renders', async (t) => {

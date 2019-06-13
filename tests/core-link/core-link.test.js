@@ -33,7 +33,7 @@ test('Default Bootstrap Link Clicks', async (t) => {
   await testClicks('#defaultBootstrapLinks', false, t);
 });
 
-// TODO link is still clickable
+// TODO disabled link is still clickable
 /*
 test('Disabled Link Clicks', async (t) => {
    await testClicks('#disabledLinks', true, t);
@@ -43,6 +43,7 @@ test('Disabled Bootstrap Link Clicks', async(t) => {
   await testClicks('#disabledBoostrapLinks', true, t);
 });
 */
+
 test('No Underline Link Clicks', async (t) => {
   await testClicks('#noUnderlineLinks', false, t);
 });
