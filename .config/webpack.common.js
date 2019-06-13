@@ -24,12 +24,15 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-        },
-      },
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
     ],
   },
   output: {
-    path: `${__dirname}/dist`,
+    path: `${__dirname}/../dist`,
     filename: '[name]-bundle.js',
   },
 };

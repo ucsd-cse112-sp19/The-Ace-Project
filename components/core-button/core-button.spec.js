@@ -1,56 +1,48 @@
+import './core-button';
+import {
+  basicElementTests, containsTag, setup, teardown, appendToDom,
+} from '../common.spec';
+
 describe('core-button', () => {
   let component;
   let componentDOM;
+
   // create define and create core-button to test before each test
   beforeEach((done) => {
-    if (window.customElements.get('core-button')) {
-      component = document.createElement('core-button');
-      component.setAttribute('id', 'customButton');
-
-      done();
-    } else {
-      console.log('core-button not defined!');
-    }
+    component = setup('core-button', 'customButton');
+    done();
   });
   afterEach(() => {
-    document.body.removeChild(component);
+    teardown('core-button');
   });
 
-  describe('DOM Tree Tests', () => {
-    describe('Exists in DOM', () => {
-      it('Element should at least exist', () => {
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        should.exist(componentDOM);
-      });
+  // Helper functions
+  function setAttribute(isDefault, attributeName, value) {
+    if (!isDefault) {
+      component.setAttribute(attributeName, value);
+    }
+  }
+
+  function applyAttributeForStyle(isDefault, attributeName, value) {
+    setAttribute(isDefault, attributeName, value);
+    componentDOM = appendToDom('customButton', component);
+    return window.getComputedStyle(componentDOM);
+  }
+
+  // Test Suite
+  it('Shared Tests', () => {
+    basicElementTests(component, 'customButton');
+  });
+
+  describe('Basic Button Tests', () => {
+    it('Renders core-button a', () => {
+      containsTag(component, 'a');
     });
-
-    describe('Correct component exists in DOM', () => {
-      it('Check DOM tree for correct element ', () => {
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        component.should.equal(componentDOM);
-      });
-
-      it('InnerHTML', () => {
-        component.innerHTML = 'This is a test button';
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        componentDOM.innerHTML.should.equal('This is a test button');
-      });
-
-      it('Renders core-button a', () => {
-        document.body.append(component);
-        assert.isOk(component.shadowRoot.querySelector('a'));
-      });
-    });
-
 
     describe('Round attribute tests', () => {
       function testRound(expected) {
         component.setAttribute('round', '');
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
+        componentDOM = appendToDom('customButton', component);
         window.getComputedStyle(componentDOM).getPropertyValue('border-radius').should.equal(expected);
       }
       it('Test round', () => {
@@ -63,8 +55,7 @@ describe('core-button', () => {
         if (isDisabled) {
           component.setAttribute('disabled', isDisabled);
         }
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
+        componentDOM = appendToDom('customButton', component);
         window.getComputedStyle(componentDOM).getPropertyValue('cursor').should.equal(expected);
       }
       it('Default test cursor', () => {
@@ -74,27 +65,26 @@ describe('core-button', () => {
         testDisabled(true, 'not-allowed');
       });
     });
-
-    /* TODO LOADING TEST FAILS
     describe('Loading attribute tests', () => {
-      function testLoading() {
-        component.setAttribute('loading', '');
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        componentDOM.iconSlot.classList.contains('el-icon-loading').should.equal(true);
+      function testLoading(isLoading) {
+        if (isLoading) {
+          component.setAttribute('loading', '');
+        }
+        componentDOM = appendToDom('customButton', component);
+        componentDOM.iconSlot.classList.contains('el-icon-loading').should.equal(isLoading);
       }
+      it('Default behavior', () => {
+        testLoading(false);
+      });
       it('Test loading', () => {
-        testLoading();
+        testLoading(true);
       });
     });
-    */
-
 
     describe('Circle attribute tests', () => {
       function testCircle(expected1, expected2, expected3) {
         component.setAttribute('circle', '');
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
+        componentDOM = appendToDom('customButton', component);
         window.getComputedStyle(componentDOM).getPropertyValue('padding').should.equal(expected1);
         window.getComputedStyle(componentDOM).getPropertyValue('width').should.equal(expected2);
         window.getComputedStyle(componentDOM).getPropertyValue('height').should.equal(expected3);
@@ -104,41 +94,52 @@ describe('core-button', () => {
       });
     });
 
+    describe('Icon attribute tests', () => {
+      function testIcon(withIcon, expected) {
+        if (withIcon) {
+          component.setAttribute('icon', 'el-icon-search');
+        }
+        componentDOM = appendToDom('customButton', component);
+        componentDOM.iconSlot.classList.length.should.equal(expected);
+      }
+
+      it('No icon test', () => {
+        testIcon(false, 0);
+      });
+
+      it('With icon Test', () => {
+        testIcon(true, 1);
+      });
+    });
 
     describe('Plain attribute tests', () => {
       function testPlain(typeVal, expected) {
         component.setAttribute('type', typeVal);
         component.setAttribute('plain', '');
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        window.getComputedStyle(componentDOM).border.should.equal(expected);
+        componentDOM = appendToDom('customButton', component);
+        window.getComputedStyle(componentDOM).backgroundColor.should.equal(expected);
       }
-      it('primay plain', () => {
-        testPlain('primary', '1px solid rgb(64, 158, 255)');
+      it('primary plain', () => {
+        testPlain('primary', 'rgba(64, 158, 255, 0.1)');
       });
       it('success plain', () => {
-        testPlain('success', '1px solid rgb(103, 194, 58)');
+        testPlain('success', 'rgba(103, 194, 58, 0.1)');
       });
       it('warning plain', () => {
-        testPlain('warning', '1px solid rgb(230, 162, 60)');
+        testPlain('warning', 'rgba(230, 162, 60, 0.1)');
       });
       it('danger plain', () => {
-        testPlain('danger', '1px solid rgb(245, 108, 108)');
+        testPlain('danger', 'rgba(245, 108, 108, 0.1)');
       });
       it('info plain', () => {
-        testPlain('info', '1px solid rgb(144, 147, 153)');
+        testPlain('info', 'rgba(144, 147, 153, 0.1)');
       });
     });
 
 
     describe('Type attribute tests', () => {
       function testType(isDefault, typeVal, expected) {
-        if (!isDefault) {
-          component.setAttribute('type', typeVal);
-        }
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        window.getComputedStyle(componentDOM).backgroundColor.should.equal(expected);
+        applyAttributeForStyle(isDefault, 'type', typeVal).backgroundColor.should.equal(expected);
       }
 
       it('Default test', () => {
@@ -164,12 +165,7 @@ describe('core-button', () => {
 
     describe('Size attribute tests', () => {
       function testSize(isDefault, sizeVal, expected) {
-        if (!isDefault) {
-          component.setAttribute('size', sizeVal);
-        }
-        document.body.append(component);
-        componentDOM = document.getElementById('customButton');
-        window.getComputedStyle(componentDOM).padding.should.equal(expected);
+        applyAttributeForStyle(isDefault, 'size', sizeVal).padding.should.equal(expected);
       }
 
       it('Default test', () => {
