@@ -28,20 +28,15 @@ export default class CoreLink extends CoreBase {
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    console.log(attrName, 'changed from', oldVal, 'to', newVal);
     switch (attrName) {
       case 'type':
         break;
       case 'href':
-        this.addEventListener('click', () => {
-          if (this.hasAttribute('target') && this.getAttribute('target') === '_blank') window.open(newVal);
-          else window.location.assign(newVal);
-        }, true);
+        this.addEventListener('click', this.createOnClickListener(window, newVal), true);
         break;
       case 'underline':
         break;
       case 'disabled':
-        // this.style.opacity = this.hasAttribute('disabled') ? '0.5' : '1';
         this.style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
         break;
       case 'icon':
@@ -49,6 +44,16 @@ export default class CoreLink extends CoreBase {
       default:
         this.style.borderRadius = '0px';
     }
+  }
+
+  createOnClickListener(window, newLocation) {
+    return () => {
+      if (this.hasAttribute('target') && this.getAttribute('target') === '_blank') {
+        window.open(newLocation);
+      } else {
+        window.location.assign(newLocation);
+      }
+    };
   }
 }
 

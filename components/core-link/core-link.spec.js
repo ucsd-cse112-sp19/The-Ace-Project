@@ -15,6 +15,28 @@ describe('core-link', () => {
     teardown('core-link');
   });
 
+  function createMockWindow(assignCallback, openCallback) {
+    // define a mock location class
+    class MockLocation {
+      assign(location) {
+        assignCallback(location);
+      }
+    }
+
+    // define a mock window class
+    class MockWindow {
+      constructor() {
+        this.location = new MockLocation();
+      }
+
+      open(hrefLoc) {
+        openCallback(hrefLoc);
+      }
+    }
+
+    return new MockWindow();
+  }
+
   it('Shared Tests', () => {
     basicElementTests(component, 'customLink');
   });
@@ -67,27 +89,57 @@ describe('core-link', () => {
   });
 
   describe('href attribute tests', () => {
-    function testHref(isDefault, link) {
+    function testHrefNoTarget(isDefault, link) {
       if (!isDefault) {
         component.setAttribute('href', link);
       }
-      componentDOM = appendToDom('customLink', component);
-      // Checks that the href attribute does not exist.
-      if (isDefault) {
-        should.not.exist(componentDOM.getAttribute('href'));
-        // Checks that the href attribute is correct.
-      } else {
-        componentDOM.getAttribute('href').should.equal(link);
-      }
+
+      let assignRan = false;
+
+      const assignCallback = (location) => {
+        location.should.equal(link);
+        should.not.exist(component.getAttribute('target'));
+        assignRan = true;
+      };
+
+      const mockWindow = createMockWindow(assignCallback, () => {});
+      const listener = component.createOnClickListener(mockWindow, link);
+
+      listener(link);
+
+      assignRan.should.equal(true);
     }
-    it('default value', () => {
-      testHref(true, '');
+
+    function testHrefWithTargetBlank(isDefault, link) {
+      if (!isDefault) {
+        component.setAttribute('href', link);
+      }
+
+      component.setAttribute('target', '_blank');
+
+      let openRan = false;
+
+      const openCallback = (hrefLoc) => {
+        hrefLoc.should.equal(link);
+        component.getAttribute('target').should.equal('_blank');
+        openRan = true;
+      };
+
+      const mockWindow = createMockWindow(() => {}, openCallback);
+      const listener = component.createOnClickListener(mockWindow, link);
+
+      listener(link);
+
+      openRan.should.equal(true);
+    }
+    it('Default', () => {
+      testHrefNoTarget(true, '');
     });
-    it('valid href value', () => {
-      testHref(false, 'www.google.com');
+    it('Href value, no target', () => {
+      testHrefNoTarget(false, 'www.google.com');
     });
-    it('blank href value', () => {
-      testHref(false, '');
+    it('Href value, with target', () => {
+      testHrefWithTargetBlank(false, 'www.google.com');
     });
   });
 
