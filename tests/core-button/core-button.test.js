@@ -4,7 +4,6 @@ fixture('core-button integration tests')
   .page('./core-button.test.html');
 
 async function checkBehavior(button, disabled, t) {
-  // async stuff here
   const buttonType = await button.textContent;
   await t.click(button);
   const expected = disabled ? buttonType : `${buttonType} Clicked!`;
