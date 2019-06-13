@@ -32,13 +32,7 @@ export default class CoreCheckbox extends CoreBase {
   connectedCallback() {
     this.checked = this.getAttribute('checked') !== null;
     this.disabled = this.getAttribute('disabled') !== null;
-    this.addEventListener('click', () => {
-      if (!this.disabled) {
-        this.checked = !this.checked;
-        this.setAttribute('checked', this.checked);
-        this.checkbox.checked = this.checked;
-      }
-    });
+    this.addEventListener('click', this.createOnClickCallback());
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
@@ -58,6 +52,16 @@ export default class CoreCheckbox extends CoreBase {
       default:
         this.style.borderRadius = '0px';
     }
+  }
+
+  createOnClickCallback() {
+    return () => {
+      if (!this.disabled) {
+        this.checked = !this.checked;
+        this.setAttribute('checked', this.checked);
+        this.checkbox.checked = this.checked;
+      }
+    };
   }
 }
 

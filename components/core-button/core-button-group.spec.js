@@ -59,6 +59,17 @@ describe('core-button-group', () => {
     });
 
     describe('Children do exist in DOM', () => {
+      function checkFirstButtonStyle(button) {
+        button.style.borderBottomRightRadius.should.equal('0px');
+        button.style.borderTopRightRadius.should.equal('0px');
+      }
+      function checkLastButtonStyle(button) {
+        button.style.borderBottomLeftRadius.should.equal('0px');
+        button.style.borderTopLeftRadius.should.equal('0px');
+      }
+      function checkMiddleButtonStyle(button) {
+        button.style.borderRadius.should.equal('0px');
+      }
       it('Children should at least exist', () => {
         document.body.append(component);
         componentDOM = document.getElementById('customButton');
@@ -68,6 +79,33 @@ describe('core-button-group', () => {
 
         componentDOM.appendChild(childbutton);
         componentDOM.hasChildNodes().should.equal(true);
+      });
+      it('2 Children Test', () => {
+        const child1 = document.createElement('core-button');
+        const child2 = document.createElement('core-button');
+
+        component.appendChild(child1);
+        component.appendChild(child2);
+        document.body.append(component);
+
+        componentDOM = document.getElementById('customButton');
+        checkFirstButtonStyle(child1);
+        checkLastButtonStyle(child2);
+      });
+      it('3 Children Test', () => {
+        const child1 = document.createElement('core-button');
+        const child2 = document.createElement('core-button');
+        const child3 = document.createElement('core-button');
+
+        component.appendChild(child1);
+        component.appendChild(child2);
+        component.appendChild(child3);
+        document.body.append(component);
+
+        componentDOM = document.getElementById('customButton');
+        checkFirstButtonStyle(child1);
+        checkMiddleButtonStyle(child2);
+        checkLastButtonStyle(child3);
       });
     });
   });
