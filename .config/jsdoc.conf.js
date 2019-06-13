@@ -4,6 +4,7 @@ module.exports = {
   opts: {
     recurse: true,
     destination: './doc/',
+    template: "node_modules/docdash"
   },
   source: {
     includePattern: '.+\\.js(doc|x)?$',
