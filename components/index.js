@@ -5,6 +5,7 @@ import CoreCheckbox from './core-checkbox/core-checkbox';
 import CoreButton from './core-button/core-button';
 import CoreButtonGroup from './core-button/core-button-group';
 import CoreLink from './core-link/core-link';
+import CoreDatepicker from './core-datepicker/core-datepicker';
 
 export {
   CoreHello,
@@ -12,4 +13,5 @@ export {
   CoreLink,
   CoreCheckbox,
   CoreButtonGroup,
+  CoreDatepicker,
 };

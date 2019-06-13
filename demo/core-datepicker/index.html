@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Datepicker demo</title>
+    <script src="/dist/standard-bundle.js"></script>
+    <link rel="stylesheet" href="/assets/element-icons.css" />
+</head>
+<script>
+    onDateChange = (event) => {
+        console.log('Date selected was',event.detail);
+    }
+</script>
+<body>
+    <core-datepicker onchange="onDateChange(event)" clearable></core-datepicker>
+    <core-datepicker disabled></core-datepicker>
+    <core-datepicker></core-datepicker>
+</body>
+</html>
