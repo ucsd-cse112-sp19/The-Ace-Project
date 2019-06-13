@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /js>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="../../dist/standard-bundle.js"></script>
+    <link rel="stylesheet" href="/assets/element-icons.css" />
+    <script>
+      window.onload = function(){
+        let allButtons = document.querySelectorAll('core-button');
+        allButtons.forEach(function(button){
+          button.addEventListener('click', function(){
+            button.innerText = `${button.innerText} Clicked!`;
+          });
+        });
+      }
+    </script>
+  </head>
+  <body style="height: 100%;">
+    <div id ="defaultButtons" style="height: 100px">
+      <core-button>Default</core-button>
+      <core-button type='primary'>Primary</core-button>
+      <core-button type='success'>Success</core-button>
+      <core-button type='info'>Info</core-button>
+      <core-button type='warning'>Warning</core-button>
+      <core-button type='danger'>Danger</core-button>
+      <core-button type='text'>Text</core-button>
+    </div>
+
+    <div id ="disabledButtons" style="height: 100px">
+      <core-button disabled>Default</core-button>
+      <core-button disabled type='primary'>Primary</core-button>
+      <core-button disabled type='success'>Success</core-button>
+      <core-button disabled type='info'>Info</core-button>
+      <core-button disabled type='warning'>Warning</core-button>
+      <core-button disabled type='danger'>Danger</core-button>
+      <core-button disabled type='text'>Text</core-button>
+    </div>
+  
+    <div id ="plainButtons" style="height: 100px">
+      <core-button plain >Default</core-button>
+      <core-button plain type='primary'>Primary</core-button>
+      <core-button plain type='success'>Success</core-button>
+      <core-button plain type='info'>Info</core-button>
+      <core-button plain type='warning'>Warning</core-button>
+      <core-button plain type='danger'>Danger</core-button>
+      <core-button plain type='text'>Text</core-button>
+    </div>
+
+    <div id ="iconButtons" style="height: 100px">
+      <core-button icon='el-icon-edit' >Default</core-button>
+      <core-button icon='el-icon-edit' type='primary'>Primary</core-button>
+      <core-button icon='el-icon-edit'type='success'>Success</core-button>
+      <core-button icon='el-icon-edit' type='info'>Info</core-button>
+      <core-button icon='el-icon-edit' type='warning'>Warning</core-button>
+      <core-button icon='el-icon-edit' type='danger'>Danger</core-button>
+      <core-button icon='el-icon-edit' type='text'>Text</core-button>
+    </div>
+
+    <div id ="loadingButtons" style="height: 100px">
+      <core-button loading='true'>Default</core-button>
+      <core-button loading='true' type='primary'>Primary</core-button>
+      <core-button loading='true' type='success'>Success</core-button>
+      <core-button loading='true' type='info'>Info</core-button>
+      <core-button loading='true' type='warning'>Warning</core-button>
+      <core-button loading='true' type='danger'>Danger</core-button>
+      <core-button loading='true' type='text'>Text</core-button>
+    </div>
+
+    <div id ="roundButtons" style="height: 100px">
+      <core-button round>Default</core-button>
+      <core-button round type='primary'>Primary</core-button>
+      <core-button round type='success'>Success</core-button>
+      <core-button round type='info'>Info</core-button>
+      <core-button round type='warning'>Warning</core-button>
+      <core-button round type='danger'>Danger</core-button>
+      <core-button round type='text'>Text</core-button>
+    </div>
+    
+    <div id ="circleButtons" style="height: 100px">
+      <core-button circle>Default</core-button>
+      <core-button circle type='primary'>Primary</core-button>
+      <core-button circle type='success'>Success</core-button>
+      <core-button circle type='info'>Info</core-button>
+      <core-button circle type='warning'>Warning</core-button>
+      <core-button circle type='danger'>Danger</core-button>
+      <core-button circle type='text'>Text</core-button>
+    </div>
+  </body>
+</html>
