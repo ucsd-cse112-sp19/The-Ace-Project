@@ -6,7 +6,7 @@
         "build": "webpack --config .config/webpack.prod.js",
         "build-dev": "webpack --config .config/webpack.dev.js",
         "test": "karma start --single-run --browsers ChromeHeadless .config/karma.conf.js",
-        "integration": "testcafe \"chrome\" tests",
+        "integration": "testcafe \"chrome:headless\" tests",
         "integration-sauce": "testcafe \"saucelabs:Chrome@beta:Windows 10\" tests/index-test.js tests",
         "integration-dev": "testcafe \"firefox\" tests",
         "lint": "eslint . -c .config/.eslintrc.js --ignore-path .config/.eslintignore && stylelint --aei ./**/*.css --config .config/.stylelintrc -i .config/.eslintignore && htmlhint --config .config/.htmlhintrc .",

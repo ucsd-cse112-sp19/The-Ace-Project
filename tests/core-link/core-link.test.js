@@ -1,52 +1,27 @@
-import { Selector, ClientFunction } from 'testcafe';
+import testClicks from '../common.test';
 
 fixture('core-link Integration')
   .page('./core-link.test.html');
 
-const getPageUrl = ClientFunction(() => window.location.href);
-
-async function checkBehavior(link, disabled, t) {
-  const defaultPage = await getPageUrl();
-  const expected = disabled ? defaultPage : 'https://www.google.com';
-  await t
-    .click(link)
-    .expect(getPageUrl())
-    .contains(expected)
-    .navigateTo(defaultPage);
-}
-
-async function testClicks(containerId, disabled, t) {
-  const linkList = await Selector(containerId).child();
-  const count = await linkList.count;
-  const results = [];
-  for (let i = 0; i < count; i += 1) {
-    const link = linkList.nth(i);
-    results.push(checkBehavior(link, disabled, t));
-  }
-  return Promise.all(results);
-}
-
 test('Default Link Clicks', async (t) => {
-  await testClicks('#defaultLinks', false, t);
+  await testClicks('#defaultLinks', false, t, 'link');
 });
 test('Default Bootstrap Link Clicks', async (t) => {
-  await testClicks('#defaultBootstrapLinks', false, t);
+  await testClicks('#defaultBootstrapLinks', false, t, 'link');
 });
 
 // TODO disabled link is still clickable
-/*
 test('Disabled Link Clicks', async (t) => {
-   await testClicks('#disabledLinks', true, t);
+  await testClicks('#disabledLinks', true, t, 'link');
 });
 
-test('Disabled Bootstrap Link Clicks', async(t) => {
-  await testClicks('#disabledBoostrapLinks', true, t);
+test('Disabled Bootstrap Link Clicks', async (t) => {
+  await testClicks('#disabledBoostrapLinks', true, t, 'link');
 });
-*/
 
 test('No Underline Link Clicks', async (t) => {
-  await testClicks('#noUnderlineLinks', false, t);
+  await testClicks('#noUnderlineLinks', false, t, 'link');
 });
 test('No Underline Bootstrap Link Clicks', async (t) => {
-  await testClicks('#noUnderlineLinks', false, t);
+  await testClicks('#noUnderlineBootstrapLinks', false, t, 'link');
 });

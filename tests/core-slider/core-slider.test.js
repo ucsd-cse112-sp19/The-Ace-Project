@@ -4,7 +4,7 @@ fixture('core-slider Integration')
   .page('./core-slider.test.html');
 
 
-async function checkBehavior(sliderId, t) {
+async function testSliderBehavior(sliderId, t) {
   const slider = await Selector(sliderId);
   await t
     .expect(slider.visible).ok() // TODO slider not visible??
@@ -15,5 +15,5 @@ async function checkBehavior(sliderId, t) {
 }
 
 test('Slide Left', async (t) => {
-  await checkBehavior('#sliderLeft', t);
+  await testSliderBehavior('#sliderLeft', t);
 });

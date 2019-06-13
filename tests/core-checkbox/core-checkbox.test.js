@@ -5,7 +5,7 @@ fixture('core-checkbox Integration')
 
 const getInnerInput = Selector(checkId => document.getElementById(checkId).shadowRoot.querySelector('input'));
 
-async function checkBehavior(checkId, disabled, t) {
+async function testCheckboxBehavior(checkId, disabled, t) {
   const checkbox = await Selector(`#${checkId}`);
   const innerInput = getInnerInput(checkId);
   const currentState = await checkbox.hasAttribute('checked');
@@ -15,24 +15,24 @@ async function checkBehavior(checkId, disabled, t) {
     .eql(expected);
 }
 test('Default Links', async (t) => {
-  await checkBehavior('default', false, t);
-  await checkBehavior('defaultChecked', false, t);
+  await testCheckboxBehavior('default', false, t);
+  await testCheckboxBehavior('defaultChecked', false, t);
 });
 
 test('Disabled Links', async (t) => {
-  await checkBehavior('disabled', true, t);
-  await checkBehavior('disabledChecked', true, t);
+  await testCheckboxBehavior('disabled', true, t);
+  await testCheckboxBehavior('disabledChecked', true, t);
 });
 
 test('Named Links', async (t) => {
-  await checkBehavior('named', false, t);
-  await checkBehavior('namedChecked', false, t);
-  await checkBehavior('namedDisabled', true, t);
+  await testCheckboxBehavior('named', false, t);
+  await testCheckboxBehavior('namedChecked', false, t);
+  await testCheckboxBehavior('namedDisabled', true, t);
 });
 
 test('Bordered Links', async (t) => {
-  await checkBehavior('bordered', false, t);
-  await checkBehavior('borderedChecked', false, t);
-  await checkBehavior('disabledBordered', true, t);
-  await checkBehavior('disabledBorderedChecked', true, t);
+  await testCheckboxBehavior('bordered', false, t);
+  await testCheckboxBehavior('borderedChecked', false, t);
+  await testCheckboxBehavior('disabledBordered', true, t);
+  await testCheckboxBehavior('disabledBorderedChecked', true, t);
 });

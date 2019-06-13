@@ -1,51 +1,32 @@
-import { Selector } from 'testcafe';
+import testClicks from '../common.test';
 
 fixture('core-button integration tests')
   .page('./core-button.test.html');
 
-async function checkBehavior(button, disabled, t) {
-  const buttonType = await button.textContent;
-  await t.click(button);
-  const expected = disabled ? buttonType : `${buttonType} Clicked!`;
-  await t.expect(button.textContent)
-    .contains(expected);
-}
-
-async function testClicks(containerId, disabled, t) {
-  const buttonList = await Selector(containerId).child();
-  const count = await buttonList.count;
-  const results = [];
-  for (let i = 0; i < count; i += 1) {
-    const button = buttonList.nth(i);
-    results.push(checkBehavior(button, disabled, t));
-  }
-  return Promise.all(results);
-}
-
 test('Default Button Clicks', async (t) => {
-  await testClicks('#defaultButtons', false, t);
+  await testClicks('#defaultButtons', false, t, 'button');
 });
 
 test('Disabled Button Clicks', async (t) => {
-  await testClicks('#disabledButtons', true, t);
+  await testClicks('#disabledButtons', true, t, 'button');
 });
 
 test('Plain Button Clicks', async (t) => {
-  await testClicks('#plainButtons', false, t);
+  await testClicks('#plainButtons', false, t, 'button');
 });
 
 test('Icon Button Clicks', async (t) => {
-  await testClicks('#iconButtons', false, t);
+  await testClicks('#iconButtons', false, t, 'button');
 });
 
 test('Loading Button Clicks', async (t) => {
-  await testClicks('#loadingButtons', false, t);
+  await testClicks('#loadingButtons', false, t, 'button');
 });
 
 test('Round Button Clicks', async (t) => {
-  await testClicks('#roundButtons', false, t);
+  await testClicks('#roundButtons', false, t, 'button');
 });
 
 test('Circle Button Clicks', async (t) => {
-  await testClicks('#circleButtons', false, t);
+  await testClicks('#circleButtons', false, t, 'button');
 });
