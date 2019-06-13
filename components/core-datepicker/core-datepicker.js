@@ -1,6 +1,8 @@
 // @ts-check
 import { extendMoment } from 'moment-range';
 import { chunk, debounce } from 'lodash';
+
+import CoreBase from '../core-base';
 // @ts-ignore
 import htmlTemplate from './core-datepicker.html';
 // @ts-ignore
@@ -20,30 +22,20 @@ const moment = extendMoment(require('moment'));
  * <core-datepicker clearable></core-datepicker>
  */
 
-class CoreDatepicker extends HTMLElement {
+class CoreDatepicker extends CoreBase {
   static get observedAttributes() {
     return ['disabled', 'clearable', 'format'];
   }
 
   constructor() {
-    super();
-
-    /* Initialization */
-    this.template = document.createElement('template');
-    this.template.innerHTML = htmlTemplate;
-    this.styleNode = document.createElement('style');
-    this.styleNode.innerHTML = cssTemplate;
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(this.template.content.cloneNode(true));
-    shadowRoot.appendChild(this.styleNode);
-
+    super(htmlTemplate, cssTemplate);
     /* Queries */
-    this.popup = shadowRoot.querySelector('.popup');
-    this.input = shadowRoot.querySelector('input');
-    this.year = shadowRoot.querySelector('#year');
-    this.month = shadowRoot.querySelector('#month');
-    this.days = shadowRoot.querySelector('#days');
-    this.clearBtn = shadowRoot.querySelector('#clear-btn');
+    this.popup = this.shadowRoot.querySelector('.popup');
+    this.input = this.shadowRoot.querySelector('input');
+    this.year = this.shadowRoot.querySelector('#year');
+    this.month = this.shadowRoot.querySelector('#month');
+    this.days = this.shadowRoot.querySelector('#days');
+    this.clearBtn = this.shadowRoot.querySelector('#clear-btn');
 
     /* Control variables */
     this.active = false;

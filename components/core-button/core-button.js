@@ -1,5 +1,7 @@
 // @ts-check
 
+import CoreBase from '../core-base';
+
 // @ts-ignore
 import htmlTemplate from './core-button.html';
 // @ts-ignore
@@ -7,6 +9,8 @@ import cssTemplate from './core-button.css';
 
 /**
  * A simple button
+ * @external
+ * @module CoreButton
  * @example <core-hello rainbow lang="pt"> Joseph </core-hello>
  * @property {string} [size="default"] - Button size
  * @property {string} [type="default"] - Button type
@@ -19,21 +23,13 @@ import cssTemplate from './core-button.css';
  * <core-button size='mini' type='danger' round plain> Hello world </core-button>
  */
 
-class CoreButton extends HTMLElement {
+export default class CoreButton extends CoreBase {
   static get observedAttributes() {
     return ['type', 'size', 'round', 'disabled', 'plain', 'icon', 'loading'];
   }
 
   constructor() {
-    super();
-    this.template = document.createElement('template');
-    this.template.innerHTML = htmlTemplate;
-    this.styleNode = document.createElement('style');
-    this.styleNode.innerHTML = cssTemplate;
-
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(this.template.content.cloneNode(true));
-    shadowRoot.appendChild(this.styleNode);
+    super(htmlTemplate, cssTemplate);
 
     this.button = this.shadowRoot.querySelector('a');
     this.bgMap = {
@@ -59,30 +55,53 @@ class CoreButton extends HTMLElement {
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    const bg = this.style.getPropertyValue('--main-bg');
     switch (attrName) {
       case 'icon':
-        if (newVal) this.iconSlot.classList.add(newVal);
-        else this.iconSlot.classList.remove(oldVal);
+        this.handleIconChanged(oldVal, newVal);
         break;
       case 'size':
-        this.style.setProperty('--main-padding', this.hasAttribute('size') ? this.sizeMap[newVal] : this.sizeMap.default);
+        this.handleSizeChanged(newVal);
         break;
       case 'type':
-        this.style.setProperty('--main-bg', this.bgMap[newVal]);
+        this.handleTypeChanged(newVal);
         break;
       case 'plain':
-        this.style.backgroundColor = newVal !== null ? this.hex2rgba(bg || '#ffffff', 0.1) : bg;
+        this.handlePlainChanged(newVal);
         break;
       case 'loading':
-        if (newVal) {
-          this.iconSlot.classList.add('el-icon-loading');
-        } else {
-          this.iconSlot.classList.remove('el-icon-loading');
-        }
+        this.handleLoadingChanged();
         break;
       default:
         break;
+    }
+  }
+
+  handleIconChanged(oldIcon, newIcon) {
+    if (newIcon) {
+      this.iconSlot.classList.add(newIcon);
+    } else {
+      this.iconSlot.classList.remove(oldIcon);
+    }
+  }
+
+  handleSizeChanged(newSize) {
+    this.style.setProperty('--main-padding', this.hasAttribute('size') ? this.sizeMap[newSize] : this.sizeMap.default);
+  }
+
+  handleTypeChanged(newType) {
+    this.style.setProperty('--main-bg', this.bgMap[newType]);
+  }
+
+  handlePlainChanged(newVal) {
+    const bg = this.style.getPropertyValue('--main-bg');
+    this.style.backgroundColor = newVal !== null ? this.hex2rgba(bg || '#ffffff', 0.1) : bg;
+  }
+
+  handleLoadingChanged() {
+    if (this.hasAttribute('loading')) {
+      this.iconSlot.classList.add('el-icon-loading');
+    } else {
+      this.iconSlot.classList.remove('el-icon-loading');
     }
   }
 }
