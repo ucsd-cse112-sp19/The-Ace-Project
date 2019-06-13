@@ -1,3 +1,6 @@
+
+import CoreBase from '../core-base';
+
 import htmlTemplate from './core-hello.html';
 import cssTemplate from './core-hello.css';
 
@@ -6,32 +9,26 @@ import cssTemplate from './core-hello.css';
  * children it is given. </br>
  * It can also accept the attributes <code>lang</code> to change the
  * Hello World language and <code>rainbow</code> for extra swag
+ * @external
+ * @module CoreHello
  * @example <core-hello rainbow lang="pt"> Joseph </core-hello>
  * @property {string} [lang="en"] - Language of Hello World - Accepts "en" | "jp" | "pt"
  * @property {boolean} [rainbow=false] - If present, animates the text with a rainbow effect
  * @playground <core-hello lang='jp' rainbow> Peter </core-hello>
  */
-export default class CoreHello extends HTMLElement {
+export default class CoreHello extends CoreBase {
   static get observedAttributes() {
     return ['rainbow', 'lang'];
   }
 
   constructor() {
-    super();
-    this.template = document.createElement('template');
-    this.template.innerHTML = htmlTemplate;
-    this.styleNode = document.createElement('style');
-    this.styleNode.innerHTML = cssTemplate;
+    super(htmlTemplate, cssTemplate);
 
     this.langMap = {
       en: 'Hello World',
       pt: 'Olá Mundo',
       jp: 'こんにちは世界',
     };
-
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(this.template.content.cloneNode(true));
-    shadowRoot.appendChild(this.styleNode);
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {

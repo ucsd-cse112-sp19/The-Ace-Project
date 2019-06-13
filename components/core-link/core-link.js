@@ -1,5 +1,7 @@
 // @ts-check
 
+import CoreBase from '../core-base';
+
 // @ts-ignore
 import htmlTemplate from './core-link.html';
 // @ts-ignore
@@ -7,6 +9,8 @@ import cssTemplate from './core-link.css';
 
 /**
  * Text hyperlink
+ * @external
+ * @module CoreLink
  * @example <core-link> Text </core-link>
  * @property {string} [href=""] - href
  * @property {string} [type="default"] - Button type
@@ -16,38 +20,25 @@ import cssTemplate from './core-link.css';
  * @playground <core-link> link </core-link>
  */
 
-class CoreLink extends HTMLElement {
+export default class CoreLink extends CoreBase {
   static get observedAttributes() {
     return ['type', 'href', 'underline', 'disabled', 'icon'];
   }
 
   constructor() {
-    super();
-    this.template = document.createElement('template');
-    this.template.innerHTML = htmlTemplate;
-    this.styleNode = document.createElement('style');
-    this.styleNode.innerHTML = cssTemplate;
-
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(this.template.content.cloneNode(true));
-    shadowRoot.appendChild(this.styleNode);
+    super(htmlTemplate, cssTemplate);
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    console.log(attrName, 'changed from', oldVal, 'to', newVal);
     switch (attrName) {
       case 'type':
         break;
       case 'href':
-        this.addEventListener('click', () => {
-          if (this.hasAttribute('target') && this.getAttribute('target') === '_blank') window.open(newVal);
-          else window.location.assign(newVal);
-        }, true);
+        this.addEventListener('click', this.createOnClickListener(window, newVal), true);
         break;
       case 'underline':
         break;
       case 'disabled':
-        // this.style.opacity = this.hasAttribute('disabled') ? '0.5' : '1';
         this.style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
         break;
       case 'icon':
@@ -55,6 +46,16 @@ class CoreLink extends HTMLElement {
       default:
         this.style.borderRadius = '0px';
     }
+  }
+
+  createOnClickListener(window, newLocation) {
+    return () => {
+      if (this.hasAttribute('target') && this.getAttribute('target') === '_blank') {
+        window.open(newLocation);
+      } else {
+        window.location.assign(newLocation);
+      }
+    };
   }
 }
 
