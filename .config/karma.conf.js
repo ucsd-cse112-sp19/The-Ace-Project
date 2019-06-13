@@ -7,10 +7,10 @@ module.exports = function (config) {
     files: [
       /* load component files (we can use karma-browserify if
           we want to use node style 'require' statements instead) */
-      'components/**/index-test.spec.js',
+      '../components/**/index-test.spec.js',
     ],
     preprocessors: {
-      'components/**/index-test.spec.js': ['webpack', 'sourcemap'],
+      '../components/**/index-test.spec.js': ['webpack', 'sourcemap'],
     },
     webpack: webpackConfig,
     webpackMiddleware: {
