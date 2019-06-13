@@ -13,5 +13,5 @@ export {
   CoreLink,
   CoreCheckbox,
   CoreButtonGroup,
-  CoreSlider
+  CoreSlider,
 };
