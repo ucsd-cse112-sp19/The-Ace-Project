@@ -12,7 +12,7 @@ import cssTemplate from './core-button.css';
  * @external
  * @module CoreButton
  * @example <core-hello rainbow lang="pt"> Joseph </core-hello>
- * @property {string} [size="default"] - determines the size of the button
+ * @property {string} [size="default"] - determines the size of the button another doc change
  * @property {string} [type="default"] - Button type
  * @property {boolean} [plain=false] - determine whether it's a plain button
  * @property {boolean} [round=false] - determine whether it's a round button
