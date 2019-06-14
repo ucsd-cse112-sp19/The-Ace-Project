@@ -9,6 +9,7 @@ import cssTemplate from './core-link.css';
 
 /**
  * Text hyperlink
+ * @external
  * @module CoreLink
  * @example <core-link> Text </core-link>
  * @property {string} [href=""] - href
@@ -16,6 +17,7 @@ import cssTemplate from './core-link.css';
  * @property {string} [icon=""] - class name of icon
  * @property {boolean} [underline=true] - determine whether the component has underline
  * @property {boolean} [disabled=false] - determine whether the component is disabled
+ * @property {boolean} [bootstrap=false] - Use bootstrap coloring or not
  * @playground <core-link> link </core-link>
  */
 

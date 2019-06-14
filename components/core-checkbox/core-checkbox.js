@@ -18,13 +18,22 @@ import cssTemplate from './core-checkbox.css';
  * @playground <core-checkbox> Checkbox </core-checkbox>
  */
 
-class CoreCheckbox extends CoreBase {
+export default class CoreCheckbox extends CoreBase {
   static get observedAttributes() {
     return ['value', 'v-model', 'disabled', 'name', 'checked', 'border'];
   }
 
   constructor() {
     super(htmlTemplate, cssTemplate);
+
+    this.checkbox = this.shadowRoot.querySelector('input');
+    this.checked = false;
+  }
+
+  connectedCallback() {
+    this.checked = this.getAttribute('checked') !== null;
+    this.disabled = this.getAttribute('disabled') !== null;
+    this.addEventListener('click', this.createOnClickCallback());
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
@@ -44,6 +53,16 @@ class CoreCheckbox extends CoreBase {
       default:
         this.style.borderRadius = '0px';
     }
+  }
+
+  createOnClickCallback() {
+    return () => {
+      if (!this.disabled) {
+        this.checked = !this.checked;
+        this.setAttribute('checked', this.checked);
+        this.checkbox.checked = this.checked;
+      }
+    };
   }
 }
 

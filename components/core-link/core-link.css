@@ -44,32 +44,32 @@
 :host(:after:hover:not([underline="false"][type="warning"])){border-color:#e6a23c}
 :host(:after:hover:not([underline="false"][type="info"])){border-color:#909399}
 
-:host([type="primary"][bootstrap=true]){color:#007bff}
-:host([type="danger"][bootstrap=true]){color:#dc3545}        
-:host([type="success"][bootstrap=true]){color:#28a745}
-:host([type="warning"][bootstrap=true]){color:#ffc107}
-:host([type="info"][bootstrap=true]){color:#17a2b8}
+:host([type="primary"][bootstrap]){color:#007bff}
+:host([type="danger"][bootstrap]){color:#dc3545}        
+:host([type="success"][bootstrap]){color:#28a745}
+:host([type="warning"][bootstrap]){color:#ffc107}
+:host([type="info"][bootstrap]){color:#17a2b8}
 
 :host(:hover){color:#409eff}
-:host(:hover[type="primary"][bootstrap=true]){color:#007bff}
-:host(:hover[type="danger"][bootstrap=true]){color:#dc3545}
-:host(:hover[type="success"][bootstrap=true]){color:#28a745}
-:host(:hover[type="warning"][bootstrap=true]){color:#ffc107}
-:host(:hover[type="info"][bootstrap=true]){color:#17a2b8}
+:host(:hover[type="primary"][bootstrap]){color:#007bff}
+:host(:hover[type="danger"][bootstrap]){color:#dc3545}
+:host(:hover[type="success"][bootstrap]){color:#28a745}
+:host(:hover[type="warning"][bootstrap]){color:#ffc107}
+:host(:hover[type="info"][bootstrap]){color:#17a2b8}
 
 :host(:after){border-color:#409eff;}
-:host(:after[type="primary"][bootstrap=true]){border-color:#007bff}
-:host(:after[type="danger"][bootstrap=true]){border-color:#dc3545}
-:host(:after[type="success"][bootstrap=true]){border-color:#28a745}
-:host(:after[type="warning"][bootstrap=true]){border-color:#ffc107}
-:host(:after[type="info"][bootstrap=true]){border-color:#17a2b8}
+:host(:after[type="primary"][bootstrap]){border-color:#007bff}
+:host(:after[type="danger"][bootstrap]){border-color:#dc3545}
+:host(:after[type="success"][bootstrap]){border-color:#28a745}
+:host(:after[type="warning"][bootstrap]){border-color:#ffc107}
+:host(:after[type="info"][bootstrap]){border-color:#17a2b8}
 
-:host([disabled][bootstrap=true]){color:#c0c4cc;}
-:host([disabled][type="primary"][bootstrap=true]){color:#a0cfff}
-:host([disabled][type="danger"][bootstrap=true]){color:#fab6b6}
-:host([disabled][type="success"][bootstrap=true]){color:#b3e19d}
-:host([disabled][type="warning"][bootstrap=true]){color:#f3d19e}
-:host([disabled][type="info"][bootstrap=true]){color:#c8c9cc}
+:host([disabled][bootstrap]){color:#c0c4cc;}
+:host([disabled][type="primary"][bootstrap]){color:#a0cfff}
+:host([disabled][type="danger"][bootstrap]){color:#fab6b6}
+:host([disabled][type="success"][bootstrap]){color:#b3e19d}
+:host([disabled][type="warning"][bootstrap]){color:#f3d19e}
+:host([disabled][type="info"][bootstrap]){color:#c8c9cc}
 
 :host(:after:hover:not([underline="false"])[type="primary"]){border-color:#007bff}
 :host(:after:hover:not([underline="false"])[type="danger"]){border-color:#dc3545}

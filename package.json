@@ -15,8 +15,8 @@
         "semantic-release": "semantic-release"
     },
     "dependencies": {
-        "chai-dom": "^1.8.1",
-        "@webcomponents/webcomponentsjs": "^2.2.10"
+        "@webcomponents/webcomponentsjs": "^2.2.10",
+        "chai-dom": "^1.8.1"
     },
     "devDependencies": {
         "@babel/cli": "^7.4.4",
@@ -37,6 +37,7 @@
         "conventional-changelog-cli": "^2.0.21",
         "css-loader": "^2.1.1",
         "cz-conventional-changelog": "^2.1.0",
+        "docdash": "^1.1.1",
         "eslint": "^5.16.0",
         "eslint-config-airbnb-base": "^13.1.0",
         "eslint-plugin-chai-expect": "^2.0.1",

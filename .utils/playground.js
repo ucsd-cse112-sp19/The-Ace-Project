@@ -19,6 +19,7 @@ function safe_tags(str) {
 * the template literal variable content to display the appropriate content
 */
 const renderPlayground = content => `
+<link rel="stylesheet" href="/assets/element-icons.css" />
 <style type="text/css" media="screen">
     #parent {
       width: 50%;
@@ -185,10 +186,9 @@ exports.defineTags = function(dictionary) {
     */
     onTagged: function(doclet, tag) {
       let componentName = doclet.meta.filename.replace(/(.js)/g, "");
-      let filePath = `../components/${componentName}/${doclet.meta.filename}`
       doclet.authentication = tag.value;
       doclet.description = `
-        <script src="${filePath}"></script>
+        <script src="/dist/standard-bundle.js"></script>
         <h2> Playground </h2>
         ${renderPlayground(tag.title === "playground" ? tag.value : null)}
       `;

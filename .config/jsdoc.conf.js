@@ -4,6 +4,8 @@ module.exports = {
   opts: {
     recurse: true,
     destination: './doc/',
+    template: "node_modules/docdash",
+    tutorials: "tutorials",
   },
   source: {
     includePattern: '.+\\.js(doc|x)?$',
@@ -18,4 +20,9 @@ module.exports = {
     cleverLinks: false,
     monospaceLinks: false,
   },
+  docdash: {
+    search: true,
+    collaps: false,
+    navLevel: 3
+  }
 };

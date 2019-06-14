@@ -83,5 +83,38 @@ describe('core-checkbox', () => {
         testChecked(true);
       });
     });
+
+    describe('Click Listener', () => {
+      function testClick(disabled, checked) {
+        if (checked) {
+          component.setAttribute('checked', '');
+        }
+
+        if (!disabled) {
+          component.setAttribute('disabled', '');
+        }
+
+        componentDOM = appendToDom('customCheckbox', component);
+        componentDOM.createOnClickCallback()();
+
+        if (disabled) {
+          componentDOM.shadowRoot.querySelector('input').checked.should.equal(!checked);
+        } else {
+          componentDOM.shadowRoot.querySelector('input').checked.should.equal(checked);
+        }
+      }
+      it('Click Enabled', () => {
+        testClick(false, false);
+      });
+      it('Click Checked', () => {
+        testClick(false, true);
+      });
+      it('Click Disabled Not Checked', () => {
+        testClick(true, false);
+      });
+      it('Click Disabled Checked', () => {
+        testClick(true, true);
+      });
+    });
   });
 });
