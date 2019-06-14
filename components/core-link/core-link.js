@@ -28,6 +28,7 @@ export default class CoreLink extends CoreBase {
 
   constructor() {
     super(htmlTemplate, cssTemplate);
+    this.disabled = false;
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
@@ -41,6 +42,7 @@ export default class CoreLink extends CoreBase {
         break;
       case 'disabled':
         this.style.cursor = this.hasAttribute('disabled') ? 'not-allowed' : 'pointer';
+        this.disabled = newVal !== null;
         break;
       case 'icon':
         break;
@@ -51,9 +53,9 @@ export default class CoreLink extends CoreBase {
 
   createOnClickListener(window, newLocation) {
     return () => {
-      if (this.hasAttribute('target') && this.getAttribute('target') === '_blank') {
+      if (this.hasAttribute('target') && this.getAttribute('target') === '_blank' && !this.disabled) {
         window.open(newLocation);
-      } else {
+      } else if (!this.disabled) {
         window.location.assign(newLocation);
       }
     };
