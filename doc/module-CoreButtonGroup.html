@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>CoreButton - Documentation</title>
+    <title>CoreButtonGroup - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,7 +34,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">CoreButton</h1>
+    <h1 class="page-title">CoreButtonGroup</h1>
     
 
     
@@ -160,7 +160,7 @@
           editor.session.setMode("ace/mode/html");
           editor.setAutoScrollEditorIntoView(true);
           editor.session.setUseSoftTabs(true);
-          editor.session.insert(editor.getCursorPosition(),"&lt;core-button size='mini' type='danger' round plain&gt; Hello world &lt;/core-button&gt;");
+          editor.session.insert(editor.getCursorPosition(),"&lt;core-button-group&gt;\n &lt;core-button type='primary'&gt; Default &lt;/core-button&gt;\n &lt;core-button type='primary' icon='el-icon-delete'&gt;&lt;/core-button&gt;\n &lt;core-button type='primary' icon='el-icon-share'&gt;&lt;/core-button&gt;\n&lt;/core-button-group&gt;");
 
           editor.session.setValue(unsafe_tags(editor.session.getValue()))
 
@@ -181,7 +181,7 @@
             
             var observer = new MutationObserver(debounce(callback, 2000));
             observer.observe(output, config);
-            output.innerHTML = "&lt;core-button size='mini' type='danger' round plain&gt; Hello world &lt;/core-button&gt;";
+            output.innerHTML = "&lt;core-button-group&gt;\n &lt;core-button type='primary'&gt; Default &lt;/core-button&gt;\n &lt;core-button type='primary' icon='el-icon-delete'&gt;&lt;/core-button&gt;\n &lt;core-button type='primary' icon='el-icon-share'&gt;&lt;/core-button&gt;\n&lt;/core-button-group&gt;";
             output.innerHTML = unsafe_tags(output.innerHTML)
             editor.session.on("change", function(delta) {
               output.innerHTML = editor.getValue();
@@ -221,7 +221,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-button_core-button.js.html">core-button/core-button.js</a>, <a href="core-button_core-button.js.html#line10">line 10</a>
+        <a href="core-button_core-button-group.js.html">core-button/core-button-group.js</a>, <a href="core-button_core-button-group.js.html#line4">line 4</a>
     </li></ul></dd>
     
 
@@ -272,11 +272,7 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -288,259 +284,23 @@
 
         <tr>
             
-                <td class="name"><code>size</code></td>
+                <td class="name"><code>children</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Array.&lt;CoreButton></span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                    <code>"default"</code>
-                
-                </td>
-            
 
-            <td class="description last">Button size</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>"default"</code>
-                
-                </td>
-            
-
-            <td class="description last">Button type</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>plain</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last">determine whether it's a plain button</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>round</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last">determine whether it's a round button</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>circle</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last">determine whether it's a circle button</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>loading</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last">determine whether it's loading</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>disabled</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last">disable the button</td>
+            <td class="description last">children CoreButtons to be grouped</td>
         </tr>
 
     
@@ -558,11 +318,6 @@
 
 
 
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>&lt;core-hello rainbow lang="pt"> Joseph &lt;/core-hello></code></pre>
 
 
 
