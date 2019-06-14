@@ -12,20 +12,21 @@ import cssTemplate from './core-button.css';
  * @external
  * @module CoreButton
  * @example <core-hello rainbow lang="pt"> Joseph </core-hello>
- * @property {string} [size="default"] - Button size
- * @property {string} [type="default"] - Button type
+ * @property {string} [size="default"] - Button size. Accepts default | small | medium | mini
+ * @property {string} [type="default"] - default | primary | success | info | warning | danger
  * @property {boolean} [plain=false] - determine whether it's a plain button
  * @property {boolean} [round=false] - determine whether it's a round button
  * @property {boolean} [circle=false] - determine whether it's a circle button
  * @property {boolean} [loading=false] - determine whether it's loading
  * @property {boolean} [disabled=false] - disable the button
+ * @property {string} [bootstrap\-class] - override class to
  * @playground
  * <core-button size='mini' type='danger' round plain> Hello world </core-button>
  */
 
 export default class CoreButton extends CoreBase {
   static get observedAttributes() {
-    return ['type', 'size', 'round', 'disabled', 'plain', 'icon', 'loading'];
+    return ['type', 'size', 'round', 'disabled', 'plain', 'icon', 'loading', 'class'];
   }
 
   constructor() {
@@ -52,6 +53,24 @@ export default class CoreButton extends CoreBase {
       const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
       return `rgba(${r},${g},${b},${alpha})`;
     };
+  }
+
+  connectedCallback() {
+    if (this.hasAttribute('bootstrap-class')) {
+      const bsClasses = this.getAttribute('bootstrap-class').split(' ');
+      this.shadowRoot.removeChild(this.shadowRoot.querySelector('style'));
+      const slottedItem = this.shadowRoot.querySelector('slot');
+      this.shadowRoot.removeChild(this.shadowRoot.querySelector('a'));
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css';
+      this.shadowRoot.appendChild(link);
+      this.shadowRoot.appendChild(document.createElement('button'));
+      this.shadowRoot.querySelector('button').appendChild(slottedItem);
+      bsClasses.forEach((bsClass) => {
+        this.shadowRoot.querySelector('button').classList.add(bsClass);
+      });
+    }
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
