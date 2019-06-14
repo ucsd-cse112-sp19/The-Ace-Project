@@ -1,6 +1,6 @@
 {
     "name": "ace-webcomponents",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "main": "components/index.js",
     "scripts": {
         "build": "webpack --config .config/webpack.prod.js",
