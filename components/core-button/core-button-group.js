@@ -3,7 +3,7 @@
 
 /**
  * A composite component that groups core-button components together
- * @external
+ * @module CoreButtonGroup
  * @property {CoreButton[]} children - children CoreButtons to be grouped
  * @playground
  * <core-button-group>
